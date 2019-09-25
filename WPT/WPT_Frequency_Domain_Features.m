@@ -20,14 +20,8 @@ function Freq_Features= WPT_Frequency_Domain_Features(list_name,L,stickout_lengt
 % References
 % 1) M. C. Yesilli, F. A. Khasawneh, and A. Otto, “On transfer learning for chatter detection in turning
 % using wavelet packet transform and empirical mode decomposition,” arXiv:1905.01982, 2019 
-% 2)F. Khasawneh, A. Otto, and M. Yesilli, “Turning dataset for chatter diagnosis using machine learning.”
+% 2)F. Khasawneh, A. Otto, and M.C. Yesilli, “Turning dataset for chatter diagnosis using machine learning.”
 % Mendeley Data, v1. http://dx.doi.org/10.17632/hvm4wh3jzx.1, 2019.
-
-% clear all; clc;close all;
-% Fs=10000;
-% list_name = 'time_series_name_2inch.txt';
-% L=3;
-% stickout_length =2;
 
 
 %add paths for the reconstructed time series
