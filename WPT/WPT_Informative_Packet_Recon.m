@@ -1,5 +1,5 @@
-function recon = WPT_Informative_Packet_Recon(list_name,L,WF,IWP,stickout_length)
-%% Wavelet Packet Decomposition and Energy Ratio Computation
+function WPT_Informative_Packet_Recon(list_name,L,WF,IWP,stickout_length)
+%% Wavelet Packet Reconstruction
 % Description: This code computes WPT for given time series and reconstructs
 %              the chosen informative wavelet packets and saves them into
 %              desired folder. 
@@ -48,7 +48,7 @@ for i=1:length(filename)
     eval(sprintf('WPT%d=wpdec(ts%d,%d,"%s");',i,i,L,WF));
 
     % Reconstruction Wavelet Packets
-    eval(sprintf('recon{%d} = wprcoef(WPT%d,%d);',i,i,IWP))
+    eval(sprintf('recon = wprcoef(WPT%d,%d);',i,IWP))
     
     %saving
     if stickout_length==2
@@ -61,8 +61,8 @@ for i=1:length(filename)
         sl='4p5';
     end
     savename = sprintf('WPT_Level%d_Recon_%sinch_%s',L,sl,dataname);
-    save_direc = strcat(save_path,'\',savename);
-    eval(sprintf("save(%s,'recon')",savename))
+    save_direc = fullfile(save_path,savename);
+    eval(sprintf("save('%s','recon');",save_direc));
 end
 end
 
