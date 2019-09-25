@@ -11,8 +11,8 @@ function Freq_Features= WPT_Frequency_Domain_Features(list_name,L,stickout_lengt
 %       stickout_length: Overhang length of the cutting tool 
 %       Fs             : Sampling frequency of the reconstructed time series
 %
-% OUTPUT: Saving reconstructed wavelet packets in time domain into desired
-%         location
+% OUTPUT: Frequency features array with size of Nx4 where N is the number
+%         of reconstructed time series
 %
 % Note:   Change the file paths and the saving path inside of the function to be able to access
 %         to cutting test data and to save data into desired folder
