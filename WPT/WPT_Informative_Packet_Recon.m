@@ -33,14 +33,6 @@ addpath('D:\Data Archive\Cutting_Test_Data_Documented\cutting_tests_processed\4p
 %add path for saving the reconstructed time series 
 save_path='D:\Data Archive\Cutting_Test_Data_Documented\cutting_tests_processed\2inch_stickout';
 
-% %INPUTS
-% clear all; clc;close all;
-% L=3;
-% list_name = 'time_series_name_2inch.txt';
-% WF = 'db10';
-% stickout_length =2;
-% IWP=8;
-
 filename = regexp(fileread(list_name), '\r?\n', 'split');
 
 for i=1:length(filename)
