@@ -2,10 +2,7 @@
 Date : 12/18/2018
 
 Author : Melih Can Yesilli
-
-Description : This code replicates the work done in 'Online chatter detection 
-of the end milling based on wavelet packet transform and support vector machine
-recursive feature elimination' by Chen and Zheng (2018). 
+ 
 
 Feature matrix for turning experiment data are computed and features are ranked with 
 recursive feature elimination method. Combinations of features are used to classify
