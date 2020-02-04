@@ -16,16 +16,13 @@ import pandas as pd
 import scipy.io as sio
 import os.path
 import sys
-from sklearn.preprocessing import StandardScaler
-from scipy.stats import skew,kurtosis
+from scipy.stats import skew
 from sklearn.feature_selection import RFE
-from sklearn.svm import SVR,SVC
+from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-
-
 
 
 def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
