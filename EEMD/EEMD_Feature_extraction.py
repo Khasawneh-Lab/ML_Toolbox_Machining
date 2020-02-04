@@ -1,72 +1,397 @@
-'''
-Author : Melih Can Yesilli
+"""
+Feature extraction and supervised classification using EEMD 
+-----------------------------------------------------------
 
-Date : 12/21/2018 
+This function takes time series and decompose them using Ensemble Empirical Mode 
+Decomposition (EEMD). If user already computed the decompositions, algorithm will
+directly compute the features and generate feature matrices. Algorithm require user 
+give classifier name, informative intrinsic mode function (IMF) number and the stickout
+length of the data user working on. 
 
-Description : This code takes time series belongs to turning experiment and applies 
-EEMD to this data to generate IMFs. IMFs are used for feature extraction for machine
-learning. Informative IMFs are selected by using Fisher Discriminant Ratio(FDR) feature
-ranking method. Top ranked features are selected to be used in feature matrix for whole cases. 
-
-Turning experiment data includes 2, 2.5, 3.5 and 4.5 inch stickout cases with different number of stable,
-intermediate chatter and chatter state time series. This code is able to apply above mentioned method
-for whole cases.
-
-'''
-
+"""
+import time
+start2 = time.time()
 import numpy as np
 import pandas as pd
 import scipy.io as sio
+import os.path
+import sys
+from sklearn.preprocessing import StandardScaler
+from scipy.stats import skew,kurtosis
+from sklearn.feature_selection import RFE
+from sklearn.svm import SVR,SVC
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
 
-#------------------------------------------------------------------------------
-#for 2 inch case:
-namets = ["c_320_005","c_425_020","c_425_025","c_570_001","c_570_002","c_570_005","c_570_010","c_770_001","c_770_002_2","c_770_002","c_770_005","c_770_010","i_320_005","i_320_010","i_425_020","i_425_025","i_570_002","i_570_005","i_570_010","i_770_001","s_320_005","s_320_010","s_320_015","s_320_020_2","s_320_020","s_320_025","s_320_030","s_320_035","s_320_040","s_320_045","s_320_050_2","s_320_050","s_425_005","s_425_010","s_425_015","s_425_017","s_425_020","s_570_002","s_570_005"]
-label_c=np.full((20,1),1)
-label_u=np.full((19,1),0)
-label=np.concatenate((label_c,label_u))
 
-#for 2.5 inch case:
-#namets = ["c_570_014","c_570_015s","c_770_005","i_570_012","i_570_014","i_570_015s","i_770_005","s_570_003","s_570_005_2","s_570_005","s_570_008","s_570_010","s_570_015_2","s_570_015","s_770_002","s_770_005"]
-#label_c=np.full((7,1),1)
-#label_u=np.full((9,1),0)
-#label=np.concatenate((label_c,label_u))
 
-#for 3.5 inch case:
-#namets=["c_1030_002","c_770_015","i_770_010","i_770_010_2","i_770_015","s_570_015","s_570_025","s_570_025_2","s_570_030","s_770_005","s_770_008","s_770_010","s_770_010_2","s_770_015"];
-#label_c=np.full((5,1),1)
-#label_u=np.full((9,1),0)
-#label=np.concatenate((label_c,label_u))
 
-#for 4.5 inch case:
-#namets=["c_570_035","c_570_040","c_1030_010","c_1030_015","c_1030_016","i_1030_010","i_1030_012","i_1030_013","i_1030_014","s_570_005","s_570_010","s_570_015","s_570_025","s_570_035","s_570_040","s_770_010","s_770_015","s_770_020","s_1030_005","s_1030_007","s_1030_013","s_1030_014"];
-#label_c=np.full((9,1),1)
-#label_u=np.full((13,1),0)
-#label=np.concatenate((label_c,label_u))
+def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
+    """
+    
+    :param stickout_length: The distance between heel of the boring bar and the back surface of the cutting tool 
+    
+       * if stickout length is 2 inch, '2'
+       * if stickout length is 2.5 inch, '2p5'
+       * if stickout length is 3.5 inch, '3p5'
+       * if stickout length is 4.5 inch, '4p5'
+    
+    :param EEMDecs: 
+       
+       * if decompositions have already been computed, 'A'
+       * if decompositions have not been computed, 'NA'    
+       
+    :param p: Informative intrinsic mode function (IMF) number
+  
+    :param Classifier: Classifier defined by user
+       
+       * Support Vector Machine: 'SVC'
+       * Logistic Regression: 'LR'
+       * Random Forest Classification: 'RF'
+       * Gradient Boosting: 'GB'
+    	
+    
+    :Returns:
+        
+        results
+            Classification results for training and test set for all combination of ranked features
 
-#------------------------------------------------------------------------------
+        time
+            Elapsed time during feature matrix generation and classification
+    
+    :Example:
+    
+        .. doctest::
+                       
+           >>> from EEMD_Feature_Extraction import EEMD_Feature_Extraction
+            
+           #parameters
+           >>> stickout_length='2'
+           >>> EEMDecs = 'A'
+           >>> p=2
+           >>> Classifier = 'SVC'
+         
+           >>> results = WPT_Feature_Extraction(stickout_length, WPT_Level, 
+           >>>                                  Classifier, plotting)     
+           Enter the path of the data files:
+           >>> D\...\cutting_tests_processed\data_2inch_stickout
+           Enter Enter the path of EEMD files:
+           >>> D\...\cutting_tests_processed\data_2inch_stickout
+           
+    """
 
-#name of datasets
-numberofcase = len(namets) 
-
-#load datasets
-for i in range (0,numberofcase):
-    name =  'chatter_%d' %(i+1)
-    nameofdata = '%s_downsampled.mat' %(namets[i])
-    exec("%s = sio.loadmat(nameofdata)" % (name))
-    exec('%s = %s["tsDS"]' %(name,name))
-
-#Ensemble Emprical Mode Decomposition (EEMD)
-from PyEMD import EEMD
-
-eemd = EEMD()
-emd = eemd.EMD
-emd.trials = 200      #default = 100
-emd.noise_width = 0.2 #default = 0.05
-
-#signal
-S = chatter_1[:,1]
-t = chatter_1[:,0]
-
-eIMFs = eemd.eemd(S, t)
-nIMFs = eIMFs.shape[0]
-
+    #%%
+    #parameters 
+    #stickout_length ='2'
+    #EEMDecs = 'A'
+    #p=2
+    #Classifier = 'SVC'
+    #%%
+    user_input = input("Enter the path of the data files: ")
+    
+    assert os.path.exists(user_input), "Specified file does not exist at, "+str(user_input)
+    
+    folderToLoad = os.path.join(user_input)
+    
+    if EEMDecs == 'A':
+        user_input2 = input("Enter the path of EEMD files: ")
+    
+        assert os.path.exists(user_input2), "Specified file does not exist at, "+str(user_input2)
+    
+        folderToLoad2 = os.path.join(user_input2)
+        
+    if EEMDecs == 'NA':
+        user_input3 = input("Enter the path to save EEMD files: ")
+    
+        assert os.path.exists(user_input3), "Specified file does not exist at, "+str(user_input3)
+    
+        folderToLoad3 = os.path.join(user_input3)   
+    
+    # start timer 
+    start4 =time.time() 
+        
+    #%% Loading time series and labels of the classification
+    
+    # import the list including the name of the time series of the chosen case
+    file_name = 'time_series_name_'+stickout_length+'inch.txt'
+    file_path = os.path.join(folderToLoad, file_name)
+    f = open(file_path,'r',newline='\n')
+    
+    #save the time series name into a list
+    namets = []
+    for line in f:
+        names = line.split("\r\n")
+        namets.append(names[0])
+    
+    file_name = 'time_series_rpm_'+stickout_length+'inch.txt'
+    file_path = os.path.join(folderToLoad, file_name)
+    f = open(file_path,'r',newline='\n')
+    
+    #save the time series name into a list
+    rpm = []
+    for line in f:
+        rpms = line.split("\r\n")
+        rpm.append(int(rpms[0]))
+    rpm=np.asarray(rpm)
+    
+    
+    file_name = 'time_series_doc_'+stickout_length+'inch.txt'
+    file_path = os.path.join(folderToLoad, file_name)
+    f = open(file_path,'r',newline='\n')
+    
+    #save the time series name into a list
+    doc = []
+    for line in f:
+        docs = line.split("\r\n")
+        doc.append(float(docs[0]))
+    doc=np.asarray(doc)
+    
+    
+    #import the classification labels
+    label_file_name = stickout_length+'_inch_Labels_2Class.npy'
+    file_path1 = os.path.join(folderToLoad, label_file_name)
+    label = np.load(file_path1)
+    
+        
+    #%% Upload the Decompositions and compute the feature from them----------------
+    #name of datasets
+    
+    numberofcase = len(namets)     
+    ts={}
+    #load datasets and compute features
+    for i in range (0,numberofcase):
+        nameofdata = '%s' %(namets[i])
+        pathofdata = os.path.join(folderToLoad, nameofdata)
+        time_s = sio.loadmat(pathofdata)
+        ts[i] = time_s["tsDS"]
+    
+    #labeled and concatanated matrix for first dataset
+    label1=np.full((len(ts[0]),1),320)
+    label2=np.full((len(ts[0]),1),0.005)
+    label3=np.full((len(ts[0]),1),1)
+    chatter_data=np.concatenate((ts[0],label1,label2,label3),axis=1)
+    df=pd.DataFrame(chatter_data)
+    
+    #create concataneted dataframe in a for loop 
+    chatter_data = []
+    case_label = []
+    
+    chatter_data.append((df.values)[:,0:2])
+    case_label.append(np.concatenate((label1,label2,label3),axis=1))
+    
+    for i in range(0,numberofcase-1):
+        data=ts[i+1]
+        L=len(data)
+        labelrpm=np.full((L,1),rpm[i])
+        labeldoc=np.full((L,1),doc[i])
+        label_c=np.full((L,1),label[i])
+        chatter_data.append(data)
+        labels=np.concatenate((labelrpm,labeldoc,label_c),axis=1)
+        case_label.append(labels)
+    
+    N=len(chatter_data)   #length of actual cases
+    C_D = chatter_data
+    
+    ##feature scaling
+    #if EEMD=='NA':
+    #    for i in range (0,N):
+    #        sc = StandardScaler()
+    #        C_D[i][:,1] = sc.fit_transform(np.reshape(C_D[i][:,1],(1,-1))) #normalized data
+    
+    #length of each case
+    length=np.zeros((N,1))
+    for i in range(0,N):
+        length[i]=len(C_D[i])
+    
+    
+    
+    caseLabels = np.zeros((1,3))  #intialize the matrix for labels
+    
+    inc = 0  # increment for total number of cases obtained after dividing
+    
+    approximate_number_of_cases = int((sum(length))/1000) #approximate number of cases with respect to sum of lengths of actual cases
+    
+    C_D_Divided=np.ndarray(shape=(approximate_number_of_cases),dtype=object)  #create object array to store new cases
+    for i in range(0,N):  
+        data=C_D[i]
+        if len(data)>1000:
+            division_number=int(len(data)/1000)            #number determines the      
+            split=np.array_split(data,division_number)     #split data into different matrices not equal in size
+            n=len(split)                                   #number of cases obtained from each actual case
+            Label=np.reshape(case_label[i][0],(1,3))
+            for j in range(0,n):
+                C_D_Divided[inc]=np.array(split[j])
+                caseLabels=np.append(caseLabels,Label,axis=0)
+                inc=inc+1
+    caseLabels=caseLabels[1:]    #delete the first row of matrix and 
+    C_D_Divided=C_D_Divided[0:inc]
+    
+    case = np.zeros((inc,1))
+    for i in range(0,inc):
+        case[i]=i
+    
+    caseLabels=np.concatenate((caseLabels,case),axis=1)
+    
+    infoEMF=np.ndarray(shape=(len(C_D_Divided)),dtype=object)
+    
+    
+    #%% Compute IMFs if they are not computed before
+    if EEMDecs=='NA':
+        from PyEMD import EEMD
+        eemd = EEMD()
+        emd = eemd.EMD
+        emd.trials = 200      #default = 100
+        emd.noise_width = 0.2 #default = 0.05
+        
+        infoEMF=np.ndarray(shape=(len(C_D_Divided)),dtype=object)
+    
+        #EEMD
+        #chosen imf for feature extraction 
+    
+        for i in range(0,len(C_D_Divided)): 
+        
+            #signal
+            S = C_D_Divided[i][:,1]
+            t = C_D_Divided[i][:,0]
+            
+            eIMFs = emd(S, t)
+            nIMFs = eIMFs.shape[0]
+            infoEMF[i]=eIMFs  
+            print('Progress: IMFs were computed for case number {}.  '.format(i))
+    
+            #save eIMFs into mat file 
+            name = 'IMFs_'+stickout_length+'inch_Divided_Data_IMFs_Case%i.mat'%(i+1)
+            save_name = folderToLoad3+'\\'+name
+            sio.savemat(save_name,{'eIMF':infoEMF[i]})
+            
+    #%% load eIMFs if they are computed before
+    if EEMDecs=='A':
+     
+    #create a path to file including the IMFs
+        sys.path.insert(0,folderToLoad2)
+        for i in range(0,len(C_D_Divided)):
+            dataname = 'IMFs_%sinch_Divided_Data_IMFs_Case%d' %(stickout_length,i+1) 
+            infoEMF[i] = sio.loadmat(os.path.join(folderToLoad2, dataname))
+            infoEMF[i] = infoEMF[i]['eIMF']
+    
+    
+    
+    #%% compute features for eIMFs
+    features=np.zeros((len(C_D_Divided),7))
+    for i in range(0,len(C_D_Divided)):
+        eIMFs = infoEMF[i]
+        #feature_1
+        nIMFs=len(eIMFs)
+        A = np.power(eIMFs[p-1],2) 
+        A_sum = sum(A)                                   #summing squares of whole elements of second IMF
+        B_sum = 0               
+        for k in range(nIMFs):
+            B_sum = B_sum + sum(np.power(eIMFs[k],2))   #computing summing of squares of whole elements of IMFs
+        features[i,0]=A_sum/B_sum                        #energy ratio feature
+        
+        #feature_2  Peak to peak value
+        Maximum = max(eIMFs[p-1])
+        Minimum = min(eIMFs[p-1])
+        features[i,1] = Maximum - Minimum 
+        #feature_3 standard deviation
+        features[i,2] = np.std(eIMFs[p-1])
+        #feature_4 root mean square (RMS)
+        features[i,3] = np.sqrt(np.mean(eIMFs[p-1]**2))   
+        #feature_5 Crest factor
+        features[i,4] = Maximum/features[i,3]
+        #feature_6 Skewness
+        features[i,5] = skew(eIMFs[p-1])
+        #feature_7 Kurtosis
+        L= len(eIMFs[p-1])
+        features[i,6] = sum(np.power(eIMFs[p-1]-np.mean(eIMFs[p-1]),4)) / ((L-1)*np.power(features[i,3],4))
+     
+    #%% classification
+    n_feature=7
+    
+    #generating accuracy, meanscore and deviation matrices
+    split1,split2 = train_test_split(features, test_size=0.33)
+    F_traincomb = np.zeros((len(split1),7))
+    F_testcomb = np.zeros((len(split2),7))
+    
+    
+    accuracy1 = np.zeros((n_feature,10))
+    accuracy2 = np.zeros((n_feature,10))
+    deviation1 = np.zeros((n_feature,1))
+    deviation2 = np.zeros((n_feature,1))
+    meanscore1 = np.zeros((n_feature,1))
+    meanscore2 = np.zeros((n_feature,1))
+    duration1 = np.zeros((n_feature,10))
+    meanduration = np.zeros((n_feature,1))
+    
+    #repeat the procedure ten times 
+    Rank=[]
+    RankedList=[]
+    
+    for o in range(0,10):
+        
+        #split into test and train set
+        F_train,F_test,Label_train,Label_test= train_test_split(features,caseLabels, test_size=0.33)
+        
+        #Labels
+        Label_train = Label_train[:,2]
+        Label_test = Label_test[:,2]
+        
+        #classification
+        if Classifier=='SVC':
+            clf = SVC(kernel='linear')
+        elif Classifier=='LR':
+            clf = LogisticRegression()
+        elif Classifier=='RF':
+            clf = RandomForestClassifier(n_estimators=100, max_depth=2, random_state=0)
+        elif Classifier=='GB':
+            clf = GradientBoostingClassifier()
+        
+        #recursive feature elimination
+        selector = RFE(clf, 1, step=1)
+        selector = selector.fit(F_train, Label_train)
+        rank = selector.ranking_
+        Rank.append(rank)
+        rank = np.asarray(rank)
+        
+        #create a list that contains index numbe of ranked features
+        rankedlist = np.zeros((n_feature,1))
+    
+        
+        #finding index of the ranked features and creating new training and test sets with respect to this ranking
+        for m in range (1,n_feature+1):
+            k=np.where(rank==m)
+            rankedlist[m-1]=k[0][0]
+            F_traincomb[:,m-1] = F_train[:,int(rankedlist[m-1][0])]
+            F_testcomb[:,m-1] = F_test[:,int(rankedlist[m-1][0])] 
+        RankedList.append(rankedlist)
+        
+        #trying various combinations of ranked features such as ([1],[1,2],[1,2,3]...)
+        for p in range(0,n_feature): 
+            start1 = time.time()
+            clf.fit(F_traincomb[:,0:p+1],Label_train)
+            score1=clf.score(F_testcomb[:,0:p+1],Label_test)
+            score2=clf.score(F_traincomb[:,0:p+1],Label_train)
+            accuracy1[p,o]=score1
+            accuracy2[p,o]=score2
+            end1=time.time()
+            duration1[p,o] = end1 - start1
+    
+    #computing mean score and deviation for each combination tried above        
+    for n in range(0,n_feature):
+        deviation1[n,0]=np.std(accuracy1[n,:])
+        deviation2[n,0]=np.std(accuracy2[n,:])
+        meanscore1[n,0]=np.mean(accuracy1[n,:])
+        meanscore2[n,0]=np.mean(accuracy2[n,:])
+        meanduration[n,0]=np.mean(duration1[n,:])
+        
+    results = np.concatenate((meanscore1,deviation1,meanscore2,deviation2),axis=1)
+    results = 100*results    
+        
+    #total duration for algorithm  
+    end4 = time.time()
+    duration4 = end4-start4
+    print('Total elapsed time: {} seconds.'.format(duration4))
+    return results
+    
