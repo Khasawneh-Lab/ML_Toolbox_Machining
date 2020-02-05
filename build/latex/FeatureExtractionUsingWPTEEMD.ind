@@ -1,0 +1,24 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter E
+  \item \spxentry{EEMD\_Feature\_Extraction}\spxextra{module}, \hyperpage{7}
+  \item \spxentry{EEMD\_Feature\_Extraction()}\spxextra{in module EEMD\_Feature\_Extraction}, 
+		\hyperpage{7}
+
+  \indexspace
+  \bigletter W
+  \item \spxentry{WPT\_Feature\_Extraction}\spxextra{module}, \hyperpage{3}
+  \item \spxentry{WPT\_Feature\_Extraction()}\spxextra{in module WPT\_Feature\_Extraction}, 
+		\hyperpage{3}
+  \item \spxentry{WPT\_Transfer\_Learning}\spxextra{module}, \hyperpage{4}
+  \item \spxentry{WPT\_Transfer\_Learning()}\spxextra{in module WPT\_Transfer\_Learning}, 
+		\hyperpage{4}
+  \item \spxentry{WPT\_Transfer\_Learning\_2case}\spxextra{module}, \hyperpage{5}
+  \item \spxentry{WPT\_Transfer\_Learning\_2case()}\spxextra{in module WPT\_Transfer\_Learning\_2case}, 
+		\hyperpage{5}
+
+\end{sphinxtheindex}
