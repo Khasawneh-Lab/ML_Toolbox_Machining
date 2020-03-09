@@ -15,8 +15,6 @@ plotting = False
 
 results = WPT_Feature_Extraction(stickout_length, WPT_Level, 
                                   Classifier, plotting)
-features =results[2]
-check = np.isin(features,data)
 
 # WPT transfer learning
 import numpy as np 
@@ -29,11 +27,6 @@ results = WPT_Transfer_Learning(stickout_length_training,
                                      stickout_length_test,
                                     WPT_Level, Classifier)     
 
-features_train =results[2]
-features_test =results[3]
-check_train = np.isin(features_train,train)
-check_test = np.isin(features_test,test)
-
 
 # WPT transfer learning two case
 from WPT_Transfer_Learning_2case import WPT_Transfer_Learning_2case
@@ -44,11 +37,6 @@ WPT_Level=4
 Classifier='SVC'
 results = WPT_Transfer_Learning_2case(stickout_lengths, 
                                        WPT_Level, Classifier)     
-features_train =results[2]
-features_test =results[3]
-check_train = np.isin(features_train,train)
-check_test = np.isin(features_test,test)
-
 
 from EEMD_Feature_Extraction import EEMD_Feature_Extraction
  
@@ -62,7 +50,6 @@ results = EEMD_Feature_Extraction(stickout_length, EEMDecs,
                                   p, Classifier) 
 
 features =results[2]
-check = np.isin(features,data)
 
 # EEMD transfer learning
 from EEMD_Transfer_Learning import EEMD_Transfer_Learning
@@ -78,10 +65,6 @@ results = EEMD_Transfer_Learning(stickout_length_training,
                                      stickout_length_test, 
                                      p_train, p_test,
                                      Classifier) 
-features_train =results[1]
-features_test =results[2]
-check_train = np.isin(features_train,train)
-check_test = np.isin(features_test,test)
 
 # EEMD transfer learning 2 case
 
