@@ -235,7 +235,6 @@ def WPT_Feature_Extraction(stickout_length, WPT_Level, Classifier, plotting):
     #total duration for algorithm  
     end2 = time.time()
     duration2 = end2-start2
-#    print('Total elapsed time: {}'.format(duration2))
             
         
     #%% plotting mean accuracies and deviations

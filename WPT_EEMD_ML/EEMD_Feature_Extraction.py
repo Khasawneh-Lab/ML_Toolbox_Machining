@@ -85,12 +85,6 @@ def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
     """
 
     #%%
-    #parameters 
-    #stickout_length ='2'
-    #EEMDecs = 'A'
-    #p=2
-    #Classifier = 'SVC'
-    #%%
     user_input = input("Enter the path of the data files: ")
     
     assert os.path.exists(user_input), "Specified file does not exist at, "+str(user_input)
@@ -195,13 +189,7 @@ def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
     
     N=len(chatter_data)   #length of actual cases
     C_D = chatter_data
-    
-    ##feature scaling
-    #if EEMD=='NA':
-    #    for i in range (0,N):
-    #        sc = StandardScaler()
-    #        C_D[i][:,1] = sc.fit_transform(np.reshape(C_D[i][:,1],(1,-1))) #normalized data
-    
+      
     #length of each case
     length=np.zeros((N,1))
     for i in range(0,N):

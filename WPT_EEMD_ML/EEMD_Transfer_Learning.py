@@ -97,13 +97,6 @@ def EEMD_Transfer_Learning(stickout_length_training, stickout_length_test, p_tra
     """
 
 
-
-    #%% parameters:
-#    stickout_length_training='2'
-#    stickout_length_test='4p5'
-#    p_train = 2 #informative IMF number for the training set
-#    p_test = 1  #informative IMF number for the test set
-#    Classifier = 'GB'
     #%%
     user_input = input("Enter the path of training data files: ")
     
@@ -341,15 +334,6 @@ def EEMD_Transfer_Learning(stickout_length_training, stickout_length_test, p_tra
         features_[m] = features
             
     #%%---------------CLASSIFICATION-----------------------------------------------
-    
-    #creating train, test, accuracy, meanscore and deviation matrices
-    split_train_train,split_train_test = train_test_split(features_[0], test_size=0.33)
-    split_test_train,split_test_test = train_test_split(features_[1], test_size=0.33)
-    
-#    F_train_traincomb = np.zeros((len(split_train_train),7))
-#    F_train_testcomb = np.zeros((len(split_train_test),7))
-#    F_test_traincomb = np.zeros((len(split_test_train),7))
-#    F_test_testcomb = np.zeros((len(split_test_test),7))
     
     accuracy1 = np.zeros((7,10))
     accuracy2 = np.zeros((7,10))

@@ -84,17 +84,7 @@ def WPT_Transfer_Learning_2case(stickout_lengths,WPT_Level,Classifier):
            Enter the path of second test set data files:
            >>> D\...\cutting_tests_processed\data_4p5inch_stickout
     """    
-    #%% parameters
-#    stickout_length_training1 = '2'
-#    stickout_length_training2 = '2'
-#    stickout_length_test1 = '2'
-#    stickout_length_test2 = '2'
-#    
-#    WPT_Level=1
-#    Classifier = 'SVC'
-##    
-#    stickout_lengths = np.array([stickout_length_training1,stickout_length_training2, stickout_length_test1, stickout_length_test2])
-    
+   
     #%% get the path to data files from user
     
     user_input_train1 = input("Enter the path of first training set data files: ")
@@ -273,14 +263,4 @@ def WPT_Transfer_Learning_2case(stickout_lengths,WPT_Level,Classifier):
     
     return results,print('Total elapsed time: {}'.format(duration2)) ,featuremat_training, featuremat_test  
 
-    # This part of the code includes the ranked features for each iteration and keep them in arrays
-    
-    #how_many_times_rank = np.zeros((14,14))
-    #for i in range (0,14):
-    #    for j in range(0,10):
-    #        a = RankedList[j][i][0]
-    #        a = int(a)
-    #        how_many_times_rank[a,i]=how_many_times_rank[a,i]+1
-    #
-    #sio.savemat('number_of_times_feature_ranks_4.5inch_WPT_Level4.mat',mdict={'times_feature_rank':how_many_times_rank})
 
