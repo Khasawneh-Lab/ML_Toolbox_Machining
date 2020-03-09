@@ -2,11 +2,11 @@
 Feature extraction and supervised classification using EEMD 
 -----------------------------------------------------------
 
-This function takes time series and decompose them using Ensemble Empirical Mode 
-Decomposition (EEMD). If user already computed the decompositions, algorithm will
-directly compute the features and generate feature matrices. Algorithm require user 
-give classifier name, informative intrinsic mode function (IMF) number and the stickout
-length of the data user working on. 
+This function takes time series for turning cutting tests as inputs.
+It ask user to enter the file paths for the data files. If user specify that the decompositions for EEMD have already been computed, algorithm will ask user to enter the file paths for the decompositions.
+Otherwise, it will compute the IMFs and ask users to enter the file paths where they want to save these decompositions.
+Based on given stickout length cases and corresponding informative IMF numbers, it will generate the feature matrix and perform the classification with specified classification algorithm by user.
+It returns the results in an array and prints the total elapsed time.
 
 """
 import time
@@ -28,21 +28,21 @@ from sklearn.ensemble import GradientBoostingClassifier
 def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
     """
     
-    :param stickout_length: The distance between heel of the boring bar and the back surface of the cutting tool 
+    :param str (stickout_lengths): The distance between heel of the boring bar and the back surface of the cutting tool 
     
        * if stickout length is 2 inch, '2'
        * if stickout length is 2.5 inch, '2p5'
        * if stickout length is 3.5 inch, '3p5'
        * if stickout length is 4.5 inch, '4p5'
     
-    :param EEMDecs: 
+    :param str (EEMDecs): 
        
        * if decompositions have already been computed, 'A'
        * if decompositions have not been computed, 'NA'    
        
-    :param p: Informative intrinsic mode function (IMF) number
+    :param int (p): Informative intrinsic mode function (IMF) number
   
-    :param Classifier: Classifier defined by user
+    :param str (Classifier): Classifier defined by user
        
        * Support Vector Machine: 'SVC'
        * Logistic Regression: 'LR'
@@ -52,11 +52,16 @@ def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
     
     :Returns:
         
-        results
-            Classification results for training and test set for all combination of ranked features
+        :results:
+            (np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.
+        
+            * first column: mean accuracies for training set
+            * second column: deviation for training set accuracies
+            * third column: mean accuracies for test set
+            * fourth column: deviation for test set accuracies
 
-        time
-            Elapsed time during feature matrix generation and classification
+        :time:
+            (str) Elapsed time during feature matrix generation and classification
     
     :Example:
     
@@ -70,12 +75,12 @@ def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
            >>> p=2
            >>> Classifier = 'SVC'
          
-           >>> results = WPT_Feature_Extraction(stickout_length, WPT_Level, 
-           >>>                                  Classifier, plotting)     
+           >>> results = EEMD_Feature_Extraction(stickout_length, EEMDecs, 
+           >>>                                  p, Classifier)     
            Enter the path of the data files:
            >>> D\...\cutting_tests_processed\data_2inch_stickout
            Enter Enter the path of EEMD files:
-           >>> D\...\cutting_tests_processed\data_2inch_stickout
+           >>> D\...\eIMFs\data_2inch_stickout
            
     """
 
@@ -390,5 +395,5 @@ def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
     end4 = time.time()
     duration4 = end4-start4
     print('Total elapsed time: {} seconds.'.format(duration4))
-    return results
+    return results, print('Total elapsed time: {}'.format(duration4)),features  
     

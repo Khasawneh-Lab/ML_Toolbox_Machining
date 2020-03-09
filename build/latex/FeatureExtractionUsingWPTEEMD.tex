@@ -59,7 +59,7 @@
 
 
 \title{Feature Extraction Using WPT/EEMD Documentation}
-\date{Feb 04, 2020}
+\date{Feb 14, 2020}
 \release{0.1}
 \author{Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -485,6 +485,121 @@ Elapsed time during feature matrix generation and classification
 
 \end{fulllineitems}
 
+\phantomsection\label{\detokenize{EEMD:module-EEMD_Transfer_Learning}}\index{EEMD\_Transfer\_Learning (module)@\spxentry{EEMD\_Transfer\_Learning}\spxextra{module}}
+
+\section{Transfer Learning Application Using EEMD}
+\label{\detokenize{EEMD:transfer-learning-application-using-eemd}}
+This fuction uses tranfer learning principles to diagnose chatter in time series 
+obtained from turning cutting experiment. Intrinsic mode functions (IMFs) or decomposition 
+for each time series should have been computed to be able to use this code.
+\index{EEMD\_Transfer\_Learning() (in module EEMD\_Transfer\_Learning)@\spxentry{EEMD\_Transfer\_Learning()}\spxextra{in module EEMD\_Transfer\_Learning}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{EEMD:EEMD_Transfer_Learning.EEMD_Transfer_Learning}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{EEMD\_Transfer\_Learning.}}\sphinxbfcode{\sphinxupquote{EEMD\_Transfer\_Learning}}}{\emph{stickout\_length\_training}, \emph{stickout\_length\_test}, \emph{p\_train}, \emph{p\_test}, \emph{Classifier}}{}~\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{stickout\_length\_training}} \textendash{} 
+Stickout length for the training data set
+\begin{itemize}
+\item {} 
+if stickout length is 2 inch, ‘2’
+
+\item {} 
+if stickout length is 2.5 inch, ‘2p5’
+
+\item {} 
+if stickout length is 3.5 inch, ‘3p5’
+
+\item {} 
+if stickout length is 4.5 inch, ‘4p5’
+
+\end{itemize}
+
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{stickout\_length\_test}} \textendash{} 
+Stickout length for the test data set
+\begin{itemize}
+\item {} 
+if stickout length is 2 inch, ‘2’
+
+\item {} 
+if stickout length is 2.5 inch, ‘2p5’
+
+\item {} 
+if stickout length is 3.5 inch, ‘3p5’
+
+\item {} 
+if stickout length is 4.5 inch, ‘4p5’
+
+\end{itemize}
+
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{p\_train}} \textendash{} Informative intrinsic mode function (IMF) number for training set
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{p\_test}} \textendash{} Informative intrinsic mode function (IMF) number for test set
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{Classifier}} \textendash{} 
+Classifier defined by user
+\begin{itemize}
+\item {} 
+Support Vector Machine: ‘SVC’
+
+\item {} 
+Logistic Regression: ‘LR’
+
+\item {} 
+Random Forest Classification: ‘RF’
+
+\item {} 
+Gradient Boosting: ‘GB’
+
+\end{itemize}
+
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode\begin{description}
+\item[{results}] \leavevmode
+Classification results for training and test set for all combination of ranked features
+
+\item[{time}] \leavevmode
+Elapsed time during feature matrix generation and classification
+
+\end{description}
+
+\item[{Example}] \leavevmode
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{k+kn}{from} \PYG{n+nn}{EEMD\PYGZus{}Feature\PYGZus{}Extraction} \PYG{k+kn}{import} \PYG{n}{EEMD\PYGZus{}Feature\PYGZus{}Extraction}
+\PYG{g+go}{ }
+\PYG{g+go}{\PYGZsh{}parameters}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{stickout\PYGZus{}length\PYGZus{}training}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{2}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{stickout\PYGZus{}length\PYGZus{}test}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{4p5}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{p\PYGZus{}train} \PYG{o}{=} \PYG{l+m+mi}{2}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{p\PYGZus{}test} \PYG{o}{=} \PYG{l+m+mi}{1}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{Classifier} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{GB}\PYG{l+s+s1}{\PYGZsq{}}
+
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{results} \PYG{o}{=} \PYG{n}{EEMD\PYGZus{}Transfer\PYGZus{}Learning}\PYG{p}{(}\PYG{n}{stickout\PYGZus{}length\PYGZus{}training}\PYG{p}{,} 
+\PYG{g+go}{                                     stickout\PYGZus{}length\PYGZus{}test, }
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }                                 \PYG{n}{p\PYGZus{}train}\PYG{p}{,} \PYG{n}{p\PYGZus{}test}\PYG{p}{,}
+\PYG{g+go}{                                     Classifier)     }
+\PYG{g+go}{Enter the path of training data files:}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{D}\PYGZbs{}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}\PYGZbs{}\PYG{n}{cutting\PYGZus{}tests\PYGZus{}processed}\PYGZbs{}\PYG{n}{data\PYGZus{}2inch\PYGZus{}stickout}
+\PYG{g+go}{Enter the path of test data files:}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{D}\PYGZbs{}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}\PYGZbs{}\PYG{n}{cutting\PYGZus{}tests\PYGZus{}processed}\PYGZbs{}\PYG{n}{data\PYGZus{}4p5inch\PYGZus{}stickout}
+\PYG{g+go}{Enter the path to decompositions for training set:}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{D}\PYGZbs{}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}\PYGZbs{}\PYG{n}{eIMFs}\PYGZbs{}\PYG{n}{data\PYGZus{}2inch\PYGZus{}stickout}
+\PYG{g+go}{Enter the path to decompositions for test set:}
+\PYG{g+gp}{\PYGZgt{}\PYGZgt{}\PYGZgt{} }\PYG{n}{D}\PYGZbs{}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}\PYGZbs{}\PYG{n}{eIMFs}\PYGZbs{}\PYG{n}{data\PYGZus{}4p5inch\PYGZus{}stickout}  
+\end{sphinxVerbatim}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 
 \chapter{References}
@@ -513,6 +628,7 @@ Melih C. Yesilli, Firas A. Khasawneh, and Andreas Otto. On transfer learning f
 \let\bigletter\sphinxstyleindexlettergroup
 \bigletter{e}
 \item\relax\sphinxstyleindexentry{EEMD\_Feature\_Extraction}\sphinxstyleindexpageref{EEMD:\detokenize{module-EEMD_Feature_Extraction}}
+\item\relax\sphinxstyleindexentry{EEMD\_Transfer\_Learning}\sphinxstyleindexpageref{EEMD:\detokenize{module-EEMD_Transfer_Learning}}
 \indexspace
 \bigletter{w}
 \item\relax\sphinxstyleindexentry{WPT\_Feature\_Extraction}\sphinxstyleindexpageref{WPT:\detokenize{module-WPT_Feature_Extraction}}

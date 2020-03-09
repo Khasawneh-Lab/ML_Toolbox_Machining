@@ -1,0 +1,8 @@
+D:\Data Archive\Cutting_Test_Data_Documented\cutting_tests_processed\2inch_stickout
+D:\Data Archive\Cutting_Test_Data_Documented\cutting_tests_processed\2p5inch_stickout
+D:\Data Archive\Cutting_Test_Data_Documented\cutting_tests_processed\3p5inch_stickout
+D:\Data Archive\Cutting_Test_Data_Documented\cutting_tests_processed\4p5inch_stickout
+D:\Data Archive\Cutting Tool Experiment Data\eIMFs\2inch
+D:\Data Archive\Cutting Tool Experiment Data\eIMFs\2.5inch
+D:\Data Archive\Cutting Tool Experiment Data\eIMFs\3.5inch
+D:\Data Archive\Cutting Tool Experiment Data\eIMFs\4.5inch

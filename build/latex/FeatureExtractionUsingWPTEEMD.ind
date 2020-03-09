@@ -8,6 +8,9 @@
   \item \spxentry{EEMD\_Feature\_Extraction}\spxextra{module}, \hyperpage{7}
   \item \spxentry{EEMD\_Feature\_Extraction()}\spxextra{in module EEMD\_Feature\_Extraction}, 
 		\hyperpage{7}
+  \item \spxentry{EEMD\_Transfer\_Learning}\spxextra{module}, \hyperpage{8}
+  \item \spxentry{EEMD\_Transfer\_Learning()}\spxextra{in module EEMD\_Transfer\_Learning}, 
+		\hyperpage{8}
 
   \indexspace
   \bigletter W

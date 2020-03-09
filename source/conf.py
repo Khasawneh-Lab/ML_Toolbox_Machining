@@ -61,6 +61,8 @@ extensions = [
     'sphinxcontrib.bibtex',
 ]
 
+numfig = True
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -94,9 +96,33 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-import sphinx_rtd_theme
-html_theme = 'sphinx_rtd_theme'
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+#import sphinx_rtd_theme
+#html_theme = 'sphinx_rtd_theme'
+#html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme = 'classic'
+html_theme_options = {
+    'rightsidebar': 'false',
+    'stickysidebar': 'True',
+    'collapsiblesidebar': 'False',
+    'sidebarwidth': '20%',
+    'body_max_width': '70%',
+    # Set the lang attribute of the html tag. Defaults to 'en'
+    'bgcolor': 'white',
+    'footerbgcolor': 'white',
+    'sidebarbgcolor': 'whitesmoke',
+    'sidebarbtncolor': 'whitesmoke',
+    'relbarbgcolor': 'dimgray', #heading at very top
+    'headbgcolor': 'dimgray', #headings above each section
+    'codebgcolor': 'ivory',
+    'sidebartextcolor': 'black',
+    'sidebarlinkcolor': 'dimgray', # or dimgray or #304B29
+    'relbartextcolor': 'black',
+    'textcolor': 'black',
+    'headtextcolor': 'white',
+    'headlinkcolor': 'black',
+    }
+
+
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

@@ -2,11 +2,10 @@
 Transfer Learning Application Using WPT
 ---------------------------------------
 
-This fuction takes the reconstructed time series after WPT and their freuqency 
-domain features as input. The time domain features are computed inside of the 
-function. Since this algorithm uses transfer learning principle, user needs to
-specify the stickout length of the training set and test set data. The function 
-returns classification results in array for both test set and training set. 
+This function uses transfer learning principles to transfer the knowledge obtained from one cutting configuration to another one.
+It assumes that the reconstructed Wavelet packets and frequency domain features are available an they are in the same folder with the data files.
+It computes feature matrices for training and test set and performs the classification with chosen algorithm. 
+It returns the results in an array. It also prints the total elapsed time.
 
 """
 import time
@@ -31,7 +30,7 @@ rc('text', usetex=True)
     
 def WPT_Transfer_Learning(stickout_length_training, stickout_length_test, WPT_Level, Classifier):
     """
-    :param stickout_length_training: 
+    :param str (stickout_length_training): 
        Stickout length for the training data set 
        
        * if stickout length is 2 inch, '2'
@@ -39,7 +38,7 @@ def WPT_Transfer_Learning(stickout_length_training, stickout_length_test, WPT_Le
        * if stickout length is 3.5 inch, '3p5'
        * if stickout length is 4.5 inch, '4p5'
      
-    :param stickout_length_test: 
+    :param str (stickout_length_test): 
        Stickout length for the test data set
 
        * if stickout length is 2 inch, '2'
@@ -47,10 +46,10 @@ def WPT_Transfer_Learning(stickout_length_training, stickout_length_test, WPT_Le
        * if stickout length is 3.5 inch, '3p5'
        * if stickout length is 4.5 inch, '4p5'
     
-    :param WPT_Level: 
+    :param int (WPT_Level): 
         Level of Wavelet Packet Decomposition
     
-    :param Classifier: 
+    :param str (Classifier): 
         Classifier defined by user
        
        * Support Vector Machine: 'SVC'
@@ -59,12 +58,17 @@ def WPT_Transfer_Learning(stickout_length_training, stickout_length_test, WPT_Le
        * Gradient Boosting: 'GB'
     
     :Returns:
-        
-        results
-            Classification results for training and test set for all combination of ranked features
 
-        time
-            Elapsed time during feature matrix generation and classification
+        :results:
+            (np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.
+        
+            * first column: mean accuracies for training set
+            * second column: deviation for training set accuracies
+            * third column: mean accuracies for test set
+            * fourth column: deviation for test set accuracies
+        
+        :time:
+            (str) Elapsed time during feature matrix generation and classification
     
     :Example:
     
@@ -88,11 +92,6 @@ def WPT_Transfer_Learning(stickout_length_training, stickout_length_test, WPT_Le
            >>> D\...\cutting_tests_processed\data_4p5inch_stickout
 
     """
-    #%% parameters 
-#    stickout_length_training = '4p5'
-#    stickout_length_test = '2'
-#    WPT_Level=4
-#    Classifier='SVC'
     #%% get the path to data files from user
     
     user_input_train = input("Enter the path of training set data files: ")
@@ -296,16 +295,6 @@ def WPT_Transfer_Learning(stickout_length_training, stickout_length_test, WPT_Le
     end2 = time.time()
     duration2 = end2-start2
     
-    # This part of the code includes the ranked features for each iteration and keep them in arrays
     
-    #how_many_times_rank = np.zeros((14,14))
-    #for i in range (0,14):
-    #    for j in range(0,10):
-    #        a = RankedList[j][i][0]
-    #        a = int(a)
-    #        how_many_times_rank[a,i]=how_many_times_rank[a,i]+1
-    #
-    #sio.savemat('number_of_times_feature_ranks_4.5inch_WPT_Level4.mat',mdict={'times_feature_rank':how_many_times_rank})
-    
-    return results,print('Total elapsed time: {}'.format(duration2))        
+    return results,print('Total elapsed time: {}'.format(duration2)) ,featuremat_train, featuremat_test  
     

@@ -2,10 +2,14 @@
 Feature extraction and supervised classification using WPT 
 ----------------------------------------------------------
 
-This function take the time series belong to turning process and
-their frequency domain feature matrices computed in Matlab as input. It perfoms 
-the 2 class classifications with four different classifiers which
-user should specify in parameters section.
+This algorithm takes time series for turning experiments as input and it generates the feature matrix based on specified WPT level. 
+The reconstructed Wavelet packets and corresponding frequency domain feature matrices should be computed before running this algorithm. Please see the instructions for Matlab functions on this 
+documentation before using this algorithm.
+The Wavelet packets frequency domain features and datafiles should be in the same folder.
+It asks for file paths for the data files.
+Algorithm performs the classfication with chosen algorithm and provides results in a np.array.
+It plots the mean accuracies and deviations for test and training set with respect to number of features used in classification, if user enables plotting option of the algorithm.
+It also prints the total elapsed time. 
 
 """
 import time
@@ -29,33 +33,40 @@ rc('text', usetex=True)
 def WPT_Feature_Extraction(stickout_length, WPT_Level, Classifier, plotting):
     """
     
-    :param stickout_length: The distance between heel of the boring bar and the back surface of the cutting tool 
+    :param str (stickout_length): The distance between heel of the boring bar and the back surface of the cutting tool 
     
        * if stickout length is 2 inch, '2'
        * if stickout length is 2.5 inch, '2p5'
        * if stickout length is 3.5 inch, '3p5'
        * if stickout length is 4.5 inch, '4p5'
     
-    :param WPT_Level: 
+    :param int (WPT_Level): 
         Level of Wavelet Packet Decomposition
     
-    :param Classifier: Classifier defined by user
+    :param str (Classifier): Classifier defined by user
        
        * Support Vector Machine: 'SVC'
        * Logistic Regression: 'LR'
        * Random Forest Classification: 'RF'
        * Gradient Boosting: 'GB'
     	
-    :param  Plotting:
+    :param  str (Plotting):
         Function will return the plot of the results depending on the number of features used in the classification, if the Plotting is 'True'.
     
     :Returns:
-        
-        results
-            Classification results for training and test set for all combination of ranked features
 
-        time
-            Elapsed time during feature matrix generation and classification
+        :results:
+            (np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.
+        
+            * first column: mean accuracies for training set
+            * second column: deviation for training set accuracies
+            * third column: mean accuracies for test set
+            * fourth column: deviation for test set accuracies
+        
+        :plot: Deviations and mean accuracies for training and test set vs number of features used in feature matrix generation
+        
+        :time:
+            (str) Elapsed time during feature matrix generation and classification
     
     :Example:
     
@@ -86,35 +97,6 @@ def WPT_Feature_Extraction(stickout_length, WPT_Level, Classifier, plotting):
           :height: 360px
    
     """
-#  .. plot::
-#  
-#    from WPT_Feature_Extraction import WPT_Feature_Extraction
-#    import matplotlib.pyplot as plt
-#    from matplotlib import rc
-#    import matplotlib
-#    matplotlib.rcParams.update({'font.size': 14})
-#    rc('font',**{'family':'serif','serif':['Palatino']})
-#    rc('text', usetex=True)
-#    
-#    #parameters
-#    
-#    stickout_length='2'
-#    WPT_Level = 4
-#    Classifier = 'SVC'
-#    plotting = True
-#    
-#    results = WPT_Feature_Extraction(stickout_length, WPT_Level, Classifier, plotting)  
-    
-#        .. plot::
-#           :include-source:
-#               
-#           import matplotlib.pyplot as plt
-#           import numpy as np
-#           x = np.random.randn(1000)
-#           plt.hist( x, 20)
-#           plt.grid()
-#           plt.title(r'Normal: $\mu=%.2f, \sigma=%.2f$'%(x.mean(), x.std()))
-#           plt.show() 
     user_input = input("Enter the path of the data files: ")
 
     assert os.path.exists(user_input), "Specified file does not exist at, "+str(user_input)
@@ -123,15 +105,8 @@ def WPT_Feature_Extraction(stickout_length, WPT_Level, Classifier, plotting):
     
     #%% start timer
     start2 = time.time()
-    
-#    # Add path to data folder
-#    folderToLoad = os.path.join('D:'+os.path.sep,
-#                                        'Data Archive',
-#                                        'Cutting_Test_Data_Documented',
-#                                        'cutting_tests_processed',
-#                                        '2inch_stickout',
-#                                        )
-    #%% Loading time series and labels of the classification
+
+    # Loading time series and labels of the classification
     
     # import the list including the name of the time series of the chosen case
     file_name = 'time_series_name_'+stickout_length+'inch.txt'
@@ -157,7 +132,6 @@ def WPT_Feature_Extraction(stickout_length, WPT_Level, Classifier, plotting):
     
     #load datasets and compute features
     for i in range (0,numberofcase):
-        name =  'ts_%d' %(i+1)
         nameofdata = 'WPT_Level%s_Recon_%sinch_%s' %(str(WPT_Level),stickout_length,namets[i])
         pathofdata = os.path.join(folderToLoad, nameofdata)
         ts = sio.loadmat(pathofdata)
@@ -287,4 +261,4 @@ def WPT_Feature_Extraction(stickout_length, WPT_Level, Classifier, plotting):
         plt.show()
         #plt.savefig('Number_of_features_vs_deviation_accuracy.pdf',bbox_inches = 'tight', dpi=300)
         
-    return results,print('Total elapsed time: {}'.format(duration2))
+    return results,print('Total elapsed time: {}'.format(duration2)),featuremat

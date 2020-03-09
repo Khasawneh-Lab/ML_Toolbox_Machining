@@ -3,8 +3,11 @@ Transfer Learning On Two Cases Using WPT
 ----------------------------------------
 
 This fuction implement transfer learning by training a classifier on two different 
-data sets and testing it on remaining two different data sets. Stickout length of 
-each data set should be determined by user. 
+data sets and testing it on remaining two different data sets. Stickout lengths of 
+each data set should be determined by user. It asks for file paths to training and test set files. 
+It assumes that reconstructed wavelet packets and frequency domain features are available in the specified data file folder.
+Algorithm performs classfication based on chosen classifier and returns the results in an array. 
+It also prints the total elapsed time.  
 
 """
 import time
@@ -26,7 +29,7 @@ rc('text', usetex=True)
 #%%
 def WPT_Transfer_Learning_2case(stickout_lengths,WPT_Level,Classifier):
     """
-    :param stickout_lengths: 
+    :param str (stickout_lengths): 
        Stickout length for the training and test set in a np.array([]) format.First two stickout length are considered as training set data and the remaining ones are test set data.
        
        * if stickout length is 2 inch, '2'
@@ -34,10 +37,10 @@ def WPT_Transfer_Learning_2case(stickout_lengths,WPT_Level,Classifier):
        * if stickout length is 3.5 inch, '3p5'
        * if stickout length is 4.5 inch, '4p5'
   
-    :param WPT_Level: 
+    :param int (WPT_Level): 
         Level of Wavelet Packet Decomposition
     
-    :param Classifier: 
+    :param str (Classifier): 
         Classifier defined by user
        
        * Support Vector Machine: 'SVC'
@@ -46,12 +49,17 @@ def WPT_Transfer_Learning_2case(stickout_lengths,WPT_Level,Classifier):
        * Gradient Boosting: 'GB'
     
     :Returns:
-        
-        results
-            Classification results for training and test set for all combination of ranked features
 
-        time
-            Elapsed time during feature matrix generation and classification
+        :results:
+            (np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.
+        
+            * first column: mean accuracies for training set
+            * second column: deviation for training set accuracies
+            * third column: mean accuracies for test set
+            * fourth column: deviation for test set accuracies
+        
+        :time:
+            (str) Elapsed time during feature matrix generation and classification
     
     :Example:
     
@@ -262,6 +270,9 @@ def WPT_Transfer_Learning_2case(stickout_lengths,WPT_Level,Classifier):
     end2 = time.time()
     duration2 = end2-start2
     
+    
+    return results,print('Total elapsed time: {}'.format(duration2)) ,featuremat_training, featuremat_test  
+
     # This part of the code includes the ranked features for each iteration and keep them in arrays
     
     #how_many_times_rank = np.zeros((14,14))

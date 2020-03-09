@@ -1,4 +1,4 @@
-PWD D:\Repositories\WPT_EEMD_ML_Machining\build\latex
+PWD D:\Research Stuff\WPT_EEMD_Pipeline_Documentation-Autodoc_Version\build\latex
 INPUT C:\Users\yesillim.ME653\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
 INPUT FeatureExtractionUsingWPTEEMD.tex
 OUTPUT FeatureExtractionUsingWPTEEMD.log
@@ -14,8 +14,6 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cmap\cmap.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cmap\cmap.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\ecrm1000.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cmap\t1.cmap
 OUTPUT FeatureExtractionUsingWPTEEMD.pdf
@@ -50,8 +48,8 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fncychap\fncychap.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fncychap\fncychap.sty
 INPUT sphinx.sty
 INPUT sphinx.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\ltxcmds\ltxcmds.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\ltxcmds\ltxcmds.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty
@@ -68,10 +66,6 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.dfu
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.dfu
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tabulary\tabulary.sty
@@ -115,96 +109,79 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\needspace\needspace.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\needspace\needspace.sty
 INPUT sphinxhighlight.sty
 INPUT sphinxhighlight.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\kvoptions\kvoptions.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\kvsetkeys\kvsetkeys.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\kvsetkeys\kvsetkeys.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifvtex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifvtex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\iftex.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\iftex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hobsub\hobsub-hyperref.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hobsub\hobsub-hyperref.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hobsub\hobsub-hyperref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\pdftexcmds\pdftexcmds.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\pdftexcmds\pdftexcmds.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\iftex.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\iftex.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdfescape.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdfescape.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hycolor.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hycolor.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\xcolor-patch.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\xcolor-patch.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hopatch.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hopatch.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\letltxmacro.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\letltxmacro.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\infwarerr\infwarerr.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\kvdefinekeys\kvdefinekeys.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pdfescape\pdfescape.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pdfescape\pdfescape.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hycolor\hycolor.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hycolor\hycolor.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\letltxmacro\letltxmacro.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\letltxmacro\letltxmacro.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\auxhook\auxhook.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\auxhook\auxhook.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\intcalc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\intcalc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\intcalc\intcalc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\intcalc\intcalc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\etexcmds\etexcmds.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\etexcmds\etexcmds.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\puenc.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\puenc.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\bitset.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\bitset.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\bigintcalc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\bigintcalc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\bitset\bitset.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\bitset\bitset.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\bigintcalc\bigintcalc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\bigintcalc\bigintcalc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\atbegshi\atbegshi.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\atbegshi\atbegshi.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\atveryend.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\atveryend.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\uniquecounter.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\uniquecounter.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\atveryend\atveryend.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\atveryend\atveryend.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\rerunfilecheck\rerunfilecheck.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\rerunfilecheck\rerunfilecheck.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\uniquecounter\uniquecounter.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\uniquecounter\uniquecounter.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hypcap.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\hypcap.sty
 OUTPUT FeatureExtractionUsingWPTEEMD.idx
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3backend\l3backend-pdfmode.def
 INPUT FeatureExtractionUsingWPTEEMD.aux
 INPUT FeatureExtractionUsingWPTEEMD.aux
 OUTPUT FeatureExtractionUsingWPTEEMD.aux
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1ptm.fd
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\adobe\times\ptmr8t.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Program Files\MiKTeX 2.9\tex\context\base\mkii\supp-pdf.mkii
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\epstopdf-pkg\epstopdf-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\epstopdf-pkg\epstopdf-base.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\refcount.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\refcount.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\refcount\refcount.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\refcount\refcount.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT FeatureExtractionUsingWPTEEMD.out
 INPUT FeatureExtractionUsingWPTEEMD.out
 INPUT FeatureExtractionUsingWPTEEMD.out

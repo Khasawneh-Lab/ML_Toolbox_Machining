@@ -1,0 +1,140 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MATLAB Codes for Wavelet Packet Transform &#8212; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Wavelet Packet Transform (WPT)" href="WPT.html" />
+    <link rel="prev" title="Machine learning toolbox for Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="WPT.html" title="Wavelet Packet Transform (WPT)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Machine learning toolbox for Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="matlab-codes-for-wavelet-packet-transform">
+<span id="matlab"></span><h1>MATLAB Codes for Wavelet Packet Transform<a class="headerlink" href="#matlab-codes-for-wavelet-packet-transform" title="Permalink to this headline">¶</a></h1>
+<p>MATLAB folder in the <a class="reference external" href="https://github.com/mcanyesilli/WPT_EEMD_ML_Machining">GitHub repository</a> includes four codes.</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>WP_Energy_Ratio</strong>: Computes the energy ratios of the wavelet packets for specified level of transform for chosen time series. It returns plots which contains energy ratios of each packet for time series, reconstructed time series and their FFT plot. User can define the informative wavelet packet number using these plot.</li>
+<li><strong>WP_Informative_Packet_Recon</strong>: For selected level of WPT, it reconstructs time series based on chosen informative wavelet packets. It saves the reconstructed time series into specified folder.</li>
+<li><strong>WP_Frequency_Domain_Features</strong>: Computes the frequency domain features for selected level of Transform by using reconstructed time series with <strong>WP_Informative_Packet_Recon</strong> function. It saves the feature matrix and this feature matrix will be combined with time domain features to be used in classification.</li>
+<li><strong>Example_Usage</strong>: Provides examples for MATLAB codes.</li>
+</ul>
+</div></blockquote>
+<p><strong>NOTE</strong>: For more details on these functions, please see the function descriptions in MATLAB files.</p>
+<div class="section" id="wavelet-packet-numbering-in-matlab">
+<h2>Wavelet packet numbering in MATLAB<a class="headerlink" href="#wavelet-packet-numbering-in-matlab" title="Permalink to this headline">¶</a></h2>
+<p>The numbering of the wavelet packets obtained after applying WPT can confuse user. Therefore, we give proper instructions here how to obtain and track the wavelet packets correctly. There
+are two types of ordering of the wavelet packets and these are natural ordering and frequency
+ordering. We show these two types of ordering in Wavelet packet tree in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a>.</p>
+<div class="figure align-center" id="id1">
+<span id="packetnum"></span><img alt="_images/WPT_Tree_with_Ordering.png" src="_images/WPT_Tree_with_Ordering.png" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Frequency and natural ordering of wavelet packets in MATLAB</span></p>
+</div>
+<p>The ordering is given in natural ordering in MATLAB. However, we use frequency ordering in this toolbox. In addition, MATLAB does not reset the numbering of wavelet packets to 1 in each level of transform. For example, if the first level wavelet packets are called first and second wavelet packets, first packet of the second level transform is called third wavelet packet. The frequency ordering given in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is resetting the numbers to 1 in each level. Also, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is obtined by using the MATLAB function <strong>otnodes()</strong>.
+Ordering can differ based on wavelet function used in the transform and level of the transform. Therefore, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> should only be used in applications which use wavelet function ‘db10’.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MATLAB Codes for Wavelet Packet Transform</a><ul>
+<li><a class="reference internal" href="#wavelet-packet-numbering-in-matlab">Wavelet packet numbering in MATLAB</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Machine learning toolbox for Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="WPT.html"
+                        title="next chapter">Wavelet Packet Transform (WPT)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/MATLAB.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="WPT.html" title="Wavelet Packet Transform (WPT)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Machine learning toolbox for Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

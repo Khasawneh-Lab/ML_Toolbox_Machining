@@ -1,0 +1,21 @@
+% Encoding: UTF-8
+
+@Article{Yesilli2019,
+  author    = {Melih C. Yesilli and Firas A. Khasawneh and Andreas Otto},
+  title     = {On transfer learning for chatter detection in turning using wavelet packet transform and ensemble empirical mode decomposition},
+  journal   = {{CIRP} Journal of Manufacturing Science and Technology},
+  year      = {2019},
+  doi       = {10.1016/j.cirpj.2019.11.003},
+  publisher = {Elsevier {BV}},
+}
+
+@Misc{Yesilli2019a,
+  author    = {Yesilli, Melih},
+  title     = {Turning Dataset for Chatter Diagnosis Using Machine Learning},
+  year      = {2019},
+  doi       = {10.17632/HVM4WH3JZX.1},
+  keywords  = {Machine Learning, Turning, Machining, Time Series},
+  publisher = {Mendeley},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

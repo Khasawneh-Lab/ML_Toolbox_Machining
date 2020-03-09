@@ -1,166 +1,62 @@
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Wavelet Packet Transform (WPT) &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
-  
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Wavelet Packet Transform (WPT) &#8212; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Ensemble Empirical Mode Decomposition (EEMD)" href="EEMD.html" />
-    <link rel="prev" title="Machine learning toolbox for Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)" href="index.html" /> 
-</head>
+    <link rel="prev" title="MATLAB Codes for Wavelet Packet Transform" href="MATLAB.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="EEMD.html" title="Ensemble Empirical Mode Decomposition (EEMD)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="MATLAB.html" title="MATLAB Codes for Wavelet Packet Transform"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
-          
-
-          
-          </a>
-
-          
-            
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Wavelet Packet Transform (WPT)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#feature-extraction-and-supervised-classification-using-wpt">Feature extraction and supervised classification using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transfer-learning-application-using-wpt">Transfer Learning Application Using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transfer-learning-on-two-cases-using-wpt">Transfer Learning On Two Cases Using WPT</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="EEMD.html">Ensemble Empirical Mode Decomposition (EEMD)</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Machine learning toolbox for WPT and EEMD</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
-      <li>Wavelet Packet Transform (WPT)</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="_sources/WPT.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <div class="section" id="module-WPT_Feature_Extraction">
-<span id="wavelet-packet-transform-wpt"></span><h1>Wavelet Packet Transform (WPT)<a class="headerlink" href="#module-WPT_Feature_Extraction" title="Permalink to this headline">¶</a></h1>
+<span id="wavelet-packet-transform-wpt"></span><span id="wpt"></span><h1>Wavelet Packet Transform (WPT)<a class="headerlink" href="#module-WPT_Feature_Extraction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="feature-extraction-and-supervised-classification-using-wpt">
 <h2>Feature extraction and supervised classification using WPT<a class="headerlink" href="#feature-extraction-and-supervised-classification-using-wpt" title="Permalink to this headline">¶</a></h2>
-<p>This function take the time series belong to turning process and
-their frequency domain feature matrices computed in Matlab as input. It perfoms 
-the 2 class classifications with four different classifiers which
-user should specify in parameters section.</p>
+<p>This algorithm takes time series for turning experiments as input and it generates the feature matrix based on specified WPT level. 
+The reconstructed Wavelet packets and corresponding frequency domain feature matrices should be computed before running this algorithm. Please see the instructions for Matlab functions on this 
+documentation before using this algorithm.
+The Wavelet packets frequency domain features and datafiles should be in the same folder.
+It asks for file paths for the data files.
+Algorithm performs the classfication with chosen algorithm and provides results in a np.array.
+It plots the mean accuracies and deviations for test and training set with respect to number of features used in classification, if user enables plotting option of the algorithm.
+It also prints the total elapsed time.</p>
 <dl class="function">
 <dt id="WPT_Feature_Extraction.WPT_Feature_Extraction">
 <code class="descclassname">WPT_Feature_Extraction.</code><code class="descname">WPT_Feature_Extraction</code><span class="sig-paren">(</span><em>stickout_length</em>, <em>WPT_Level</em>, <em>Classifier</em>, <em>plotting</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_Feature_Extraction.html#WPT_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_Feature_Extraction.WPT_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
@@ -169,7 +65,7 @@ user should specify in parameters section.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>stickout_length</strong> – <p>The distance between heel of the boring bar and the back surface of the cutting tool</p>
+<li><strong>(</strong><strong>stickout_length</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>The distance between heel of the boring bar and the back surface of the cutting tool</p>
 <ul>
 <li>if stickout length is 2 inch, ‘2’</li>
 <li>if stickout length is 2.5 inch, ‘2p5’</li>
@@ -177,8 +73,8 @@ user should specify in parameters section.</p>
 <li>if stickout length is 4.5 inch, ‘4p5’</li>
 </ul>
 </li>
-<li><strong>WPT_Level</strong> – Level of Wavelet Packet Decomposition</li>
-<li><strong>Classifier</strong> – <p>Classifier defined by user</p>
+<li><strong>(</strong><strong>WPT_Level</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Level of Wavelet Packet Decomposition</li>
+<li><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Classifier defined by user</p>
 <ul>
 <li>Support Vector Machine: ‘SVC’</li>
 <li>Logistic Regression: ‘LR’</li>
@@ -186,21 +82,34 @@ user should specify in parameters section.</p>
 <li>Gradient Boosting: ‘GB’</li>
 </ul>
 </li>
-<li><strong>Plotting</strong> – Function will return the plot of the results depending on the number of features used in the classification, if the Plotting is ‘True’.</li>
+<li><strong>(</strong><strong>Plotting</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Function will return the plot of the results depending on the number of features used in the classification, if the Plotting is ‘True’.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
-<dt>results</dt>
-<dd><p class="first last">Classification results for training and test set for all combination of ranked features</p>
-</dd>
-<dt>time</dt>
-<dd><p class="first last">Elapsed time during feature matrix generation and classification</p>
-</dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">results:</th><td class="field-body"><p class="first">(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
+<ul class="simple">
+<li>first column: mean accuracies for training set</li>
+<li>second column: deviation for training set accuracies</li>
+<li>third column: mean accuracies for test set</li>
+<li>fourth column: deviation for test set accuracies</li>
+</ul>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><blockquote class="first">
+<tr class="field-even field"><th class="field-name">plot:</th><td class="field-body"><p class="first">Deviations and mean accuracies for training and test set vs number of features used in feature matrix generation</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">time:</th><td class="field-body"><p class="first last">(str) Elapsed time during feature matrix generation and classification</p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><blockquote class="first">
 <div><div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">WPT_Feature_Extraction</span> <span class="kn">import</span> <span class="n">WPT_Feature_Extraction</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
@@ -233,11 +142,10 @@ user should specify in parameters section.</p>
 </div>
 <span class="target" id="module-WPT_Transfer_Learning"></span><div class="section" id="transfer-learning-application-using-wpt">
 <h2>Transfer Learning Application Using WPT<a class="headerlink" href="#transfer-learning-application-using-wpt" title="Permalink to this headline">¶</a></h2>
-<p>This fuction takes the reconstructed time series after WPT and their freuqency 
-domain features as input. The time domain features are computed inside of the 
-function. Since this algorithm uses transfer learning principle, user needs to
-specify the stickout length of the training set and test set data. The function 
-returns classification results in array for both test set and training set.</p>
+<p>This function uses transfer learning principles to transfer the knowledge obtained from one cutting configuration to another one.
+It assumes that the reconstructed Wavelet packets and frequency domain features are available an they are in the same folder with the data files.
+It computes feature matrices for training and test set and performs the classification with chosen algorithm. 
+It returns the results in an array. It also prints the total elapsed time.</p>
 <dl class="function">
 <dt id="WPT_Transfer_Learning.WPT_Transfer_Learning">
 <code class="descclassname">WPT_Transfer_Learning.</code><code class="descname">WPT_Transfer_Learning</code><span class="sig-paren">(</span><em>stickout_length_training</em>, <em>stickout_length_test</em>, <em>WPT_Level</em>, <em>Classifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_Transfer_Learning.html#WPT_Transfer_Learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_Transfer_Learning.WPT_Transfer_Learning" title="Permalink to this definition">¶</a></dt>
@@ -246,7 +154,7 @@ returns classification results in array for both test set and training set.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>stickout_length_training</strong> – <p>Stickout length for the training data set</p>
+<li><strong>(</strong><strong>stickout_length_training</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Stickout length for the training data set</p>
 <ul>
 <li>if stickout length is 2 inch, ‘2’</li>
 <li>if stickout length is 2.5 inch, ‘2p5’</li>
@@ -254,7 +162,7 @@ returns classification results in array for both test set and training set.</p>
 <li>if stickout length is 4.5 inch, ‘4p5’</li>
 </ul>
 </li>
-<li><strong>stickout_length_test</strong> – <p>Stickout length for the test data set</p>
+<li><strong>(</strong><strong>stickout_length_test</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Stickout length for the test data set</p>
 <ul>
 <li>if stickout length is 2 inch, ‘2’</li>
 <li>if stickout length is 2.5 inch, ‘2p5’</li>
@@ -262,8 +170,8 @@ returns classification results in array for both test set and training set.</p>
 <li>if stickout length is 4.5 inch, ‘4p5’</li>
 </ul>
 </li>
-<li><strong>WPT_Level</strong> – Level of Wavelet Packet Decomposition</li>
-<li><strong>Classifier</strong> – <blockquote>
+<li><strong>(</strong><strong>WPT_Level</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Level of Wavelet Packet Decomposition</li>
+<li><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <blockquote>
 <div>Classifier defined by user</div></blockquote>
 <ul>
 <li>Support Vector Machine: ‘SVC’</li>
@@ -275,14 +183,24 @@ returns classification results in array for both test set and training set.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
-<dt>results</dt>
-<dd><p class="first last">Classification results for training and test set for all combination of ranked features</p>
-</dd>
-<dt>time</dt>
-<dd><p class="first last">Elapsed time during feature matrix generation and classification</p>
-</dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">results:</th><td class="field-body"><p class="first">(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
+<ul class="simple">
+<li>first column: mean accuracies for training set</li>
+<li>second column: deviation for training set accuracies</li>
+<li>third column: mean accuracies for test set</li>
+<li>fourth column: deviation for test set accuracies</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">time:</th><td class="field-body"><p class="first last">(str) Elapsed time during feature matrix generation and classification</p>
+</td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">WPT_Transfer_Learning</span> <span class="kn">import</span> <span class="n">WPT_Transfer_Learning</span>
@@ -313,8 +231,11 @@ returns classification results in array for both test set and training set.</p>
 <span class="target" id="module-WPT_Transfer_Learning_2case"></span><div class="section" id="transfer-learning-on-two-cases-using-wpt">
 <h2>Transfer Learning On Two Cases Using WPT<a class="headerlink" href="#transfer-learning-on-two-cases-using-wpt" title="Permalink to this headline">¶</a></h2>
 <p>This fuction implement transfer learning by training a classifier on two different 
-data sets and testing it on remaining two different data sets. Stickout length of 
-each data set should be determined by user.</p>
+data sets and testing it on remaining two different data sets. Stickout lengths of 
+each data set should be determined by user. It asks for file paths to training and test set files. 
+It assumes that reconstructed wavelet packets and frequency domain features are available in the specified data file folder.
+Algorithm performs classfication based on chosen classifier and returns the results in an array. 
+It also prints the total elapsed time.</p>
 <dl class="function">
 <dt id="WPT_Transfer_Learning_2case.WPT_Transfer_Learning_2case">
 <code class="descclassname">WPT_Transfer_Learning_2case.</code><code class="descname">WPT_Transfer_Learning_2case</code><span class="sig-paren">(</span><em>stickout_lengths</em>, <em>WPT_Level</em>, <em>Classifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_Transfer_Learning_2case.html#WPT_Transfer_Learning_2case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_Transfer_Learning_2case.WPT_Transfer_Learning_2case" title="Permalink to this definition">¶</a></dt>
@@ -323,7 +244,7 @@ each data set should be determined by user.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>stickout_lengths</strong> – <p>Stickout length for the training and test set in a np.array([]) format.First two stickout length are considered as training set data and the remaining ones are test set data.</p>
+<li><strong>(</strong><strong>stickout_lengths</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Stickout length for the training and test set in a np.array([]) format.First two stickout length are considered as training set data and the remaining ones are test set data.</p>
 <ul>
 <li>if stickout length is 2 inch, ‘2’</li>
 <li>if stickout length is 2.5 inch, ‘2p5’</li>
@@ -331,8 +252,8 @@ each data set should be determined by user.</p>
 <li>if stickout length is 4.5 inch, ‘4p5’</li>
 </ul>
 </li>
-<li><strong>WPT_Level</strong> – Level of Wavelet Packet Decomposition</li>
-<li><strong>Classifier</strong> – <blockquote>
+<li><strong>(</strong><strong>WPT_Level</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Level of Wavelet Packet Decomposition</li>
+<li><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <blockquote>
 <div>Classifier defined by user</div></blockquote>
 <ul>
 <li>Support Vector Machine: ‘SVC’</li>
@@ -344,14 +265,24 @@ each data set should be determined by user.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
-<dt>results</dt>
-<dd><p class="first last">Classification results for training and test set for all combination of ranked features</p>
-</dd>
-<dt>time</dt>
-<dd><p class="first last">Elapsed time during feature matrix generation and classification</p>
-</dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">results:</th><td class="field-body"><p class="first">(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
+<ul class="simple">
+<li>first column: mean accuracies for training set</li>
+<li>second column: deviation for training set accuracies</li>
+<li>third column: mean accuracies for test set</li>
+<li>fourth column: deviation for test set accuracies</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">time:</th><td class="field-body"><p class="first last">(str) Elapsed time during feature matrix generation and classification</p>
+</td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">WPT_Transfer_Learning_2case</span> <span class="kn">import</span> <span class="n">WPT_Transfer_Learning_2case</span>
@@ -384,52 +315,71 @@ each data set should be determined by user.</p>
 </div>
 
 
-           </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="EEMD.html" class="btn btn-neutral float-right" title="Ensemble Empirical Mode Decomposition (EEMD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="Machine learning toolbox for Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Wavelet Packet Transform (WPT)</a><ul>
+<li><a class="reference internal" href="#feature-extraction-and-supervised-classification-using-wpt">Feature extraction and supervised classification using WPT</a></li>
+<li><a class="reference internal" href="#transfer-learning-application-using-wpt">Transfer Learning Application Using WPT</a></li>
+<li><a class="reference internal" href="#transfer-learning-on-two-cases-using-wpt">Transfer Learning On Two Cases Using WPT</a></li>
+</ul>
+</li>
+</ul>
 
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
-  
-    
-   
-
-</body>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="MATLAB.html"
+                        title="previous chapter">MATLAB Codes for Wavelet Packet Transform</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="EEMD.html"
+                        title="next chapter">Ensemble Empirical Mode Decomposition (EEMD)</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/WPT.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="EEMD.html" title="Ensemble Empirical Mode Decomposition (EEMD)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="MATLAB.html" title="MATLAB Codes for Wavelet Packet Transform"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
 </html>
