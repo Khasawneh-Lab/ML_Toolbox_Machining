@@ -1,5 +1,5 @@
-Machine learning toolbox for Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)
-************************************************************************************************************
+Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)
+***********************************************************************************************************************************
 
 This toolbox includes the documentation for the Python codes that extract features by using Wavelet Packet Transform (WPT)
 and Ensemble Empirical Mode Decomposition (EEMD) and diagnose chatter in turning process for different cutting configurations. Algorithms are based on the methods 

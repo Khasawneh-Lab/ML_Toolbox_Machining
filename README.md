@@ -1,1 +1,1 @@
-# WPT_EEMD_ML_Machining
+# Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD) 
