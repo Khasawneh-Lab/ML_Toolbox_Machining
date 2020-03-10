@@ -126,12 +126,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">#%%</span>
-    <span class="c1">#parameters </span>
-    <span class="c1">#stickout_length =&#39;2&#39;</span>
-    <span class="c1">#EEMDecs = &#39;A&#39;</span>
-    <span class="c1">#p=2</span>
-    <span class="c1">#Classifier = &#39;SVC&#39;</span>
-    <span class="c1">#%%</span>
     <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the path of the data files: &quot;</span><span class="p">)</span>
     
     <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">user_input</span><span class="p">),</span> <span class="s2">&quot;Specified file does not exist at, &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
@@ -236,13 +230,7 @@
     
     <span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">chatter_data</span><span class="p">)</span>   <span class="c1">#length of actual cases</span>
     <span class="n">C_D</span> <span class="o">=</span> <span class="n">chatter_data</span>
-    
-    <span class="c1">##feature scaling</span>
-    <span class="c1">#if EEMD==&#39;NA&#39;:</span>
-    <span class="c1">#    for i in range (0,N):</span>
-    <span class="c1">#        sc = StandardScaler()</span>
-    <span class="c1">#        C_D[i][:,1] = sc.fit_transform(np.reshape(C_D[i][:,1],(1,-1))) #normalized data</span>
-    
+      
     <span class="c1">#length of each case</span>
     <span class="n">length</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>

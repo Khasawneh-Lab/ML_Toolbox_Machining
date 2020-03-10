@@ -62,12 +62,23 @@
 <p>The numbering of the wavelet packets obtained after applying WPT can confuse user. Therefore, we give proper instructions here how to obtain and track the wavelet packets correctly. There
 are two types of ordering of the wavelet packets and these are natural ordering and frequency
 ordering. We show these two types of ordering in Wavelet packet tree in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a>.</p>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id2">
 <span id="packetnum"></span><img alt="_images/WPT_Tree_with_Ordering.png" src="_images/WPT_Tree_with_Ordering.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Frequency and natural ordering of wavelet packets in MATLAB</span></p>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Frequency and natural ordering of wavelet packets (resetting the packet numbers to 1 in each level of transformation)</span></p>
 </div>
-<p>The ordering is given in natural ordering in MATLAB. However, we use frequency ordering in this toolbox. In addition, MATLAB does not reset the numbering of wavelet packets to 1 in each level of transform. For example, if the first level wavelet packets are called first and second wavelet packets, first packet of the second level transform is called third wavelet packet. The frequency ordering given in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is resetting the numbers to 1 in each level. Also, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is obtined by using the MATLAB function <strong>otnodes()</strong>.
-Ordering can differ based on wavelet function used in the transform and level of the transform. Therefore, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> should only be used in applications which use wavelet function ‘db10’.</p>
+<p>The ordering is given in natural ordering in MATLAB. However, we use frequency ordering in this toolbox. In addition, MATLAB does not reset the numbering of wavelet packets to 1 in each level of transform.
+For example, if the first level wavelet packets are called first and second wavelet packets, first packet of the second level transform is called third wavelet packet.
+Please see <a class="reference internal" href="#packetnum-matlab"><span class="std std-numref">Fig. 2</span></a> for MATLAB numbering.
+The frequency ordering given in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is resetting the numbers to 1 in each level.
+All wavelet packet numbers given in <a class="reference internal" href="index.html#yesilli2019" id="id1">[Yesilli2019]</a> is based on the ordering provided in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a>.
+One need to find correponding number for each wavelet packet by using <a class="reference internal" href="#packetnum-matlab"><span class="std std-numref">Fig. 2</span></a> to reconstruct the time series correctly based on informative wavelet packets in MATLAB.
+Also, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is obtained by using the MATLAB function <strong>otnodes()</strong>.
+Ordering can differ based on wavelet function used in the transform and level of the transform.
+Therefore, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> should only be used in applications which use wavelet function ‘db10’.</p>
+<div class="figure align-center" id="id3">
+<span id="packetnum-matlab"></span><img alt="_images/WPT_Tree_with_MATLAB_Numbering.png" src="_images/WPT_Tree_with_MATLAB_Numbering.png" />
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Frequency and natural ordering of wavelet packets in MATLAB</span></p>
+</div>
 </div>
 </div>
 

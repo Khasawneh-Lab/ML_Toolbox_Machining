@@ -125,17 +125,7 @@
 <span class="sd">           Enter the path of second test set data files:</span>
 <span class="sd">           &gt;&gt;&gt; D\...\cutting_tests_processed\data_4p5inch_stickout</span>
 <span class="sd">    &quot;&quot;&quot;</span>    
-    <span class="c1">#%% parameters</span>
-<span class="c1">#    stickout_length_training1 = &#39;2&#39;</span>
-<span class="c1">#    stickout_length_training2 = &#39;2&#39;</span>
-<span class="c1">#    stickout_length_test1 = &#39;2&#39;</span>
-<span class="c1">#    stickout_length_test2 = &#39;2&#39;</span>
-<span class="c1">#    </span>
-<span class="c1">#    WPT_Level=1</span>
-<span class="c1">#    Classifier = &#39;SVC&#39;</span>
-<span class="c1">##    </span>
-<span class="c1">#    stickout_lengths = np.array([stickout_length_training1,stickout_length_training2, stickout_length_test1, stickout_length_test2])</span>
-    
+   
     <span class="c1">#%% get the path to data files from user</span>
     
     <span class="n">user_input_train1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the path of first training set data files: &quot;</span><span class="p">)</span>
@@ -314,16 +304,6 @@
     
     <span class="k">return</span> <span class="n">results</span><span class="p">,</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total elapsed time: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">duration2</span><span class="p">))</span> <span class="p">,</span><span class="n">featuremat_training</span><span class="p">,</span> <span class="n">featuremat_test</span>  </div>
 
-    <span class="c1"># This part of the code includes the ranked features for each iteration and keep them in arrays</span>
-    
-    <span class="c1">#how_many_times_rank = np.zeros((14,14))</span>
-    <span class="c1">#for i in range (0,14):</span>
-    <span class="c1">#    for j in range(0,10):</span>
-    <span class="c1">#        a = RankedList[j][i][0]</span>
-    <span class="c1">#        a = int(a)</span>
-    <span class="c1">#        how_many_times_rank[a,i]=how_many_times_rank[a,i]+1</span>
-    <span class="c1">#</span>
-    <span class="c1">#sio.savemat(&#39;number_of_times_feature_ranks_4.5inch_WPT_Level4.mat&#39;,mdict={&#39;times_feature_rank&#39;:how_many_times_rank})</span>
 
 </pre></div>
 

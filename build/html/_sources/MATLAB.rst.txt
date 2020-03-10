@@ -25,7 +25,21 @@ ordering. We show these two types of ordering in Wavelet packet tree in :numref:
 .. figure:: WPT_Tree_with_Ordering.png
    :align: center
 
-   Frequency and natural ordering of wavelet packets in MATLAB
+   Frequency and natural ordering of wavelet packets (resetting the packet numbers to 1 in each level of transformation)
 
-The ordering is given in natural ordering in MATLAB. However, we use frequency ordering in this toolbox. In addition, MATLAB does not reset the numbering of wavelet packets to 1 in each level of transform. For example, if the first level wavelet packets are called first and second wavelet packets, first packet of the second level transform is called third wavelet packet. The frequency ordering given in :numref:`PacketNum` is resetting the numbers to 1 in each level. Also, ordering in :numref:`PacketNum` is obtined by using the MATLAB function **otnodes()**. 
-Ordering can differ based on wavelet function used in the transform and level of the transform. Therefore, ordering in :numref:`PacketNum` should only be used in applications which use wavelet function 'db10'.
+The ordering is given in natural ordering in MATLAB. However, we use frequency ordering in this toolbox. In addition, MATLAB does not reset the numbering of wavelet packets to 1 in each level of transform. 
+For example, if the first level wavelet packets are called first and second wavelet packets, first packet of the second level transform is called third wavelet packet. 
+Please see :numref:`PacketNum_MATLAB` for MATLAB numbering.
+The frequency ordering given in :numref:`PacketNum` is resetting the numbers to 1 in each level. 
+All wavelet packet numbers given in :cite:`1 <Yesilli2019>` is based on the ordering provided in :numref:`PacketNum`.
+One need to find correponding number for each wavelet packet by using :numref:`PacketNum_MATLAB` to reconstruct the time series correctly based on informative wavelet packets in MATLAB.
+Also, ordering in :numref:`PacketNum` is obtained by using the MATLAB function **otnodes()**. 
+Ordering can differ based on wavelet function used in the transform and level of the transform. 
+Therefore, ordering in :numref:`PacketNum` should only be used in applications which use wavelet function 'db10'.
+
+.. _PacketNum_MATLAB:
+
+.. figure:: WPT_Tree_with_MATLAB_Numbering.png
+   :align: center
+
+   Frequency and natural ordering of wavelet packets in MATLAB

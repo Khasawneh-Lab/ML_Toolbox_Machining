@@ -138,13 +138,6 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 
-
-    <span class="c1">#%% parameters:</span>
-<span class="c1">#    stickout_length_training=&#39;2&#39;</span>
-<span class="c1">#    stickout_length_test=&#39;4p5&#39;</span>
-<span class="c1">#    p_train = 2 #informative IMF number for the training set</span>
-<span class="c1">#    p_test = 1  #informative IMF number for the test set</span>
-<span class="c1">#    Classifier = &#39;GB&#39;</span>
     <span class="c1">#%%</span>
     <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the path of training data files: &quot;</span><span class="p">)</span>
     
@@ -382,15 +375,6 @@
         <span class="n">features_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">features</span>
             
     <span class="c1">#%%---------------CLASSIFICATION-----------------------------------------------</span>
-    
-    <span class="c1">#creating train, test, accuracy, meanscore and deviation matrices</span>
-    <span class="n">split_train_train</span><span class="p">,</span><span class="n">split_train_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">features_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">)</span>
-    <span class="n">split_test_train</span><span class="p">,</span><span class="n">split_test_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">features_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">)</span>
-    
-<span class="c1">#    F_train_traincomb = np.zeros((len(split_train_train),7))</span>
-<span class="c1">#    F_train_testcomb = np.zeros((len(split_train_test),7))</span>
-<span class="c1">#    F_test_traincomb = np.zeros((len(split_test_train),7))</span>
-<span class="c1">#    F_test_testcomb = np.zeros((len(split_test_test),7))</span>
     
     <span class="n">accuracy1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
     <span class="n">accuracy2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
