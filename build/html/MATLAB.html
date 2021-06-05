@@ -1,59 +1,176 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>MATLAB Codes for Wavelet Packet Transform &#8212; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MATLAB Codes for Wavelet Packet Transform &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Wavelet Packet Transform (WPT)" href="WPT.html" />
     <link rel="prev" title="Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)" href="index.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="WPT.html" title="Wavelet Packet Transform (WPT)"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MATLAB Codes for Wavelet Packet Transform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#wavelet-packet-numbering-in-matlab">Wavelet packet numbering in MATLAB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="WPT.html">Wavelet Packet Transform (WPT)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="WPT.html#feature-extraction-and-supervised-classification-using-wpt">Feature extraction and supervised classification using WPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-application-using-wpt">Transfer Learning Application Using WPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-on-two-cases-using-wpt">Transfer Learning On Two Cases Using WPT</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EEMD.html">Ensemble Empirical Mode Decomposition (EEMD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="EEMD.html#feature-extraction-and-supervised-classification-using-eemd">Feature extraction and supervised classification using EEMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EEMD.html#transfer-learning-application-using-eemd">Transfer Learning Application Using EEMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="EEMD.html#transfer-learning-on-two-cases-using-eemd">Transfer Learning On Two Cases Using EEMD</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Machine learning toolbox for WPT and EEMD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>MATLAB Codes for Wavelet Packet Transform</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/MATLAB.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="matlab-codes-for-wavelet-packet-transform">
 <span id="matlab"></span><h1>MATLAB Codes for Wavelet Packet Transform<a class="headerlink" href="#matlab-codes-for-wavelet-packet-transform" title="Permalink to this headline">¶</a></h1>
 <p>MATLAB folder in the <a class="reference external" href="https://github.com/mcanyesilli/WPT_EEMD_ML_Machining">GitHub repository</a> includes four codes.</p>
 <blockquote>
 <div><ul class="simple">
-<li><strong>WP_Energy_Ratio</strong>: Computes the energy ratios of the wavelet packets for specified level of transform for chosen time series. It returns plots which contains energy ratios of each packet for time series, reconstructed time series and their FFT plot. User can define the informative wavelet packet number using these plot.</li>
-<li><strong>WP_Informative_Packet_Recon</strong>: For selected level of WPT, it reconstructs time series based on chosen informative wavelet packets. It saves the reconstructed time series into specified folder.</li>
-<li><strong>WP_Frequency_Domain_Features</strong>: Computes the frequency domain features for selected level of Transform by using reconstructed time series with <strong>WP_Informative_Packet_Recon</strong> function. It saves the feature matrix and this feature matrix will be combined with time domain features to be used in classification.</li>
-<li><strong>Example_Usage</strong>: Provides examples for MATLAB codes.</li>
+<li><p><strong>WP_Energy_Ratio</strong>: Computes the energy ratios of the wavelet packets for specified level of transform for chosen time series. It returns plots which contains energy ratios of each packet for time series, reconstructed time series and their FFT plot. User can define the informative wavelet packet number using these plot.</p></li>
+<li><p><strong>WP_Informative_Packet_Recon</strong>: For selected level of WPT, it reconstructs time series based on chosen informative wavelet packets. It saves the reconstructed time series into specified folder.</p></li>
+<li><p><strong>WP_Frequency_Domain_Features</strong>: Computes the frequency domain features for selected level of Transform by using reconstructed time series with <strong>WP_Informative_Packet_Recon</strong> function. It saves the feature matrix and this feature matrix will be combined with time domain features to be used in classification.</p></li>
+<li><p><strong>Example_Usage</strong>: Provides examples for MATLAB codes.</p></li>
 </ul>
 </div></blockquote>
 <p><strong>NOTE</strong>: For more details on these functions, please see the function descriptions in MATLAB files.</p>
@@ -64,88 +181,83 @@ are two types of ordering of the wavelet packets and these are natural ordering 
 ordering. We show these two types of ordering in Wavelet packet tree in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a>.</p>
 <div class="figure align-center" id="id2">
 <span id="packetnum"></span><img alt="_images/WPT_Tree_with_Ordering.png" src="_images/WPT_Tree_with_Ordering.png" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Frequency and natural ordering of wavelet packets (resetting the packet numbers to 1 in each level of transformation)</span></p>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Frequency and natural ordering of wavelet packets (resetting the packet numbers to 1 in each level of transformation)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>The ordering is given in natural ordering in MATLAB. However, we use frequency ordering in this toolbox. In addition, MATLAB does not reset the numbering of wavelet packets to 1 in each level of transform.
 For example, if the first level wavelet packets are called first and second wavelet packets, first packet of the second level transform is called third wavelet packet.
 Please see <a class="reference internal" href="#packetnum-matlab"><span class="std std-numref">Fig. 2</span></a> for MATLAB numbering.
 The frequency ordering given in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is resetting the numbers to 1 in each level.
-All wavelet packet numbers given in <a class="reference internal" href="index.html#yesilli2019" id="id1">[Yesilli2019]</a> is based on the ordering provided in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a>.
+All wavelet packet numbers given in <a class="bibtex reference internal" href="index.html#yesilli2019" id="id1">[2]</a> is based on the ordering provided in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a>.
 One need to find correponding number for each wavelet packet by using <a class="reference internal" href="#packetnum-matlab"><span class="std std-numref">Fig. 2</span></a> to reconstruct the time series correctly based on informative wavelet packets in MATLAB.
 Also, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> is obtained by using the MATLAB function <strong>otnodes()</strong>.
 Ordering can differ based on wavelet function used in the transform and level of the transform.
 Therefore, ordering in <a class="reference internal" href="#packetnum"><span class="std std-numref">Fig. 1</span></a> should only be used in applications which use wavelet function ‘db10’.</p>
 <div class="figure align-center" id="id3">
 <span id="packetnum-matlab"></span><img alt="_images/WPT_Tree_with_MATLAB_Numbering.png" src="_images/WPT_Tree_with_MATLAB_Numbering.png" />
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Frequency and natural ordering of wavelet packets in MATLAB</span></p>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Frequency and natural ordering of wavelet packets in MATLAB</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
 
 
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">MATLAB Codes for Wavelet Packet Transform</a><ul>
-<li><a class="reference internal" href="#wavelet-packet-numbering-in-matlab">Wavelet packet numbering in MATLAB</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="WPT.html" class="btn btn-neutral float-right" title="Wavelet Packet Transform (WPT)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="WPT.html"
-                        title="next chapter">Wavelet Packet Transform (WPT)</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/MATLAB.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="WPT.html" title="Wavelet Packet Transform (WPT)"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
 </html>

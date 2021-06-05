@@ -1,45 +1,165 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Ensemble Empirical Mode Decomposition (EEMD) &#8212; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ensemble Empirical Mode Decomposition (EEMD) &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Wavelet Packet Transform (WPT)" href="WPT.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="WPT.html" title="Wavelet Packet Transform (WPT)"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MATLAB.html">MATLAB Codes for Wavelet Packet Transform</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MATLAB.html#wavelet-packet-numbering-in-matlab">Wavelet packet numbering in MATLAB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="WPT.html">Wavelet Packet Transform (WPT)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="WPT.html#feature-extraction-and-supervised-classification-using-wpt">Feature extraction and supervised classification using WPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-application-using-wpt">Transfer Learning Application Using WPT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-on-two-cases-using-wpt">Transfer Learning On Two Cases Using WPT</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ensemble Empirical Mode Decomposition (EEMD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#feature-extraction-and-supervised-classification-using-eemd">Feature extraction and supervised classification using EEMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transfer-learning-application-using-eemd">Transfer Learning Application Using EEMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transfer-learning-on-two-cases-using-eemd">Transfer Learning On Two Cases Using EEMD</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Machine learning toolbox for WPT and EEMD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Ensemble Empirical Mode Decomposition (EEMD)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/EEMD.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-EEMD_Feature_Extraction">
 <span id="ensemble-empirical-mode-decomposition-eemd"></span><h1>Ensemble Empirical Mode Decomposition (EEMD)<a class="headerlink" href="#module-EEMD_Feature_Extraction" title="Permalink to this headline">¶</a></h1>
@@ -50,149 +170,135 @@ It ask user to enter the file paths for the data files. If user specify that the
 Otherwise, it will compute the IMFs and ask users to enter the file paths where they want to save these decompositions.
 Based on given stickout length cases and corresponding informative IMF numbers, it will generate the feature matrix and perform the classification with specified classification algorithm by user.
 It returns the results in an array and prints the total elapsed time.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="EEMD_Feature_Extraction.EEMD_Feature_Extraction">
-<code class="descclassname">EEMD_Feature_Extraction.</code><code class="descname">EEMD_Feature_Extraction</code><span class="sig-paren">(</span><em>stickout_length</em>, <em>EEMDecs</em>, <em>p</em>, <em>Classifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Feature_Extraction.html#EEMD_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Feature_Extraction.EEMD_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>(</strong><strong>stickout_lengths</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>The distance between heel of the boring bar and the back surface of the cutting tool</p>
+<code class="sig-prename descclassname">EEMD_Feature_Extraction.</code><code class="sig-name descname">EEMD_Feature_Extraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length</span></em>, <em class="sig-param"><span class="n">EEMDecs</span></em>, <em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Feature_Extraction.html#EEMD_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Feature_Extraction.EEMD_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>stickout_lengths</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>The distance between heel of the boring bar and the back surface of the cutting tool</p>
 <ul>
-<li>if stickout length is 2 inch, ‘2’</li>
-<li>if stickout length is 2.5 inch, ‘2p5’</li>
-<li>if stickout length is 3.5 inch, ‘3p5’</li>
-<li>if stickout length is 4.5 inch, ‘4p5’</li>
+<li><p>if stickout length is 2 inch, ‘2’</p></li>
+<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
+<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
+<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
 </ul>
-</li>
-<li><strong>(</strong><strong>EEMDecs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <ul>
-<li>if decompositions have already been computed, ‘A’</li>
-<li>if decompositions have not been computed, ‘NA’</li>
+</p></li>
+<li><p><strong>(</strong><strong>EEMDecs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <ul>
+<li><p>if decompositions have already been computed, ‘A’</p></li>
+<li><p>if decompositions have not been computed, ‘NA’</p></li>
 </ul>
-</li>
-<li><strong>(</strong><strong>p</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Informative intrinsic mode function (IMF) number</li>
-<li><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Classifier defined by user</p>
+</p></li>
+<li><p><strong>(</strong><strong>p</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Informative intrinsic mode function (IMF) number</p></li>
+<li><p><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Classifier defined by user</p>
 <ul>
-<li>Support Vector Machine: ‘SVC’</li>
-<li>Logistic Regression: ‘LR’</li>
-<li>Random Forest Classification: ‘RF’</li>
-<li>Gradient Boosting: ‘GB’</li>
+<li><p>Support Vector Machine: ‘SVC’</p></li>
+<li><p>Logistic Regression: ‘LR’</p></li>
+<li><p>Random Forest Classification: ‘RF’</p></li>
+<li><p>Gradient Boosting: ‘GB’</p></li>
 </ul>
-</li>
+</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">results:</th><td class="field-body"><p class="first">(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">results</dt>
+<dd class="field-odd"><p>(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
 <ul class="simple">
-<li>first column: mean accuracies for training set</li>
-<li>second column: deviation for training set accuracies</li>
-<li>third column: mean accuracies for test set</li>
-<li>fourth column: deviation for test set accuracies</li>
+<li><p>first column: mean accuracies for training set</p></li>
+<li><p>second column: deviation for training set accuracies</p></li>
+<li><p>third column: mean accuracies for test set</p></li>
+<li><p>fourth column: deviation for test set accuracies</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">time:</th><td class="field-body"><p class="first last">(str) Elapsed time during feature matrix generation and classification</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EEMD_Feature_Extraction</span> <span class="kn">import</span> <span class="n">EEMD_Feature_Extraction</span>
-<span class="go"> </span>
+</dd>
+<dt class="field-even">time</dt>
+<dd class="field-even"><p>(str) Elapsed time during feature matrix generation and classification</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EEMD_Feature_Extraction</span> <span class="kn">import</span> <span class="n">EEMD_Feature_Extraction</span>
+
 <span class="go">#parameters</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_length</span><span class="o">=</span><span class="s1">&#39;2&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">EEMDecs</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p</span><span class="o">=</span><span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Classifier</span> <span class="o">=</span> <span class="s1">&#39;SVC&#39;</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">EEMD_Feature_Extraction</span><span class="p">(</span><span class="n">stickout_length</span><span class="p">,</span> <span class="n">EEMDecs</span><span class="p">,</span> 
-<span class="gp">&gt;&gt;&gt; </span>                                 <span class="n">p</span><span class="p">,</span> <span class="n">Classifier</span><span class="p">)</span>     
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">EEMD_Feature_Extraction</span><span class="p">(</span><span class="n">stickout_length</span><span class="p">,</span> <span class="n">EEMDecs</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span>                                 <span class="n">p</span><span class="p">,</span> <span class="n">Classifier</span><span class="p">)</span>
 <span class="go">Enter the path of the data files:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_2inch_stickout</span>
 <span class="go">Enter Enter the path of EEMD files:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">eIMFs</span>\<span class="n">data_2inch_stickout</span>
 </pre></div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 <span class="target" id="module-EEMD_Transfer_Learning"></span><div class="section" id="transfer-learning-application-using-eemd">
 <h2>Transfer Learning Application Using EEMD<a class="headerlink" href="#transfer-learning-application-using-eemd" title="Permalink to this headline">¶</a></h2>
-<p>This function uses transfer learning principles on two differen stickout cases for cutting data set. 
+<p>This function uses transfer learning principles on two differen stickout cases for cutting data set.
 It uses one of the cases as training set and train a specified classifier on this data set, then it tests the classfier on the other cases provided by the user.
 This functions assumes that the IMFs for EEMD have alread been computed and it asks the paths for data files and decompositions (IMFs).
-The informative IMF numbers should be provided by user for training and test set seperately. 
+The informative IMF numbers should be provided by user for training and test set seperately.
 Then, function will generate feature matrix and perform classfication with chosen algorithm by user.
 It returns the results in a np.array and prints the total elapsed time.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="EEMD_Transfer_Learning.EEMD_Transfer_Learning">
-<code class="descclassname">EEMD_Transfer_Learning.</code><code class="descname">EEMD_Transfer_Learning</code><span class="sig-paren">(</span><em>stickout_length_training</em>, <em>stickout_length_test</em>, <em>p_train</em>, <em>p_test</em>, <em>Classifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Transfer_Learning.html#EEMD_Transfer_Learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Transfer_Learning.EEMD_Transfer_Learning" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>(</strong><strong>stickout_length_training</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Stickout length for the training data set</p>
+<code class="sig-prename descclassname">EEMD_Transfer_Learning.</code><code class="sig-name descname">EEMD_Transfer_Learning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length_training</span></em>, <em class="sig-param"><span class="n">stickout_length_test</span></em>, <em class="sig-param"><span class="n">p_train</span></em>, <em class="sig-param"><span class="n">p_test</span></em>, <em class="sig-param"><span class="n">Classifier</span></em>, <em class="sig-param"><span class="n">random_state_numbers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Transfer_Learning.html#EEMD_Transfer_Learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Transfer_Learning.EEMD_Transfer_Learning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>stickout_length_training</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Stickout length for the training data set</p>
 <ul>
-<li>if stickout length is 2 inch, ‘2’</li>
-<li>if stickout length is 2.5 inch, ‘2p5’</li>
-<li>if stickout length is 3.5 inch, ‘3p5’</li>
-<li>if stickout length is 4.5 inch, ‘4p5’</li>
+<li><p>if stickout length is 2 inch, ‘2’</p></li>
+<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
+<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
+<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
 </ul>
-</li>
-<li><strong>(</strong><strong>stickout_length_test</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Stickout length for the test data set</p>
+</p></li>
+<li><p><strong>(</strong><strong>stickout_length_test</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Stickout length for the test data set</p>
 <ul>
-<li>if stickout length is 2 inch, ‘2’</li>
-<li>if stickout length is 2.5 inch, ‘2p5’</li>
-<li>if stickout length is 3.5 inch, ‘3p5’</li>
-<li>if stickout length is 4.5 inch, ‘4p5’</li>
+<li><p>if stickout length is 2 inch, ‘2’</p></li>
+<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
+<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
+<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
 </ul>
-</li>
-<li><strong>(</strong><strong>p_train</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Informative intrinsic mode function (IMF) number for training set</li>
-<li><strong>(</strong><strong>p_test</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Informative intrinsic mode function (IMF) number for test set</li>
-<li><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Classifier defined by user</p>
+</p></li>
+<li><p><strong>(</strong><strong>p_train</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Informative intrinsic mode function (IMF) number for training set</p></li>
+<li><p><strong>(</strong><strong>p_test</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Informative intrinsic mode function (IMF) number for test set</p></li>
+<li><p><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Classifier defined by user</p>
 <ul>
-<li>Support Vector Machine: ‘SVC’</li>
-<li>Logistic Regression: ‘LR’</li>
-<li>Random Forest Classification: ‘RF’</li>
-<li>Gradient Boosting: ‘GB’</li>
+<li><p>Support Vector Machine: ‘SVC’</p></li>
+<li><p>Logistic Regression: ‘LR’</p></li>
+<li><p>Random Forest Classification: ‘RF’</p></li>
+<li><p>Gradient Boosting: ‘GB’</p></li>
 </ul>
-</li>
+</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">results:</th><td class="field-body"><p class="first">(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">results</dt>
+<dd class="field-odd"><p>(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
 <ul class="simple">
-<li>first column: mean accuracies for training set</li>
-<li>second column: deviation for training set accuracies</li>
-<li>third column: mean accuracies for test set</li>
-<li>fourth column: deviation for test set accuracies</li>
+<li><p>first column: mean accuracies for training set</p></li>
+<li><p>second column: deviation for training set accuracies</p></li>
+<li><p>third column: mean accuracies for test set</p></li>
+<li><p>fourth column: deviation for test set accuracies</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">time:</th><td class="field-body"><p class="first last">(str) Elapsed time during feature matrix generation and classification</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EEMD_Feature_Extraction</span> <span class="kn">import</span> <span class="n">EEMD_Feature_Extraction</span>
-<span class="go"> </span>
+</dd>
+<dt class="field-even">time</dt>
+<dd class="field-even"><p>(str) Elapsed time during feature matrix generation and classification</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EEMD_Feature_Extraction</span> <span class="kn">import</span> <span class="n">EEMD_Feature_Extraction</span>
+
 <span class="go">#parameters</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_length_training</span><span class="o">=</span><span class="s1">&#39;2&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_length_test</span><span class="o">=</span><span class="s1">&#39;4p5&#39;</span>
@@ -200,10 +306,10 @@ It returns the results in a np.array and prints the total elapsed time.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">p_test</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Classifier</span> <span class="o">=</span> <span class="s1">&#39;GB&#39;</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">EEMD_Transfer_Learning</span><span class="p">(</span><span class="n">stickout_length_training</span><span class="p">,</span> 
-<span class="go">                                     stickout_length_test, </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">EEMD_Transfer_Learning</span><span class="p">(</span><span class="n">stickout_length_training</span><span class="p">,</span>
+<span class="go">                                     stickout_length_test,</span>
 <span class="gp">&gt;&gt;&gt; </span>                                 <span class="n">p_train</span><span class="p">,</span> <span class="n">p_test</span><span class="p">,</span>
-<span class="go">                                     Classifier)     </span>
+<span class="go">                                     Classifier)</span>
 <span class="go">Enter the path of training data files:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_2inch_stickout</span>
 <span class="go">Enter the path of test data files:</span>
@@ -211,78 +317,70 @@ It returns the results in a np.array and prints the total elapsed time.</p>
 <span class="go">Enter the path to decompositions for training set:</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">eIMFs</span>\<span class="n">data_2inch_stickout</span>
 <span class="go">Enter the path to decompositions for test set:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">eIMFs</span>\<span class="n">data_4p5inch_stickout</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">eIMFs</span>\<span class="n">data_4p5inch_stickout</span>
 </pre></div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 <span class="target" id="module-EEMD_Transfer_Learning_2case"></span><div class="section" id="transfer-learning-on-two-cases-using-eemd">
 <h2>Transfer Learning On Two Cases Using EEMD<a class="headerlink" href="#transfer-learning-on-two-cases-using-eemd" title="Permalink to this headline">¶</a></h2>
-<p>This code takes four different stickout cases in an array from user. It uses first two cases as training set samples and remaining two cases are considered as 
-test set data sets. 
+<p>This code takes four different stickout cases in an array from user. It uses first two cases as training set samples and remaining two cases are considered as
+test set data sets.
 Algorithm assumes that the IMFs for EEMD have alredy been computed and saved.
 The file paths to the IMFs and data files should be included in ‘file_paths.txt’ file and this file should be in the same folder with this function.
-This function generates the feature matrices for training and test correponding to given stickout cases and their informative Intrinsic Mode Functions (IMFs). 
+This function generates the feature matrices for training and test correponding to given stickout cases and their informative Intrinsic Mode Functions (IMFs).
 It perform classification based on classifier name specified by the user.
 It returns the mean accuracies and deviations in a np.array([]). It also prints the total elapsed time.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case">
-<code class="descclassname">EEMD_Transfer_Learning_2case.</code><code class="descname">EEMD_Transfer_Learning_2case</code><span class="sig-paren">(</span><em>stickout_lengths</em>, <em>IMF_Number</em>, <em>Classifier</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Transfer_Learning_2case.html#EEMD_Transfer_Learning_2case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>(</strong><strong>file_path.txt</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Algorithm needs .txt file whose name is ‘file_paths.txt’ to add the paths of the data files and their corresponding decompositions. This .txt file should include 8 file path, four for data files and four for decompositions.First four file paths are for data files (time series). Other four are considered as paths to the decompositions. Each line in .txt file should include only one path. The ordering for the paths is such that the first path represents first case of training set data files. Second path is for the second case of training set data files. Third and fourth paths represent first test set case and second test set case data files. Same ordering should be followed for the paths of decompositions.</li>
-<li><strong>(</strong><strong>stickout_lengths</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Training and test set cases in a np.array([]). The algorithm considers the first two entry as training set cases and remanining ones as test set cases.</p>
+<code class="sig-prename descclassname">EEMD_Transfer_Learning_2case.</code><code class="sig-name descname">EEMD_Transfer_Learning_2case</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_lengths</span></em>, <em class="sig-param"><span class="n">IMF_Number</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Transfer_Learning_2case.html#EEMD_Transfer_Learning_2case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>file_path.txt</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Algorithm needs .txt file whose name is ‘file_paths.txt’ to add the paths of the data files and their corresponding decompositions. This .txt file should include 8 file path, four for data files and four for decompositions.First four file paths are for data files (time series). Other four are considered as paths to the decompositions. Each line in .txt file should include only one path. The ordering for the paths is such that the first path represents first case of training set data files. Second path is for the second case of training set data files. Third and fourth paths represent first test set case and second test set case data files. Same ordering should be followed for the paths of decompositions.</p></li>
+<li><p><strong>(</strong><strong>stickout_lengths</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Training and test set cases in a np.array([]). The algorithm considers the first two entry as training set cases and remanining ones as test set cases.</p>
 <ul>
-<li>if stickout length is 2 inch, ‘2’</li>
-<li>if stickout length is 2.5 inch, ‘2p5’</li>
-<li>if stickout length is 3.5 inch, ‘3p5’</li>
-<li>if stickout length is 4.5 inch, ‘4p5’</li>
+<li><p>if stickout length is 2 inch, ‘2’</p></li>
+<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
+<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
+<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
 </ul>
-</li>
-<li><strong>(</strong><strong>IMF_Number</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Corresponding Informative Intrinsic Mode Function (IMF) numbers in an array for cases given in stickout_lengths. First two entry are considered as training set IMFs and remaining ones are for test set IMFs.</li>
-<li><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – <p>Classifier defined by user</p>
+</p></li>
+<li><p><strong>(</strong><strong>IMF_Number</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Corresponding Informative Intrinsic Mode Function (IMF) numbers in an array for cases given in stickout_lengths. First two entry are considered as training set IMFs and remaining ones are for test set IMFs.</p></li>
+<li><p><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Classifier defined by user</p>
 <ul>
-<li>Support Vector Machine: ‘SVC’</li>
-<li>Logistic Regression: ‘LR’</li>
-<li>Random Forest Classification: ‘RF’</li>
-<li>Gradient Boosting: ‘GB’</li>
+<li><p>Support Vector Machine: ‘SVC’</p></li>
+<li><p>Logistic Regression: ‘LR’</p></li>
+<li><p>Random Forest Classification: ‘RF’</p></li>
+<li><p>Gradient Boosting: ‘GB’</p></li>
 </ul>
-</li>
+</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><table class="first docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">results:</th><td class="field-body"><p class="first">(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">results</dt>
+<dd class="field-odd"><p>(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
 <ul class="simple">
-<li>first column: mean accuracies for training set</li>
-<li>second column: deviation for training set accuracies</li>
-<li>third column: mean accuracies for test set</li>
-<li>fourth column: deviation for test set accuracies</li>
+<li><p>first column: mean accuracies for training set</p></li>
+<li><p>second column: deviation for training set accuracies</p></li>
+<li><p>third column: mean accuracies for test set</p></li>
+<li><p>fourth column: deviation for test set accuracies</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">time:</th><td class="field-body"><p class="first last">(str) Elapsed time during feature matrix generation and classification</p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EEMD_Transfer_Learning_2case</span> <span class="kn">import</span> <span class="n">EEMD_Transfer_Learning_2case</span>
+</dd>
+<dt class="field-even">time</dt>
+<dd class="field-even"><p>(str) Elapsed time during feature matrix generation and classification</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EEMD_Transfer_Learning_2case</span> <span class="kn">import</span> <span class="n">EEMD_Transfer_Learning_2case</span>
 
 <span class="go">#parameters</span>
-<span class="go"> </span>
+
 <span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;2p5&#39;</span><span class="p">,</span><span class="s1">&#39;3p5&#39;</span><span class="p">,</span><span class="s1">&#39;4p5&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">IMF_Number</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Classifier</span> <span class="o">=</span> <span class="s1">&#39;RF&#39;</span>
@@ -290,75 +388,70 @@ It returns the mean accuracies and deviations in a np.array([]). It also prints 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">EEMD_Transfer_Learning_2case</span><span class="p">(</span><span class="n">stickout_lengths</span><span class="p">,</span><span class="n">IMF_Number</span><span class="p">,</span><span class="n">Classifier</span><span class="p">)</span>
 </pre></div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
 </div>
 
 
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Ensemble Empirical Mode Decomposition (EEMD)</a><ul>
-<li><a class="reference internal" href="#feature-extraction-and-supervised-classification-using-eemd">Feature extraction and supervised classification using EEMD</a></li>
-<li><a class="reference internal" href="#transfer-learning-application-using-eemd">Transfer Learning Application Using EEMD</a></li>
-<li><a class="reference internal" href="#transfer-learning-on-two-cases-using-eemd">Transfer Learning On Two Cases Using EEMD</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="WPT.html" class="btn btn-neutral float-left" title="Wavelet Packet Transform (WPT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="WPT.html"
-                        title="previous chapter">Wavelet Packet Transform (WPT)</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/EEMD.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="WPT.html" title="Wavelet Packet Transform (WPT)"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Machine learning toolbox for WPT and EEMD 0.1 documentation</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
 </html>

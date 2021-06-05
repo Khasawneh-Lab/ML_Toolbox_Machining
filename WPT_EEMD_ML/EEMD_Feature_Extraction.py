@@ -383,5 +383,5 @@ def EEMD_Feature_Extraction(stickout_length, EEMDecs, p, Classifier):
     end4 = time.time()
     duration4 = end4-start4
     print('Total elapsed time: {} seconds.'.format(duration4))
-    return results, print('Total elapsed time: {}'.format(duration4)),features  
+    return results, print('Total elapsed time: {}'.format(duration4)),features,rankedlist,RankedList 
     

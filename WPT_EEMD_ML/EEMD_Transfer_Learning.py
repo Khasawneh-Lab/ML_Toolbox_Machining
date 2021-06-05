@@ -277,7 +277,6 @@ def EEMD_Transfer_Learning(stickout_length_training, stickout_length_test, p_tra
     infoEMF_test = infoEMF[1]
     
     #%% load eIMFs 
-    stickout_length_test='4.5'
     
     #training set
     sys.path.insert(0,folderToLoad3)
@@ -405,6 +404,6 @@ def EEMD_Transfer_Learning(stickout_length_training, stickout_length_test, p_tra
     duration = end-start
     print('Classification is completed in {} seconds.'.format(duration))
 
-    return results, features_[0],features_[1]
+    return results, features_[0],features_[1],RankedList
     
     

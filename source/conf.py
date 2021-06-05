@@ -41,30 +41,27 @@ release = '0.1'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'matplotlib.sphinxext.mathmpl',
-#    'matplotlib.sphinxext.only_directives',
-    'matplotlib.sphinxext.plot_directive',
-#    'matplotlib.sphinxext.ipython_directive',
-    'sphinx.ext.autodoc',
-#    'numpydoc',    
-    'sphinx.ext.autosummary',
-    'sphinx.ext.doctest',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages',
-#    'sphinx.ext.napoleon',
-    'sphinxcontrib.bibtex',
-]
+extensions = ['sphinx.ext.autodoc', 
+              'sphinx.ext.coverage', 
+              'sphinx.ext.napoleon',
+              'sphinx_rtd_theme',
+              'matplotlib.sphinxext.mathmpl',
+              'matplotlib.sphinxext.plot_directive',
+              'sphinx.ext.autosummary',
+              'sphinx.ext.doctest',
+              'sphinx.ext.intersphinx',
+              'sphinx.ext.todo',
+              'sphinx.ext.mathjax',
+              'sphinx.ext.ifconfig',
+              'sphinx.ext.viewcode',
+              'sphinx.ext.githubpages',
+              'sphinxcontrib.bibtex',]
 
 numfig = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+exclude_patterns = []
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -96,31 +93,28 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-#import sphinx_rtd_theme
-#html_theme = 'sphinx_rtd_theme'
+import sphinx_rtd_theme
+html_theme = 'sphinx_rtd_theme'
+# html_logo = 'teaspoon.png'
+
 #html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-html_theme = 'classic'
 html_theme_options = {
-    'rightsidebar': 'false',
-    'stickysidebar': 'True',
-    'collapsiblesidebar': 'False',
-    'sidebarwidth': '20%',
-    'body_max_width': '70%',
-    # Set the lang attribute of the html tag. Defaults to 'en'
-    'bgcolor': 'white',
-    'footerbgcolor': 'white',
-    'sidebarbgcolor': 'whitesmoke',
-    'sidebarbtncolor': 'whitesmoke',
-    'relbarbgcolor': 'dimgray', #heading at very top
-    'headbgcolor': 'dimgray', #headings above each section
-    'codebgcolor': 'ivory',
-    'sidebartextcolor': 'black',
-    'sidebarlinkcolor': 'dimgray', # or dimgray or #304B29
-    'relbartextcolor': 'black',
-    'textcolor': 'black',
-    'headtextcolor': 'white',
-    'headlinkcolor': 'black',
-    }
+    'canonical_url': '',
+    'analytics_id': 'UA-XXXXXXX-1',  #  Provided by Google in your dashboard
+    'logo_only': False,
+    'display_version': True,
+    'prev_next_buttons_location': 'bottom',
+    'style_external_links': True,
+    'style_nav_header_background': 'white',
+    # Toc options
+    'collapse_navigation': False,
+    'sticky_navigation': True,
+    'navigation_depth': 3,
+    'includehidden': True,
+    'titles_only': False,
+
+}
+html_static_path = ['_static']
 
 
 

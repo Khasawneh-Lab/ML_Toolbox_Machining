@@ -41,30 +41,49 @@ results = WPT_Transfer_Learning_2case(stickout_lengths,
 from EEMD_Feature_Extraction import EEMD_Feature_Extraction
  
 #parameters
-stickout_length='2p5'
+stickout_length='3p5'
 EEMDecs = 'A'
-p=2
+p=1
 Classifier = 'SVC'
 
 results = EEMD_Feature_Extraction(stickout_length, EEMDecs, 
                                   p, Classifier) 
 
-features =results[2]
+
+
 
 # EEMD transfer learning
 from EEMD_Transfer_Learning import EEMD_Transfer_Learning
  
 #parameters
-stickout_length_training='2'
-stickout_length_test='4p5'
-p_train = 2
-p_test = 1
-Classifier = 'GB'
+stickout_length_training='4p5'
+stickout_length_test='2'
+p_train = 1
+p_test = 2
+Classifier = 'SVC'
 
 results = EEMD_Transfer_Learning(stickout_length_training, 
                                      stickout_length_test, 
                                      p_train, p_test,
                                      Classifier) 
+
+
+features =results[2]
+
+RankedList = results[4]
+
+import numpy as np
+how_many_times_rank = np.zeros((7,7))
+for i in range (0,6):
+    for j in range(0,10):
+        a = RankedList[j][i][0]
+        a = int(a)
+        how_many_times_rank[a,i]=how_many_times_rank[a,i]+1
+
+import scipy.io as sio
+sio.savemat('number_of_times_feature_ranks_3p5_EEMD_SVM.mat',mdict={'times_feature_rank':how_many_times_rank})
+
+
 
 # EEMD transfer learning 2 case
 
