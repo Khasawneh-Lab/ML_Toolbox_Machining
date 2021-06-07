@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Ensemble Empirical Mode Decomposition (EEMD) &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+  <title>2.1.2. Ensemble Empirical Mode Decomposition (EEMD) &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
   
 
   
@@ -35,7 +35,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Wavelet Packet Transform (WPT)" href="WPT.html" /> 
+    <link rel="next" title="2.2. Surface Texture Analysis Module Documentation" href="surface_texture.html" />
+    <link rel="prev" title="2.1.1. Wavelet Packet Transform" href="WPT.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,6 +53,9 @@
             <a href="index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
           
 
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -79,24 +83,27 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="MATLAB.html">MATLAB Codes for Wavelet Packet Transform</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MATLAB.html#wavelet-packet-numbering-in-matlab">Wavelet packet numbering in MATLAB</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1.  Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">1.1. Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation">1.2. Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="WPT.html">Wavelet Packet Transform (WPT)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#feature-extraction-and-supervised-classification-using-wpt">Feature extraction and supervised classification using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-application-using-wpt">Transfer Learning Application Using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-on-two-cases-using-wpt">Transfer Learning On Two Cases Using WPT</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">2.  Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="chatter_detection.html">2.1. Chatter Detection</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="WPT.html">2.1.1. Wavelet Packet Transform</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.1.2. Ensemble Empirical Mode Decomposition</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Ensemble Empirical Mode Decomposition (EEMD)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#feature-extraction-and-supervised-classification-using-eemd">Feature extraction and supervised classification using EEMD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transfer-learning-application-using-eemd">Transfer Learning Application Using EEMD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transfer-learning-on-two-cases-using-eemd">Transfer Learning On Two Cases Using EEMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surface_texture.html">2.2. Surface Texture Analysis</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">3.  Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contributing-to-documentation">3.1. Contributing to Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">4.  License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">5.  Citing</a></li>
 </ul>
 
             
@@ -142,7 +149,11 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Ensemble Empirical Mode Decomposition (EEMD)</li>
+          <li><a href="modules.html"><span class="section-number">2. </span>Table of Contents</a> &raquo;</li>
+        
+          <li><a href="chatter_detection.html"><span class="section-number">2.1. </span>Chatter Detection Module Documentation</a> &raquo;</li>
+        
+      <li><span class="section-number">2.1.2. </span>Ensemble Empirical Mode Decomposition (EEMD)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -161,18 +172,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-EEMD_Feature_Extraction">
-<span id="ensemble-empirical-mode-decomposition-eemd"></span><h1>Ensemble Empirical Mode Decomposition (EEMD)<a class="headerlink" href="#module-EEMD_Feature_Extraction" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-WPT_EEMD_ML.EEMD_Feature_Extraction">
+<span id="ensemble-empirical-mode-decomposition-eemd"></span><span id="eemd"></span><h1><span class="section-number">2.1.2. </span>Ensemble Empirical Mode Decomposition (EEMD)<a class="headerlink" href="#module-WPT_EEMD_ML.EEMD_Feature_Extraction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="feature-extraction-and-supervised-classification-using-eemd">
-<h2>Feature extraction and supervised classification using EEMD<a class="headerlink" href="#feature-extraction-and-supervised-classification-using-eemd" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1.2.1. </span>Feature extraction and supervised classification using EEMD<a class="headerlink" href="#feature-extraction-and-supervised-classification-using-eemd" title="Permalink to this headline">¶</a></h2>
 <p>This function takes time series for turning cutting tests as inputs.
 It ask user to enter the file paths for the data files. If user specify that the decompositions for EEMD have already been computed, algorithm will ask user to enter the file paths for the decompositions.
 Otherwise, it will compute the IMFs and ask users to enter the file paths where they want to save these decompositions.
 Based on given stickout length cases and corresponding informative IMF numbers, it will generate the feature matrix and perform the classification with specified classification algorithm by user.
 It returns the results in an array and prints the total elapsed time.</p>
 <dl class="py function">
-<dt id="EEMD_Feature_Extraction.EEMD_Feature_Extraction">
-<code class="sig-prename descclassname">EEMD_Feature_Extraction.</code><code class="sig-name descname">EEMD_Feature_Extraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length</span></em>, <em class="sig-param"><span class="n">EEMDecs</span></em>, <em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Feature_Extraction.html#EEMD_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Feature_Extraction.EEMD_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
+<dt id="WPT_EEMD_ML.EEMD_Feature_Extraction.EEMD_Feature_Extraction">
+<code class="sig-prename descclassname">WPT_EEMD_ML.EEMD_Feature_Extraction.</code><code class="sig-name descname">EEMD_Feature_Extraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length</span></em>, <em class="sig-param"><span class="n">EEMDecs</span></em>, <em class="sig-param"><span class="n">p</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/EEMD_Feature_Extraction.html#EEMD_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.EEMD_Feature_Extraction.EEMD_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -238,8 +249,8 @@ It returns the results in an array and prints the total elapsed time.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-EEMD_Transfer_Learning"></span><div class="section" id="transfer-learning-application-using-eemd">
-<h2>Transfer Learning Application Using EEMD<a class="headerlink" href="#transfer-learning-application-using-eemd" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-WPT_EEMD_ML.EEMD_Transfer_Learning"></span><div class="section" id="transfer-learning-application-using-eemd">
+<h2><span class="section-number">2.1.2.2. </span>Transfer Learning Application Using EEMD<a class="headerlink" href="#transfer-learning-application-using-eemd" title="Permalink to this headline">¶</a></h2>
 <p>This function uses transfer learning principles on two differen stickout cases for cutting data set.
 It uses one of the cases as training set and train a specified classifier on this data set, then it tests the classfier on the other cases provided by the user.
 This functions assumes that the IMFs for EEMD have alread been computed and it asks the paths for data files and decompositions (IMFs).
@@ -247,8 +258,8 @@ The informative IMF numbers should be provided by user for training and test set
 Then, function will generate feature matrix and perform classfication with chosen algorithm by user.
 It returns the results in a np.array and prints the total elapsed time.</p>
 <dl class="py function">
-<dt id="EEMD_Transfer_Learning.EEMD_Transfer_Learning">
-<code class="sig-prename descclassname">EEMD_Transfer_Learning.</code><code class="sig-name descname">EEMD_Transfer_Learning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length_training</span></em>, <em class="sig-param"><span class="n">stickout_length_test</span></em>, <em class="sig-param"><span class="n">p_train</span></em>, <em class="sig-param"><span class="n">p_test</span></em>, <em class="sig-param"><span class="n">Classifier</span></em>, <em class="sig-param"><span class="n">random_state_numbers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Transfer_Learning.html#EEMD_Transfer_Learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Transfer_Learning.EEMD_Transfer_Learning" title="Permalink to this definition">¶</a></dt>
+<dt id="WPT_EEMD_ML.EEMD_Transfer_Learning.EEMD_Transfer_Learning">
+<code class="sig-prename descclassname">WPT_EEMD_ML.EEMD_Transfer_Learning.</code><code class="sig-name descname">EEMD_Transfer_Learning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length_training</span></em>, <em class="sig-param"><span class="n">stickout_length_test</span></em>, <em class="sig-param"><span class="n">p_train</span></em>, <em class="sig-param"><span class="n">p_test</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/EEMD_Transfer_Learning.html#EEMD_Transfer_Learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.EEMD_Transfer_Learning.EEMD_Transfer_Learning" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -325,8 +336,8 @@ It returns the results in a np.array and prints the total elapsed time.</p>
 </dd></dl>
 
 </div>
-<span class="target" id="module-EEMD_Transfer_Learning_2case"></span><div class="section" id="transfer-learning-on-two-cases-using-eemd">
-<h2>Transfer Learning On Two Cases Using EEMD<a class="headerlink" href="#transfer-learning-on-two-cases-using-eemd" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-WPT_EEMD_ML.EEMD_Transfer_Learning_2case"></span><div class="section" id="transfer-learning-on-two-cases-using-eemd">
+<h2><span class="section-number">2.1.2.3. </span>Transfer Learning On Two Cases Using EEMD<a class="headerlink" href="#transfer-learning-on-two-cases-using-eemd" title="Permalink to this headline">¶</a></h2>
 <p>This code takes four different stickout cases in an array from user. It uses first two cases as training set samples and remaining two cases are considered as
 test set data sets.
 Algorithm assumes that the IMFs for EEMD have alredy been computed and saved.
@@ -335,8 +346,8 @@ This function generates the feature matrices for training and test correponding 
 It perform classification based on classifier name specified by the user.
 It returns the mean accuracies and deviations in a np.array([]). It also prints the total elapsed time.</p>
 <dl class="py function">
-<dt id="EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case">
-<code class="sig-prename descclassname">EEMD_Transfer_Learning_2case.</code><code class="sig-name descname">EEMD_Transfer_Learning_2case</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_lengths</span></em>, <em class="sig-param"><span class="n">IMF_Number</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/EEMD_Transfer_Learning_2case.html#EEMD_Transfer_Learning_2case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case" title="Permalink to this definition">¶</a></dt>
+<dt id="WPT_EEMD_ML.EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case">
+<code class="sig-prename descclassname">WPT_EEMD_ML.EEMD_Transfer_Learning_2case.</code><code class="sig-name descname">EEMD_Transfer_Learning_2case</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_lengths</span></em>, <em class="sig-param"><span class="n">IMF_Number</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/EEMD_Transfer_Learning_2case.html#EEMD_Transfer_Learning_2case"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -403,8 +414,10 @@ It returns the mean accuracies and deviations in a np.array([]). It also prints 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="surface_texture.html" class="btn btn-neutral float-right" title="2.2. Surface Texture Analysis Module Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="WPT.html" class="btn btn-neutral float-left" title="Wavelet Packet Transform (WPT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="WPT.html" class="btn btn-neutral float-left" title="2.1.1. Wavelet Packet Transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

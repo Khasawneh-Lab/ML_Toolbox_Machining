@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WPT_EEMD_ML.EEMD_Transfer_Learning_2case &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">1.  Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#requirements">1.1. Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#installation">1.2. Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">2.  Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chatter_detection.html">2.1. Chatter Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../WPT.html">2.1.1. Wavelet Packet Transform (WPT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../EEMD.html">2.1.2. Ensemble Empirical Mode Decomposition (EEMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../DTW.html">2.1.3. Dynamic Time Warping (DTW)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../FFT.html">2.1.4. Fast Fourier Transfrom (FFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PSD.html">2.1.5. Power Spectral Density (PSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ACF.html">2.1.6. Autocorrelation Function (ACF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../TDA.html">2.1.7. Topological Data Analysis (TDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../surface_texture.html">2.2. Surface Texture Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">3.  Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#contributing-to-documentation">3.1. Contributing to Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">4.  License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">5.  Citing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Machine learning toolbox for WPT and EEMD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>WPT_EEMD_ML.EEMD_Transfer_Learning_2case</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for WPT_EEMD_ML.EEMD_Transfer_Learning_2case</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Transfer Learning On Two Cases Using EEMD</span>
+<span class="sd">-----------------------------------------</span>
+
+<span class="sd">This code takes four different stickout cases in an array from user. It uses first two cases as training set samples and remaining two cases are considered as </span>
+<span class="sd">test set data sets. </span>
+<span class="sd">Algorithm assumes that the IMFs for EEMD have alredy been computed and saved.</span>
+<span class="sd">The file paths to the IMFs and data files should be included in &#39;file_paths.txt&#39; file and this file should be in the same folder with this function.</span>
+<span class="sd">This function generates the feature matrices for training and test correponding to given stickout cases and their informative Intrinsic Mode Functions (IMFs). </span>
+<span class="sd">It perform classification based on classifier name specified by the user.</span>
+<span class="sd">It returns the mean accuracies and deviations in a np.array([]). It also prints the total elapsed time.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">sio</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">skew</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFE</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
+
+<div class="viewcode-block" id="EEMD_Transfer_Learning_2case"><a class="viewcode-back" href="../../EEMD.html#WPT_EEMD_ML.EEMD_Transfer_Learning_2case.EEMD_Transfer_Learning_2case">[docs]</a><span class="k">def</span> <span class="nf">EEMD_Transfer_Learning_2case</span><span class="p">(</span><span class="n">stickout_lengths</span><span class="p">,</span><span class="n">IMF_Number</span><span class="p">,</span><span class="n">Classifier</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    :param str (file_path.txt): </span>
+<span class="sd">        Algorithm needs .txt file whose name is &#39;file_paths.txt&#39; to add the paths of the data files and their corresponding decompositions. This .txt file should include 8 file path, four for data files and four for decompositions.First four file paths are for data files (time series). Other four are considered as paths to the decompositions. Each line in .txt file should include only one path. The ordering for the paths is such that the first path represents first case of training set data files. Second path is for the second case of training set data files. Third and fourth paths represent first test set case and second test set case data files. Same ordering should be followed for the paths of decompositions.</span>
+<span class="sd">    :param str (stickout_lengths): </span>
+<span class="sd">       Training and test set cases in a np.array([]). The algorithm considers the first two entry as training set cases and remanining ones as test set cases.</span>
+
+<span class="sd">       * if stickout length is 2 inch, &#39;2&#39;</span>
+<span class="sd">       * if stickout length is 2.5 inch, &#39;2p5&#39;</span>
+<span class="sd">       * if stickout length is 3.5 inch, &#39;3p5&#39;</span>
+<span class="sd">       * if stickout length is 4.5 inch, &#39;4p5&#39;</span>
+<span class="sd">      </span>
+<span class="sd">    :param int (IMF_Number): </span>
+<span class="sd">        Corresponding Informative Intrinsic Mode Function (IMF) numbers in an array for cases given in stickout_lengths. First two entry are considered as training set IMFs and remaining ones are for test set IMFs.</span>
+<span class="sd">    </span>
+<span class="sd">    :param str (Classifier): </span>
+<span class="sd">       Classifier defined by user</span>
+<span class="sd">       </span>
+<span class="sd">       * Support Vector Machine: &#39;SVC&#39;</span>
+<span class="sd">       * Logistic Regression: &#39;LR&#39;</span>
+<span class="sd">       * Random Forest Classification: &#39;RF&#39;</span>
+<span class="sd">       * Gradient Boosting: &#39;GB&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+
+<span class="sd">        :results:</span>
+<span class="sd">            (np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</span>
+<span class="sd">        </span>
+<span class="sd">            * first column: mean accuracies for training set</span>
+<span class="sd">            * second column: deviation for training set accuracies</span>
+<span class="sd">            * third column: mean accuracies for test set</span>
+<span class="sd">            * fourth column: deviation for test set accuracies</span>
+<span class="sd">        </span>
+<span class="sd">        :time:</span>
+<span class="sd">            (str) Elapsed time during feature matrix generation and classification</span>
+<span class="sd">    </span>
+<span class="sd">    :Example:</span>
+<span class="sd">    </span>
+<span class="sd">        .. doctest::</span>
+<span class="sd">                       </span>
+<span class="sd">           &gt;&gt;&gt; from EEMD_Transfer_Learning_2case import EEMD_Transfer_Learning_2case</span>
+<span class="sd">          </span>
+<span class="sd">           #parameters</span>
+<span class="sd">            </span>
+<span class="sd">           &gt;&gt;&gt; stickout_lengths = [&#39;2&#39;,&#39;2p5&#39;,&#39;3p5&#39;,&#39;4p5&#39;]</span>
+<span class="sd">           &gt;&gt;&gt; IMF_Number=[2,2,1,1]</span>
+<span class="sd">           &gt;&gt;&gt; Classifier = &#39;RF&#39;</span>
+<span class="sd">    </span>
+<span class="sd">           &gt;&gt;&gt; results = EEMD_Transfer_Learning_2case(stickout_lengths,IMF_Number,Classifier)</span>
+
+<span class="sd">       &quot;&quot;&quot;</span>    
+<span class="c1">#%% add paths to the decompositions (if available) and data files</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;file_paths.txt&#39;</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>   
+        
+    <span class="c1">#%% </span>
+    <span class="n">foldersToLoad</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">foldersToLoad</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">paths</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="c1"># start timer </span>
+    <span class="n">start</span> <span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> 
+      <span class="c1">#%% Loading time series and labels of the classification</span>
+    <span class="n">namets</span><span class="o">=</span><span class="p">{}</span>
+    <span class="n">rpm</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">stickout_length</span> <span class="o">=</span> <span class="n">stickout_lengths</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">folderToLoad</span> <span class="o">=</span> <span class="n">foldersToLoad</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="c1"># import the list including the name of the time series of the chosen case</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_&#39;</span><span class="o">+</span><span class="n">stickout_length</span><span class="o">+</span><span class="s1">&#39;inch.txt&#39;</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="c1">#save the time series name into a list</span>
+        <span class="n">namets_</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">namets_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">namets</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">namets_</span>
+        
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_rpm_&#39;</span><span class="o">+</span><span class="n">stickout_length</span><span class="o">+</span><span class="s1">&#39;inch.txt&#39;</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="c1">#save the time series name into a list</span>
+        <span class="n">rpm_</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">rpms</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">rpm_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rpms</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">rpm_</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rpm_</span><span class="p">)</span>
+        <span class="n">rpm</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">rpm_</span>
+        
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_doc_&#39;</span><span class="o">+</span><span class="n">stickout_length</span><span class="o">+</span><span class="s1">&#39;inch.txt&#39;</span>
+        <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="c1">#save the time series name into a list</span>
+        <span class="n">doc_</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">docs</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">doc_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">doc_</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">doc_</span><span class="p">)</span>
+        <span class="n">doc</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">doc_</span>
+        
+        <span class="c1">#import the classification labels</span>
+        <span class="n">label_file_name</span> <span class="o">=</span> <span class="n">stickout_length</span><span class="o">+</span><span class="s1">&#39;_inch_Labels_2Class.npy&#39;</span>
+        <span class="n">file_path1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">label_file_name</span><span class="p">)</span>
+        <span class="n">label_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path1</span><span class="p">)</span>
+        <span class="n">label</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_</span>
+    <span class="c1">#%% length of datasets</span>
+    <span class="n">C_D_Divided_</span><span class="o">=</span><span class="p">{}</span>
+    <span class="n">CaseLabels</span> <span class="o">=</span><span class="p">{}</span>
+    <span class="n">infoEMF</span><span class="o">=</span><span class="p">{}</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">stickout_length</span> <span class="o">=</span> <span class="n">stickout_lengths</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">folderToLoad</span> <span class="o">=</span> <span class="n">foldersToLoad</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">numberofcase</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">namets</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        
+        <span class="n">ts</span><span class="o">=</span><span class="p">{}</span>
+        <span class="c1">#load datasets</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numberofcase</span><span class="p">):</span>
+            <span class="n">nameofdata</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">namets</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">pathofdata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">nameofdata</span><span class="p">)</span>
+            <span class="n">time_s</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">pathofdata</span><span class="p">)</span>
+            <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">time_s</span><span class="p">[</span><span class="s2">&quot;tsDS&quot;</span><span class="p">]</span>
+        
+        <span class="c1">#labeled and concatanated matrix for first dataset</span>
+        <span class="n">label1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="mi">1</span><span class="p">),</span><span class="n">rpm</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">label2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="mi">1</span><span class="p">),</span><span class="n">doc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">label3</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="mi">1</span><span class="p">),</span><span class="n">label</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">chatter_data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">ts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">label1</span><span class="p">,</span><span class="n">label2</span><span class="p">,</span><span class="n">label3</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">chatter_data</span><span class="p">)</span>
+        
+        <span class="c1">#create concataneted dataframe in a for loop </span>
+        <span class="n">chatter_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">case_label</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">chatter_data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">)[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">case_label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">label1</span><span class="p">,</span><span class="n">label2</span><span class="p">,</span><span class="n">label3</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numberofcase</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">L</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">labelrpm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">L</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">rpm</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">labeldoc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">L</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">doc</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">label_c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">L</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">label</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">chatter_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">labels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">labelrpm</span><span class="p">,</span><span class="n">labeldoc</span><span class="p">,</span><span class="n">label_c</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">case_label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+        
+        <span class="n">N</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">chatter_data</span><span class="p">)</span>   <span class="c1">#length of actual cases</span>
+        <span class="n">C_D</span> <span class="o">=</span> <span class="n">chatter_data</span>
+            
+        <span class="c1">#length of each case</span>
+        <span class="n">length</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">length</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">C_D</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+        
+        
+        <span class="n">caseLabels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>  <span class="c1">#initialize the matrix for labels</span>
+        
+        <span class="n">inc</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># increment for total number of cases obtained after dividing</span>
+        
+        <span class="n">approximate_number_of_cases</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="nb">sum</span><span class="p">(</span><span class="n">length</span><span class="p">))</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span> <span class="c1">#approximate number of cases with respect to sum of lengths of actual cases</span>
+        
+        <span class="n">C_D_Divided</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">approximate_number_of_cases</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>  <span class="c1">#create object array to store new cases</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>  
+            <span class="n">data</span><span class="o">=</span><span class="n">C_D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1000</span><span class="p">:</span>
+                <span class="n">division_number</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span>            <span class="c1">#number determines the      </span>
+                <span class="n">split</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">division_number</span><span class="p">)</span>     <span class="c1">#split data into different matrices not equal in size</span>
+                <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">split</span><span class="p">)</span>                                   <span class="c1">#number of cases obtained from each actual case</span>
+                <span class="n">Label</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">case_label</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+                    <span class="n">C_D_Divided</span><span class="p">[</span><span class="n">inc</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">split</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                    <span class="n">caseLabels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">caseLabels</span><span class="p">,</span><span class="n">Label</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">inc</span><span class="o">=</span><span class="n">inc</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">caseLabels</span><span class="o">=</span><span class="n">caseLabels</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>    <span class="c1">#delete the first row of matrix and </span>
+        <span class="n">C_D_Divided_</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">C_D_Divided</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">inc</span><span class="p">]</span>
+        
+        <span class="n">case</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">inc</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">inc</span><span class="p">):</span>
+            <span class="n">case</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">i</span>
+        
+        <span class="n">CaseLabels</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">caseLabels</span><span class="p">,</span><span class="n">case</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">infoEMF</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">C_D_Divided_</span><span class="p">[</span><span class="n">k</span><span class="p">])),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    
+    <span class="n">label_training1</span> <span class="o">=</span> <span class="n">CaseLabels</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">label_training2</span> <span class="o">=</span> <span class="n">CaseLabels</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">label_test1</span> <span class="o">=</span> <span class="n">CaseLabels</span><span class="p">[</span><span class="mi">2</span><span class="p">][:,</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">label_test2</span> <span class="o">=</span> <span class="n">CaseLabels</span><span class="p">[</span><span class="mi">3</span><span class="p">][:,</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="c1">#%% load eIMFs if they are computed before</span>
+    <span class="n">infoEMFs</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">foldersToLoad</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">])</span>
+        <span class="n">lengthofcases</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">C_D_Divided_</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">infoIMFs</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">lengthofcases</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">lengthofcases</span><span class="p">):</span>
+            <span class="n">dataname</span> <span class="o">=</span> <span class="s1">&#39;IMFs_</span><span class="si">%s</span><span class="s1">inch_Divided_Data_IMFs_Case</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">stickout_lengths</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
+            <span class="n">Decomp</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">foldersToLoad</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">],</span> <span class="n">dataname</span><span class="p">))</span>
+            <span class="n">infoIMFs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="n">Decomp</span><span class="p">[</span><span class="s1">&#39;eIMF&#39;</span><span class="p">]</span>
+        <span class="n">infoEMFs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">infoIMFs</span>
+    
+    <span class="c1">#%% compute features for eIMFs</span>
+    <span class="n">features_</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>    
+        <span class="n">p</span> <span class="o">=</span> <span class="n">IMF_Number</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+        <span class="n">eIMFs_</span> <span class="o">=</span> <span class="n">infoEMFs</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    
+        <span class="n">features</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">C_D_Divided_</span><span class="p">[</span><span class="n">m</span><span class="p">]),</span><span class="mi">7</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">C_D_Divided_</span><span class="p">[</span><span class="n">m</span><span class="p">])):</span>
+            <span class="n">eIMFs</span> <span class="o">=</span> <span class="n">eIMFs_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="c1">#feature_1</span>
+            <span class="n">nIMFs</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">)</span>
+            <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span> 
+            <span class="n">A_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>                                   <span class="c1">#summing squares of whole elements of second IMF</span>
+            <span class="n">B_sum</span> <span class="o">=</span> <span class="mi">0</span>               
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nIMFs</span><span class="p">):</span>
+                <span class="n">B_sum</span> <span class="o">=</span> <span class="n">B_sum</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span>   <span class="c1">#computing summing of squares of whole elements of IMFs</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">A_sum</span><span class="o">/</span><span class="n">B_sum</span>                        <span class="c1">#energy ratio feature</span>
+            
+            <span class="c1">#feature_2  Peak to peak value</span>
+            <span class="n">Maximum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">Minimum</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Maximum</span> <span class="o">-</span> <span class="n">Minimum</span> 
+            <span class="c1">#feature_3 standard deviation</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="c1">#feature_4 root mean square (RMS)</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>   
+            <span class="c1">#feature_5 Crest factor</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Maximum</span><span class="o">/</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+            <span class="c1">#feature_6 Skewness</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">skew</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="c1">#feature_7 Kurtosis</span>
+            <span class="n">L</span><span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">eIMFs</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span><span class="mi">4</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">features_</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">features</span>
+                
+    
+    <span class="c1">#%% CONCETANETE THE FEATURE MATRICES AND THE LABELS FOR TRAINING SET AND TEST SET</span>
+       
+    <span class="n">features_training</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">features_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">features_</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">features_test</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">features_</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">features_</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">label_training</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">label_training1</span><span class="p">,</span><span class="n">label_training2</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">label_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">label_test1</span><span class="p">,</span><span class="n">label_test2</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1">#%%---------------CLASSIFICATION-----------------------------------------------</span>
+  
+    <span class="n">accuracy1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">accuracy2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    
+    <span class="n">deviation1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">deviation2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="n">meanscore1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">meanscore2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="c1">#repeat the procedure ten times </span>
+    <span class="n">Rank</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">RankedList</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+        
+        <span class="c1">#split into test and train set</span>
+        <span class="n">F_Training_Train</span><span class="p">,</span><span class="n">F_Training_Test</span><span class="p">,</span><span class="n">Label_Training_Train</span><span class="p">,</span><span class="n">Label_Training_Test</span><span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">features_training</span><span class="p">,</span><span class="n">label_training</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">)</span>
+        <span class="n">F_Test_Train</span><span class="p">,</span><span class="n">F_Test_Test</span><span class="p">,</span><span class="n">Label_Test_Train</span><span class="p">,</span><span class="n">Label_Test_Test</span><span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">features_test</span><span class="p">,</span><span class="n">label_test</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.70</span><span class="p">)</span>    
+        
+        <span class="c1">#classification</span>
+        <span class="k">if</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;SVC&#39;</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;LR&#39;</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;RF&#39;</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;GB&#39;</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
+        
+        <span class="c1">#recursive feature elimination</span>
+        <span class="n">selector</span> <span class="o">=</span> <span class="n">RFE</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">Label_train</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Label_Training_Train</span><span class="p">)</span>
+        <span class="n">Label_test</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Label_Test_Test</span><span class="p">)</span>
+        <span class="n">selector</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">F_Training_Train</span><span class="p">,</span> <span class="n">Label_train</span><span class="p">)</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">ranking_</span>
+        <span class="n">Rank</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+        <span class="n">rank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+        
+        <span class="c1">#create a list that contains index numbe of ranked features</span>
+        <span class="n">rankedlist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        
+        <span class="c1">#find index of the ranked features and creating new training and test sets with respect to this ranking</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+            <span class="n">k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rank</span><span class="o">==</span><span class="n">m</span><span class="p">)</span>
+            <span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">F_Training_Train</span><span class="p">[:,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">F_Training_Train</span><span class="p">[:,</span><span class="nb">int</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])]</span>
+            <span class="n">F_Test_Test</span><span class="p">[:,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">F_Test_Test</span><span class="p">[:,</span><span class="nb">int</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])]</span> 
+        <span class="n">RankedList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">)</span>
+    
+        <span class="c1">#trying various combinations of ranked features such as ([1],[1,2],[1,2,3]...)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span> 
+            <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">F_Training_Train</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_train</span><span class="p">)</span>
+            <span class="n">score1</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">F_Test_Test</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_test</span><span class="p">)</span>
+            <span class="n">score2</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">F_Training_Train</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_train</span><span class="p">)</span>
+            <span class="n">accuracy1</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span><span class="o">=</span><span class="n">score1</span>
+            <span class="n">accuracy2</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span><span class="o">=</span><span class="n">score2</span>
+
+    <span class="c1">#computing mean score and deviation for each combination tried above        </span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">):</span>
+        <span class="n">deviation1</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accuracy1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
+        <span class="n">deviation2</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accuracy2</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
+        <span class="n">meanscore1</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
+        <span class="n">meanscore2</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy2</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
+    
+    <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">meanscore1</span><span class="p">,</span><span class="n">deviation1</span><span class="p">,</span><span class="n">meanscore2</span><span class="p">,</span><span class="n">deviation2</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">results</span>   
+        
+    <span class="c1">#total duration for algorithm  </span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">end</span><span class="o">-</span><span class="n">start</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Classification is completed in </span><span class="si">{}</span><span class="s1"> seconds.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">duration</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">results</span></div>
+    
+    
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

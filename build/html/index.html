@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD) &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+  <title>Machine learning toolbox for Machining &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="MATLAB Codes for Wavelet Packet Transform" href="MATLAB.html" /> 
+    <link rel="next" title="1. Getting Started" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,6 +52,9 @@
             <a href="#" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
           
 
+          
+            
+            <img src="_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -79,24 +82,32 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="MATLAB.html">MATLAB Codes for Wavelet Packet Transform</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MATLAB.html#wavelet-packet-numbering-in-matlab">Wavelet packet numbering in MATLAB</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1.  Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">1.1. Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation">1.2. Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="WPT.html">Wavelet Packet Transform (WPT)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#feature-extraction-and-supervised-classification-using-wpt">Feature extraction and supervised classification using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-application-using-wpt">Transfer Learning Application Using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-on-two-cases-using-wpt">Transfer Learning On Two Cases Using WPT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">2.  Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatter_detection.html">2.1. Chatter Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="WPT.html">2.1.1. Wavelet Packet Transform (WPT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EEMD.html">2.1.2. Ensemble Empirical Mode Decomposition (EEMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DTW.html">2.1.3. Dynamic Time Warping (DTW)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFT.html">2.1.4. Fast Fourier Transfrom (FFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PSD.html">2.1.5. Power Spectral Density (PSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ACF.html">2.1.6. Autocorrelation Function (ACF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TDA.html">2.1.7. Topological Data Analysis (TDA)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="EEMD.html">Ensemble Empirical Mode Decomposition (EEMD)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="EEMD.html#feature-extraction-and-supervised-classification-using-eemd">Feature extraction and supervised classification using EEMD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EEMD.html#transfer-learning-application-using-eemd">Transfer Learning Application Using EEMD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EEMD.html#transfer-learning-on-two-cases-using-eemd">Transfer Learning On Two Cases Using EEMD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="surface_texture.html">2.2. Surface Texture Analysis</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">3.  Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contributing-to-documentation">3.1. Contributing to Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">4.  License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">5.  Citing</a></li>
 </ul>
 
             
@@ -142,7 +153,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)</li>
+      <li>Machine learning toolbox for Machining</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -161,41 +172,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="machine-learning-toolbox-for-chatter-detection-with-wavelet-packet-transform-wpt-and-ensemble-empirical-mode-decomposition-eemd">
-<h1>Machine learning toolbox for chatter detection with Wavelet Packet Transform (WPT) and Ensemble Empirical Mode Decomposition (EEMD)<a class="headerlink" href="#machine-learning-toolbox-for-chatter-detection-with-wavelet-packet-transform-wpt-and-ensemble-empirical-mode-decomposition-eemd" title="Permalink to this headline">¶</a></h1>
-<p>This toolbox includes the documentation for the Python codes that extract features by using Wavelet Packet Transform (WPT)
-and Ensemble Empirical Mode Decomposition (EEMD) and diagnose chatter in turning process for different cutting configurations. Algorithms are based on the methods
-explained in <a class="bibtex reference internal" href="#yesilli2019" id="id1">[2]</a>. The experimental data in both raw and processed format can be found in Mendeley repository <a class="bibtex reference internal" href="#khasawneh2019" id="id2">[1]</a>. Python and MATLAB codes are available in
-<a class="reference external" href="https://github.com/mcanyesilli/WPT_EEMD_ML_Machining">GitHub repository</a>.</p>
-<p><strong>Note:</strong> Please read the instructions in <a class="reference internal" href="MATLAB.html#matlab"><span class="std std-ref">MATLAB Codes for Wavelet Packet Transform</span></a> before using the Python codes for <a class="reference internal" href="WPT.html#wpt"><span class="std std-ref">Wavelet Packet Transform (WPT)</span></a>.</p>
+  <div class="section" id="machine-learning-toolbox-for-machining">
+<h1>Machine learning toolbox for Machining<a class="headerlink" href="#machine-learning-toolbox-for-machining" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="MATLAB.html">MATLAB Codes for Wavelet Packet Transform</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MATLAB.html#wavelet-packet-numbering-in-matlab">Wavelet packet numbering in MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">1.  Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">1.1. Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation">1.2. Installation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="WPT.html">Wavelet Packet Transform (WPT)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#feature-extraction-and-supervised-classification-using-wpt">Feature extraction and supervised classification using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-application-using-wpt">Transfer Learning Application Using WPT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="WPT.html#transfer-learning-on-two-cases-using-wpt">Transfer Learning On Two Cases Using WPT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">2.  Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chatter_detection.html">2.1. Chatter Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="WPT.html">2.1.1. Wavelet Packet Transform (WPT)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="WPT.html#feature-extraction-and-supervised-classification-using-wpt">2.1.1.1. Feature extraction and supervised classification using WPT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="WPT.html#transfer-learning-application-using-wpt">2.1.1.2. Transfer Learning Application Using WPT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="WPT.html#transfer-learning-on-two-cases-using-wpt">2.1.1.3. Transfer Learning On Two Cases Using WPT</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="EEMD.html">Ensemble Empirical Mode Decomposition (EEMD)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="EEMD.html#feature-extraction-and-supervised-classification-using-eemd">Feature extraction and supervised classification using EEMD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EEMD.html#transfer-learning-application-using-eemd">Transfer Learning Application Using EEMD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="EEMD.html#transfer-learning-on-two-cases-using-eemd">Transfer Learning On Two Cases Using EEMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EEMD.html">2.1.2. Ensemble Empirical Mode Decomposition (EEMD)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="EEMD.html#feature-extraction-and-supervised-classification-using-eemd">2.1.2.1. Feature extraction and supervised classification using EEMD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="EEMD.html#transfer-learning-application-using-eemd">2.1.2.2. Transfer Learning Application Using EEMD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="EEMD.html#transfer-learning-on-two-cases-using-eemd">2.1.2.3. Transfer Learning On Two Cases Using EEMD</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="DTW.html">2.1.3. Dynamic Time Warping (DTW)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFT.html">2.1.4. Fast Fourier Transfrom (FFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PSD.html">2.1.5. Power Spectral Density (PSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ACF.html">2.1.6. Autocorrelation Function (ACF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TDA.html">2.1.7. Topological Data Analysis (TDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="surface_texture.html">2.2. Surface Texture Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">3.  Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contributing-to-documentation">3.1. Contributing to Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">4.  License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">5.  Citing</a></li>
 </ul>
 </div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <p id="bibtex-bibliography-index-0"><dl class="citation">
-<dt class="bibtex label" id="khasawneh2019"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="bibtex label" id="khasawneh2019"><span class="brackets">1</span></dt>
 <dd><p>F.A. Khasawneh, A. Otto, and M.C. Yesilli. Turning dataset for chatter diagnosis using machine learning. Mendeley Data, v1. http://dx.doi.org/10.17632/hvm4wh3jzx.1, 2019. <a class="reference external" href="https://doi.org/10.17632/hvm4wh3jzx.1">doi:10.17632/hvm4wh3jzx.1</a>.</p>
 </dd>
-<dt class="bibtex label" id="yesilli2019"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dt class="bibtex label" id="yesilli2019"><span class="brackets">2</span></dt>
 <dd><p>Melih C. Yesilli, Firas A. Khasawneh, and Andreas Otto. On transfer learning for chatter detection in turning using wavelet packet transform and ensemble empirical mode decomposition. <em>CIRP Journal of Manufacturing Science and Technology</em>, 2019. <a class="reference external" href="https://doi.org/10.1016/j.cirpj.2019.11.003">doi:10.1016/j.cirpj.2019.11.003</a>.</p>
 </dd>
 </dl>
@@ -207,6 +231,10 @@ explained in <a class="bibtex reference internal" href="#yesilli2019" id="id1">[
 </ul>
 </div>
 </div>
+<div class="section" id="contact-information">
+<h1>Contact Information<a class="headerlink" href="#contact-information" title="Permalink to this headline">¶</a></h1>
+<p>Melih Can Yesilli: <a class="reference external" href="mailto:yesillim&#37;&#52;&#48;egr&#46;msu&#46;edu">yesillim<span>&#64;</span>egr<span>&#46;</span>msu<span>&#46;</span>edu</a></p>
+</div>
 
 
            </div>
@@ -216,7 +244,7 @@ explained in <a class="bibtex reference internal" href="#yesilli2019" id="id1">[
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="MATLAB.html" class="btn btn-neutral float-right" title="MATLAB Codes for Wavelet Packet Transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="1. Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

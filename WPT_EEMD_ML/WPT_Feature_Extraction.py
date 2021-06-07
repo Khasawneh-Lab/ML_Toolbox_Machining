@@ -1,17 +1,3 @@
-"""
-Feature extraction and supervised classification using WPT 
-----------------------------------------------------------
-
-This algorithm takes time series for turning experiments as input and it generates the feature matrix based on specified WPT level. 
-The reconstructed Wavelet packets and corresponding frequency domain feature matrices should be computed before running this algorithm. Please see the instructions for Matlab functions on this 
-documentation before using this algorithm.
-The Wavelet packets frequency domain features and datafiles should be in the same folder.
-It asks for file paths for the data files.
-Algorithm performs the classfication with chosen algorithm and provides results in a np.array.
-It plots the mean accuracies and deviations for test and training set with respect to number of features used in classification, if user enables plotting option of the algorithm.
-It also prints the total elapsed time. 
-
-"""
 import time
 import numpy as np
 import scipy.io as sio

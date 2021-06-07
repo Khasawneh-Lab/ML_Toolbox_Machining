@@ -1,13 +1,4 @@
-"""
-Transfer Learning Application Using WPT
----------------------------------------
 
-This function uses transfer learning principles to transfer the knowledge obtained from one cutting configuration to another one.
-It assumes that the reconstructed Wavelet packets and frequency domain features are available an they are in the same folder with the data files.
-It computes feature matrices for training and test set and performs the classification with chosen algorithm. 
-It returns the results in an array. It also prints the total elapsed time.
-
-"""
 import time
 import numpy as np
 import scipy.io as sio
