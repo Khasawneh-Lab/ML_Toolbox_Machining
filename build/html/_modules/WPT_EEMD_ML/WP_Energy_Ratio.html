@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WPT_EEMD_ML.WP_Energy_Ratio &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">1.  Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#requirements">1.1. Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#installation">1.2. Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">2.  Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chatter_detection.html">2.1. Chatter Detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../WPT.html">2.1.1. Wavelet Packet Transform (WPT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../EEMD.html">2.1.2. Ensemble Empirical Mode Decomposition (EEMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../DTW.html">2.1.3. Dynamic Time Warping (DTW)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../FFT.html">2.1.4. Fast Fourier Transfrom (FFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../PSD.html">2.1.5. Power Spectral Density (PSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ACF.html">2.1.6. Autocorrelation Function (ACF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../TDA.html">2.1.7. Topological Data Analysis (TDA)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../surface_texture.html">2.2. Surface Texture Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">3.  Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing.html#contributing-to-documentation">3.1. Contributing to Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">4.  License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">5.  Citing</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Machine learning toolbox for WPT and EEMD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>WPT_EEMD_ML.WP_Energy_Ratio</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for WPT_EEMD_ML.WP_Energy_Ratio</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pywt</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">sio</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.fftpack</span> <span class="kn">import</span> <span class="n">fft</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span><span class="s1">&#39;sans-serif&#39;</span><span class="p">,</span><span class="s1">&#39;sans-serif&#39;</span><span class="p">:[</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">]})</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;serif&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="wEnergy"><a class="viewcode-back" href="../../WPT.html#WPT_EEMD_ML.WP_Energy_Ratio.wEnergy">[docs]</a><span class="k">def</span> <span class="nf">wEnergy</span><span class="p">(</span><span class="n">coeffs</span><span class="p">):</span>
+    
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function takes wavelet coefficients and return the energy ratio of wavelet packets.</span>
+<span class="sd">    </span>
+<span class="sd">    :param list (coeffs): The list of wavelet coefficients obtained from Wavelet Packet Transform</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">        (np.array([])) The energry ratios of each wavelet packets </span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+  
+    <span class="n">Et</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">energy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coeffs</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)):</span>
+        <span class="n">energy</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">Et</span> <span class="o">=</span> <span class="n">Et</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        
+    <span class="n">en_ratio</span> <span class="o">=</span> <span class="n">energy</span><span class="o">/</span><span class="n">Et</span>
+    
+    <span class="k">return</span> <span class="n">en_ratio</span></div>
+
+<div class="viewcode-block" id="AbsFFT"><a class="viewcode-back" href="../../WPT.html#WPT_EEMD_ML.WP_Energy_Ratio.AbsFFT">[docs]</a><span class="k">def</span> <span class="nf">AbsFFT</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">fs</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function computes the normaliez spectrum of the given 1D signal.</span>
+<span class="sd">    </span>
+<span class="sd">    :param array (ts): time series</span>
+<span class="sd">    </span>
+<span class="sd">    :param int (fs): sampling frequency</span>
+<span class="sd">    </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">        :xf:</span>
+<span class="sd">            (np.array([])) frequency values</span>
+<span class="sd">        </span>
+<span class="sd">        :yf:</span>
+<span class="sd">            (np.array([])) amplitudes</span>
+<span class="sd">          </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="n">fs</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">,))</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">fs</span> 
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+    
+    <span class="c1">#creates array for time data points to associate to time series</span>
+    <span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">),[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span> 
+    <span class="c1">#converts array of time data points to appropriate frequency range and removes first term</span>
+    
+    <span class="n">yf</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span> <span class="c1">#computes fast fourier transform on time series</span>
+    <span class="n">yf</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yf</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]))</span> <span class="c1">#converts fourier transform to spectral density scale</span>
+    <span class="n">yf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">yf</span><span class="p">,[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#removes first term (tends to be infinity or overly large)</span>
+    <span class="n">yf</span> <span class="o">=</span> <span class="n">yf</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">yf</span><span class="p">)</span> <span class="c1">#Normalizes fourier transform based on maximum density</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="n">yf</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WP_Energy_Ratio"><a class="viewcode-back" href="../../WPT.html#WPT_EEMD_ML.WP_Energy_Ratio.WP_Energy_Ratio">[docs]</a><span class="k">def</span> <span class="nf">WP_Energy_Ratio</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">list_name</span><span class="p">,</span> <span class="n">ts_no</span><span class="p">,</span> <span class="n">WF</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">case_no</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">plot_recon</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
+    
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function returns plots of energy ratios of wavelet packets, reconstructed signals of each wavelet packet and their spectrum.</span>
+<span class="sd">    Reconstructed signals is plotted when plot_recon is set to &#39;True&#39;.</span>
+<span class="sd">    </span>
+<span class="sd">    :param str (data_path): Path to folder where list of time series names and time series data is kept</span>
+<span class="sd">    </span>
+<span class="sd">    :param str (list_name): Name of the .txt folder which includes names of time series data</span>
+<span class="sd">    </span>
+<span class="sd">    :param list (ts_no): Index of time series which user wants to investigate</span>
+<span class="sd">    </span>
+<span class="sd">    :param str (WF): Wavelet function (see types_ of wavelet functions available in PyWavelet package)</span>
+
+<span class="sd">    :param int (L): Transformation level </span>
+<span class="sd">    </span>
+<span class="sd">    :param int (case_no): Overhang distance </span>
+<span class="sd">    </span>
+<span class="sd">    :param int (fs): Sampling frequency</span>
+<span class="sd">    </span>
+<span class="sd">    :param bool (plot_recon): It is set to &#39;True&#39; to obtain the reconstructed signals plots </span>
+<span class="sd">    </span>
+<span class="sd">    :param list (layout): Row and column numbers for the plot of reconstructed signals </span>
+<span class="sd">    </span>
+<span class="sd">    .. _types: https://pywavelets.readthedocs.io/en/latest/regression/wavelet.html?highlight=wavelet%20list#wavelet-families-and-builtin-wavelets-names</span>
+<span class="sd">        </span>
+<span class="sd">    :Returns:</span>
+<span class="sd">        :figures:</span>
+<span class="sd">            First figure is the energy ratio plot. If user set to plot_recon to &#39;True&#39;, then algorithm returns reconstruted signals figures as well.</span>
+<span class="sd">            For instance, if the number of time series that user wants to investigate is 3, and algorithm returns two figures for each time series.</span>
+<span class="sd">            Totally, it returns 7 figures. </span>
+<span class="sd">            Plots of reconstructed signals and their spectrums are given in the order user specified as input with ts_no.</span>
+<span class="sd">        </span>
+<span class="sd">          </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># font size for the labels in plots</span>
+    <span class="n">f_s</span> <span class="o">=</span> <span class="mi">15</span>
+    
+    <span class="c1"># file path to folder where the data is kept</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">data_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">list_name</span>
+    
+    <span class="c1"># number of time series which will be investigated </span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ts_no</span><span class="p">)</span>
+    
+    <span class="c1"># read the file that includes the name of datafiles</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data_names</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> 
+      
+    <span class="n">rpm</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">legend_name</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="o">**</span><span class="n">L</span><span class="p">))</span>
+    <span class="n">recon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="mi">2</span><span class="o">**</span><span class="n">L</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    
+    <span class="c1"># compute wavelet coefficients and energy ratios</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="c1"># load mat files</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">data_names</span><span class="p">[</span><span class="n">ts_no</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="c1"># time series information</span>
+        <span class="n">rpm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]))</span>
+        <span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;0.&#39;</span><span class="o">+</span><span class="n">name</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]))</span>
+        
+        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;c&#39;</span><span class="p">:</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Chatter&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;s&#39;</span><span class="p">:</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Stable&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;i&#39;</span><span class="p">:</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Mild Chatter&#39;</span><span class="p">)</span>
+            
+        <span class="n">legend_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="s1">&#39;, Stickout=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">case_no</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; inch, RPM=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span><span class="o">+</span><span class="s1">&#39;, DOC=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;0.&#39;</span><span class="o">+</span><span class="n">name</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]))</span>
+        
+        <span class="c1">#load the time series</span>
+        <span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">data_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">name</span><span class="p">)[</span><span class="s1">&#39;tsDS&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># apply wavelet packet decomposition</span>
+        <span class="n">wp</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">WaveletPacket</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">wavelet</span><span class="o">=</span><span class="n">WF</span><span class="p">,</span><span class="n">maxlevel</span><span class="o">=</span><span class="n">L</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;symmetric&#39;</span><span class="p">)</span>
+        <span class="n">packet_order</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">path</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">wp</span><span class="o">.</span><span class="n">get_level</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="s1">&#39;freq&#39;</span><span class="p">)]</span>
+        <span class="n">coeffs</span> <span class="o">=</span> <span class="p">[</span><span class="n">wp</span><span class="p">[</span><span class="n">path</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">packet_order</span><span class="p">]</span>
+        
+        <span class="c1">#reconstruct the wavelet packets</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">L</span><span class="p">):</span>
+            <span class="c1"># create a empty wavelet packet object</span>
+            <span class="n">new_wp</span> <span class="o">=</span> <span class="n">pywt</span><span class="o">.</span><span class="n">WaveletPacket</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wavelet</span><span class="o">=</span><span class="n">WF</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;symmetric&#39;</span><span class="p">)</span>
+            <span class="n">new_wp</span><span class="p">[</span><span class="n">packet_order</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">wp</span><span class="p">[</span><span class="n">packet_order</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+            <span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_wp</span><span class="o">.</span><span class="n">reconstruct</span><span class="p">(</span><span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="c1"># find the diff between reconstructed length and time series length</span>
+            <span class="n">len_dif</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">][:</span><span class="n">len_dif</span><span class="p">]</span>
+            
+        <span class="c1">#energy ratio</span>
+        <span class="n">ratio</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">wEnergy</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
+        
+        
+    <span class="c1"># plot energy ratios   </span>
+    <span class="n">barWidth</span> <span class="o">=</span> <span class="mf">0.25</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> 
+       
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="c1"># Set position of bar on X axis</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">br</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">barWidth</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">br</span><span class="p">]</span>
+            
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">br</span><span class="p">,</span> <span class="n">ratio</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">width</span> <span class="o">=</span> <span class="n">barWidth</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">legend_name</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wavelet Packets&#39;</span> <span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Energy Ratios&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">)</span>    
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">f_s</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># plot reconstructed signals and their spectrum</span>
+    <span class="k">if</span> <span class="n">plot_recon</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">layout</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ncols</span><span class="o">=</span><span class="n">layout</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span> 
+            <span class="n">fig_FFT</span><span class="p">,</span> <span class="n">axes_FFT</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">layout</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ncols</span><span class="o">=</span><span class="n">layout</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+             
+            <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            <span class="n">axes_FFT</span> <span class="o">=</span> <span class="n">axes_FFT</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    
+            
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">L</span><span class="p">):</span>   
+                <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">[</span><span class="n">i</span><span class="p">][:,</span><span class="mi">0</span><span class="p">],</span><span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (seconds)&#39;</span> <span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">)</span>  
+                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Packet&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">f_s</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                
+                <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">1</span> <span class="p">,</span><span class="n">wspace</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                
+                <span class="n">ax</span> <span class="o">=</span> <span class="n">axes_FFT</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">xf</span><span class="p">,</span> <span class="n">yf</span> <span class="o">=</span> <span class="n">AbsFFT</span><span class="p">(</span><span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span> <span class="n">fs</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span><span class="n">yf</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;frequency (Hz)&#39;</span> <span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$\mid X(f) \mid $&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">)</span>  
+                <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Packet&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">f_s</span><span class="p">)</span>
+                <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">f_s</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                
+                <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span></div>
+                
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

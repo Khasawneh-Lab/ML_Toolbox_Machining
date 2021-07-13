@@ -8,10 +8,8 @@ Created on Mon Mar  2 14:44:24 2020
 # WPT Informative Wavelet Packet Decision Making
 # parameters 
 from WP_Energy_Ratio import WP_Energy_Ratio
-
 data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
 list_name = 'time_series_name_2inch.txt'
-N = 3
 ts_no = [1,13,21]
 WF = 'db10'
 L=4
@@ -20,7 +18,7 @@ layout=[4,4]
 plot_recon = True
 fs= 10000
 
-WP_Energy_Ratio(data_path, list_name, file_path, N, ts_no, WF, L, case_no, fs, plot_recon,layout)
+WP_Energy_Ratio(data_path, list_name, ts_no, WF, L, case_no, fs, plot_recon,layout)
 
 
 

@@ -3,6 +3,10 @@
 Wavelet Packet Transform
 ======================================
 
+Decision Making about Informative Wavelet Packets 
+-------------------------------------------------
+.. automodule:: WPT_EEMD_ML.WP_Energy_Ratio
+    :members:
 
    
 Feature extraction and supervised classification using WPT 

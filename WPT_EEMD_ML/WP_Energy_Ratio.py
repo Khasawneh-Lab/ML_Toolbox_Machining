@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul 11 22:18:32 2021
-
-@author: yesillim
-"""
 
 import numpy as np
 import pywt
@@ -78,25 +72,25 @@ def WP_Energy_Ratio(data_path, list_name, ts_no, WF, L, case_no, fs, plot_recon,
     This function returns plots of energy ratios of wavelet packets, reconstructed signals of each wavelet packet and their spectrum.
     Reconstructed signals is plotted when plot_recon is set to 'True'.
     
-    :param str (data_path): path to folder where list of time series names and time series data is kept
+    :param str (data_path): Path to folder where list of time series names and time series data is kept
     
-    :param str (list_name): name of the .txt folder which includes names of time series data
+    :param str (list_name): Name of the .txt folder which includes names of time series data
     
-    :param list (ts_no): index of time series which user wants to investigate
+    :param list (ts_no): Index of time series which user wants to investigate
     
     :param str (WF): Wavelet function (see types_ of wavelet functions available in PyWavelet package)
 
-    .. _types: https://pywavelets.readthedocs.io/en/latest/regression/wavelet.html?highlight=wavelet%20list#wavelet-families-and-builtin-wavelets-names
- 
     :param int (L): Transformation level 
     
     :param int (case_no): Overhang distance 
     
     :param int (fs): Sampling frequency
     
-    :param bool (plot_recon) It is set to 'True' to obtain the reconstructed signals plots 
+    :param bool (plot_recon): It is set to 'True' to obtain the reconstructed signals plots 
     
-    :param list (layout) Row and column numbers for the plot of reconstructed signals 
+    :param list (layout): Row and column numbers for the plot of reconstructed signals 
+    
+    .. _types: https://pywavelets.readthedocs.io/en/latest/regression/wavelet.html?highlight=wavelet%20list#wavelet-families-and-builtin-wavelets-names
         
     :Returns:
         :figures:

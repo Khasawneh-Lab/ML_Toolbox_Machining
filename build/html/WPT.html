@@ -91,8 +91,13 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">2.  Modules</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="chatter_detection.html">2.1. Chatter Detection</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2.1.1. Wavelet Packet Transform</a></li>
-<li class="toctree-l3"><a class="reference internal" href="EEMD.html">2.1.2. Ensemble Empirical Mode Decomposition</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.1.1. Wavelet Packet Transform (WPT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EEMD.html">2.1.2. Ensemble Empirical Mode Decomposition (EEMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DTW.html">2.1.3. Dynamic Time Warping (DTW)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FFT.html">2.1.4. Fast Fourier Transfrom (FFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PSD.html">2.1.5. Power Spectral Density (PSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ACF.html">2.1.6. Autocorrelation Function (ACF)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TDA.html">2.1.7. Topological Data Analysis (TDA)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="surface_texture.html">2.2. Surface Texture Analysis</a></li>
@@ -174,8 +179,83 @@
             
   <div class="section" id="wavelet-packet-transform">
 <span id="wpt"></span><h1><span class="section-number">2.1.1. </span>Wavelet Packet Transform<a class="headerlink" href="#wavelet-packet-transform" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-WPT_EEMD_ML.WP_Energy_Ratio">
+<span id="decision-making-about-informative-wavelet-packets"></span><h2><span class="section-number">2.1.1.1. </span>Decision Making about Informative Wavelet Packets<a class="headerlink" href="#module-WPT_EEMD_ML.WP_Energy_Ratio" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="WPT_EEMD_ML.WP_Energy_Ratio.AbsFFT">
+<code class="sig-prename descclassname">WPT_EEMD_ML.WP_Energy_Ratio.</code><code class="sig-name descname">AbsFFT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ts</span></em>, <em class="sig-param"><span class="n">fs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#AbsFFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.AbsFFT" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function computes the normaliez spectrum of the given 1D signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>ts</strong><strong>)</strong> (<em>array</em>) – time series</p></li>
+<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling frequency</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="field-list simple">
+<dt class="field-odd">xf</dt>
+<dd class="field-odd"><p>(np.array([])) frequency values</p>
+</dd>
+<dt class="field-even">yf</dt>
+<dd class="field-even"><p>(np.array([])) amplitudes</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="WPT_EEMD_ML.WP_Energy_Ratio.WP_Energy_Ratio">
+<code class="sig-prename descclassname">WPT_EEMD_ML.WP_Energy_Ratio.</code><code class="sig-name descname">WP_Energy_Ratio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">list_name</span></em>, <em class="sig-param"><span class="n">ts_no</span></em>, <em class="sig-param"><span class="n">WF</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">case_no</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">plot_recon</span></em>, <em class="sig-param"><span class="n">layout</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#WP_Energy_Ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.WP_Energy_Ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns plots of energy ratios of wavelet packets, reconstructed signals of each wavelet packet and their spectrum.
+Reconstructed signals is plotted when plot_recon is set to ‘True’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>data_path</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to folder where list of time series names and time series data is kept</p></li>
+<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .txt folder which includes names of time series data</p></li>
+<li><p><strong>(</strong><strong>ts_no</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Index of time series which user wants to investigate</p></li>
+<li><p><strong>(</strong><strong>WF</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Wavelet function (see <a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/regression/wavelet.html?highlight=wavelet%20list#wavelet-families-and-builtin-wavelets-names">types</a> of wavelet functions available in PyWavelet package)</p></li>
+<li><p><strong>(</strong><strong>L</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Transformation level</p></li>
+<li><p><strong>(</strong><strong>case_no</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Overhang distance</p></li>
+<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sampling frequency</p></li>
+<li><p><strong>(</strong><strong>plot_recon</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – It is set to ‘True’ to obtain the reconstructed signals plots</p></li>
+<li><p><strong>(</strong><strong>layout</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Row and column numbers for the plot of reconstructed signals</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="field-list simple">
+<dt class="field-odd">figures</dt>
+<dd class="field-odd"><p>First figure is the energy ratio plot. If user set to plot_recon to ‘True’, then algorithm returns reconstruted signals figures as well.
+For instance, if the number of time series that user wants to investigate is 3, and algorithm returns two figures for each time series.
+Totally, it returns 7 figures.
+Plots of reconstructed signals and their spectrums are given in the order user specified as input with ts_no.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="WPT_EEMD_ML.WP_Energy_Ratio.wEnergy">
+<code class="sig-prename descclassname">WPT_EEMD_ML.WP_Energy_Ratio.</code><code class="sig-name descname">wEnergy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coeffs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#wEnergy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.wEnergy" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes wavelet coefficients and return the energy ratio of wavelet packets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>(</strong><strong>coeffs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The list of wavelet coefficients obtained from Wavelet Packet Transform</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(np.array([])) The energry ratios of each wavelet packets</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <div class="section" id="feature-extraction-and-supervised-classification-using-wpt">
-<h2><span class="section-number">2.1.1.1. </span>Feature extraction and supervised classification using WPT<a class="headerlink" href="#feature-extraction-and-supervised-classification-using-wpt" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1.1.2. </span>Feature extraction and supervised classification using WPT<a class="headerlink" href="#feature-extraction-and-supervised-classification-using-wpt" title="Permalink to this headline">¶</a></h2>
 <p>This algorithm takes time series for turning experiments as input and it generates the feature matrix based on specified WPT level.
 The reconstructed Wavelet packets and corresponding frequency domain feature matrices should be computed before running this algorithm. Please see the instructions for Matlab functions on this
 documentation before using this algorithm.
@@ -260,7 +340,7 @@ It also prints the total elapsed time.</p>
 
 </div>
 <div class="section" id="transfer-learning-application-using-wpt">
-<h2><span class="section-number">2.1.1.2. </span>Transfer Learning Application Using WPT<a class="headerlink" href="#transfer-learning-application-using-wpt" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1.1.3. </span>Transfer Learning Application Using WPT<a class="headerlink" href="#transfer-learning-application-using-wpt" title="Permalink to this headline">¶</a></h2>
 <p>This function uses transfer learning principles to transfer the knowledge obtained from one cutting configuration to another one.
 It assumes that the reconstructed Wavelet packets and frequency domain features are available an they are in the same folder with the data files.
 It computes feature matrices for training and test set and performs the classification with chosen algorithm.
@@ -341,7 +421,7 @@ It returns the results in an array. It also prints the total elapsed time.</p>
 
 </div>
 <div class="section" id="transfer-learning-on-two-cases-using-wpt">
-<h2><span class="section-number">2.1.1.3. </span>Transfer Learning On Two Cases Using WPT<a class="headerlink" href="#transfer-learning-on-two-cases-using-wpt" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1.1.4. </span>Transfer Learning On Two Cases Using WPT<a class="headerlink" href="#transfer-learning-on-two-cases-using-wpt" title="Permalink to this headline">¶</a></h2>
 <p>This fuction implement transfer learning by training a classifier on two different
 data sets and testing it on remaining two different data sets. Stickout lengths of
 each data set should be determined by user. It asks for file paths to training and test set files.
