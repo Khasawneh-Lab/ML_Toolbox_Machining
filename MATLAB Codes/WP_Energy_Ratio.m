@@ -68,7 +68,7 @@ for i=1:N
     
     % Wavelet Packet Decomposition
     eval(sprintf('WPT%d=wpdec(ts%d,%d,"%s");',i,i,L,WF));
-
+    
     %Energy computation for each packet
     eval(sprintf('E%d=wenergy(WPT%d);',i,i));
 
