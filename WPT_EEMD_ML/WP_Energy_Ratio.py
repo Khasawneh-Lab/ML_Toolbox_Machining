@@ -74,7 +74,7 @@ def WP_Energy_Ratio(data_path, list_name, ts_no, WF, L, case_no, fs, plot_recon,
     
     :param str (data_path): Path to folder where list of time series names and time series data is kept
     
-    :param str (list_name): Name of the .txt folder which includes names of time series data
+    :param str (list_name): Name of the .txt file which includes names of time series data
     
     :param list (ts_no): Index of time series which user wants to investigate
     
