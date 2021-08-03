@@ -5,7 +5,7 @@ Created on Mon Mar  2 14:44:24 2020
 @author: yesillim
 """
 
-# WPT Informative Wavelet Packet Decision Making
+# WPT Informative Wavelet Packet Decision Making # ----------------------------
 # parameters 
 from WP_Energy_Ratio import WP_Energy_Ratio
 data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
@@ -21,6 +21,55 @@ fs= 10000
 WP_Energy_Ratio(data_path, list_name, ts_no, WF, L, case_no, fs, plot_recon,layout)
 
 
+# WPT Reconstruction of Signals from Informative Wavelet Packets # ------------
+from WPT_Informative_Packet_Recon import WPT_Informative_Packet_Recon
+data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
+list_name = 'time_series_name_2inch.txt'
+label_name = '2_inch_Labels_2Class.npy'
+WF = 'db10'
+L=4
+IWP = 3
+save_name = 'Recon_test'
+saving = False
+
+recon = WPT_Informative_Packet_Recon(data_path,list_name,WF,L,IWP,saving)
+
+# WPT Feature Extraction# -----------------------------------------------------
+#inputs 
+from WPT_Feature_Extraction import WPT_Feature_Extraction
+data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
+list_name = 'time_series_name_2inch.txt'
+WF = 'db10'
+L=4
+IWP = 3
+label_name = '2_inch_Labels_2Class.npy'
+saving = False
+fs = 10000  
+  
+feature_mat,labels = WPT_Feature_Extraction(data_path, list_name,label_name,WF,L,IWP,fs,saving)
+
+
+# WPT Classification ----------------------------------------------------------
+
+from WPT_EEMD_ML.WPT_Classification import WPT_Classification
+
+# inputs
+data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
+list_name = 'time_series_name_2inch.txt'
+WF = 'db10'
+L=4
+IWP = 3
+label_name = '2_inch_Labels_2Class.npy'
+saving = True
+fs = 10000 
+param_tuning = False
+feature_ranking =True
+cv = 5
+saving_path = 'D:\\Repositories\\WPT_EEMD_ML_Machining\\test\\WPT_Classification_Test'
+save_name = "Reconstructions"
+reprots = WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tuning,feature_ranking,saving,saving_path,save_name)
+
+# ------------------------------------------------------------------------------
 
 # WPT 2-class classification
 import numpy as np 

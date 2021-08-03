@@ -214,7 +214,7 @@ Reconstructed signals is plotted when plot_recon is set to ‘True’.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>(</strong><strong>data_path</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to folder where list of time series names and time series data is kept</p></li>
-<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .txt folder which includes names of time series data</p></li>
+<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .txt file which includes names of time series data</p></li>
 <li><p><strong>(</strong><strong>ts_no</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Index of time series which user wants to investigate</p></li>
 <li><p><strong>(</strong><strong>WF</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Wavelet function (see <a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/regression/wavelet.html?highlight=wavelet%20list#wavelet-families-and-builtin-wavelets-names">types</a> of wavelet functions available in PyWavelet package)</p></li>
 <li><p><strong>(</strong><strong>L</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Transformation level</p></li>
@@ -266,74 +266,50 @@ It plots the mean accuracies and deviations for test and training set with respe
 It also prints the total elapsed time.</p>
 <span class="target" id="module-WPT_EEMD_ML.WPT_Feature_Extraction"></span><dl class="py function">
 <dt id="WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction">
-<code class="sig-prename descclassname">WPT_EEMD_ML.WPT_Feature_Extraction.</code><code class="sig-name descname">WPT_Feature_Extraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length</span></em>, <em class="sig-param"><span class="n">WPT_Level</span></em>, <em class="sig-param"><span class="n">Classifier</span></em>, <em class="sig-param"><span class="n">plotting</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WPT_Feature_Extraction.html#WPT_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">WPT_EEMD_ML.WPT_Feature_Extraction.</code><code class="sig-name descname">WPT_Feature_Extraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">list_name</span></em>, <em class="sig-param"><span class="n">label_name</span></em>, <em class="sig-param"><span class="n">WF</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">IWP</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">saving</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WPT_Feature_Extraction.html#WPT_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong><strong>stickout_length</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>The distance between heel of the boring bar and the back surface of the cutting tool</p>
-<ul>
-<li><p>if stickout length is 2 inch, ‘2’</p></li>
-<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
-<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
-<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
-</ul>
-</p></li>
-<li><p><strong>(</strong><strong>WPT_Level</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Level of Wavelet Packet Decomposition</p></li>
-<li><p><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Classifier defined by user</p>
-<ul>
-<li><p>Support Vector Machine: ‘SVC’</p></li>
-<li><p>Logistic Regression: ‘LR’</p></li>
-<li><p>Random Forest Classification: ‘RF’</p></li>
-<li><p>Gradient Boosting: ‘GB’</p></li>
-</ul>
-</p></li>
-<li><p><strong>(</strong><strong>Plotting</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Function will return the plot of the results depending on the number of features used in the classification, if the Plotting is ‘True’.</p></li>
+<li><p><strong>(</strong><strong>data_path</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path where user keeps the data set</p></li>
+<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .txt file that includes the names of time series data</p></li>
+<li><p><strong>(</strong><strong>label_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .npy file that includes labels of the time series</p></li>
+<li><p><strong>(</strong><strong>WF</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Wavelet function</p></li>
+<li><p><strong>(</strong><strong>L</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Level of the transform which will be applied to data set</p></li>
+<li><p><strong>(</strong><strong>IWP</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Informative Wavelet Packet number</p></li>
+<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sampling frequency of the data set</p></li>
+<li><p><strong>(</strong><strong>saving</strong><strong>)</strong> (<em>boolean</em>) – Set it to true if you want to save reconstructed signals</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="field-list simple">
-<dt class="field-odd">results</dt>
-<dd class="field-odd"><p>(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
-<ul class="simple">
-<li><p>first column: mean accuracies for training set</p></li>
-<li><p>second column: deviation for training set accuracies</p></li>
-<li><p>third column: mean accuracies for test set</p></li>
-<li><p>fourth column: deviation for test set accuracies</p></li>
-</ul>
+<dt class="field-odd">feature_mat</dt>
+<dd class="field-odd"><p>(np.array([])) Feature matrix</p>
 </dd>
-<dt class="field-even">plot</dt>
-<dd class="field-even"><p>Deviations and mean accuracies for training and test set vs number of features used in feature matrix generation</p>
+<dt class="field-even">labels</dt>
+<dd class="field-even"><p>(np.array([])) Labels</p>
 </dd>
 <dt class="field-odd">time</dt>
-<dd class="field-odd"><p>(str) Elapsed time during feature matrix generation and classification</p>
+<dd class="field-odd"><p>(str) Elapsed time during feature matrix generation</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Example</dt>
-<dd class="field-even"><blockquote>
-<div><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">WPT_Feature_Extraction</span> <span class="kn">import</span> <span class="n">WPT_Feature_Extraction</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span><span class="s1">&#39;serif&#39;</span><span class="p">,</span><span class="s1">&#39;serif&#39;</span><span class="p">:[</span><span class="s1">&#39;Palatino&#39;</span><span class="p">]})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<dd class="field-even"><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="go">from WPT_EEMD_ML.WPT_Feature_Extraction import WPT_Feature_Extraction</span>
 
-<span class="go">#parameters</span>
+<span class="go"># parameters</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_length</span><span class="o">=</span><span class="s1">&#39;2&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">WPT_Level</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Classifier</span> <span class="o">=</span> <span class="s1">&#39;SVC&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">plotting</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="go">data_path = &#39;D:\Data Archive\Cutting_Test_Data_Documented\cutting_tests_processed\2inch_stickout&#39;</span>
+<span class="go">list_name = &#39;time_series_name_2inch.txt&#39;</span>
+<span class="go">WF = &#39;db10&#39;</span>
+<span class="go">L=4</span>
+<span class="go">IWP = 3</span>
+<span class="go">label_name = &#39;2_inch_Labels_2Class.npy&#39;</span>
+<span class="go">saving = False</span>
+<span class="go">fs = 10000</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">WPT_Feature_Extraction</span><span class="p">(</span><span class="n">stickout_length</span><span class="p">,</span> <span class="n">WPT_Level</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>                                 <span class="n">Classifier</span><span class="p">,</span> <span class="n">plotting</span><span class="p">)</span>
-<span class="go">Enter the path of the data files:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_2inch_stickout</span>
+<span class="go">feature_mat,labels = WPT_Feature_Extraction(data_path, list_name,label_name,WF,L,IWP,fs,saving)</span>
 </pre></div>
 </div>
-</div></blockquote>
-<a class="reference internal image-reference" href="_images/example.jpg"><img alt="_images/example.jpg" src="_images/example.jpg" style="width: 600px; height: 360px;" /></a>
 </dd>
 </dl>
 </dd></dl>

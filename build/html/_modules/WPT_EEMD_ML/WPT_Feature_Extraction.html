@@ -172,129 +172,93 @@
   <h1>Source code for WPT_EEMD_ML.WPT_Feature_Extraction</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">sio</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">skew</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFE</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span>
-<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span><span class="s1">&#39;serif&#39;</span><span class="p">,</span><span class="s1">&#39;serif&#39;</span><span class="p">:[</span><span class="s1">&#39;Palatino&#39;</span><span class="p">]})</span>
-<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WPT_Informative_Packet_Recon</span> <span class="kn">import</span> <span class="n">WPT_Informative_Packet_Recon</span>
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WP_Energy_Ratio</span> <span class="kn">import</span> <span class="n">AbsFFT</span>
 
-<div class="viewcode-block" id="WPT_Feature_Extraction"><a class="viewcode-back" href="../../WPT.html#WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction">[docs]</a><span class="k">def</span> <span class="nf">WPT_Feature_Extraction</span><span class="p">(</span><span class="n">stickout_length</span><span class="p">,</span> <span class="n">WPT_Level</span><span class="p">,</span> <span class="n">Classifier</span><span class="p">,</span> <span class="n">plotting</span><span class="p">):</span>
+
+<div class="viewcode-block" id="WPT_Feature_Extraction"><a class="viewcode-back" href="../../WPT.html#WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction">[docs]</a><span class="k">def</span> <span class="nf">WPT_Feature_Extraction</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">list_name</span><span class="p">,</span><span class="n">label_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">saving</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    </span>
-<span class="sd">    :param str (stickout_length): The distance between heel of the boring bar and the back surface of the cutting tool </span>
+<span class="sd">    :param str (data_path): The path where user keeps the data set</span>
+<span class="sd">  </span>
+<span class="sd">    :param str (list_name): Name of the .txt file that includes the names of time series data </span>
 <span class="sd">    </span>
-<span class="sd">       * if stickout length is 2 inch, &#39;2&#39;</span>
-<span class="sd">       * if stickout length is 2.5 inch, &#39;2p5&#39;</span>
-<span class="sd">       * if stickout length is 3.5 inch, &#39;3p5&#39;</span>
-<span class="sd">       * if stickout length is 4.5 inch, &#39;4p5&#39;</span>
+<span class="sd">    :param str (label_name): Name of the .npy file that includes labels of the time series</span>
+<span class="sd">        </span>
+<span class="sd">    :param str (WF): Wavelet function</span>
+<span class="sd">       	</span>
+<span class="sd">    :param  int (L): Level of the transform which will be applied to data set</span>
 <span class="sd">    </span>
-<span class="sd">    :param int (WPT_Level): </span>
-<span class="sd">        Level of Wavelet Packet Decomposition</span>
+<span class="sd">    :param int (IWP): Informative Wavelet Packet number</span>
+<span class="sd">        </span>
+<span class="sd">    :param int (fs): Sampling frequency of the data set</span>
 <span class="sd">    </span>
-<span class="sd">    :param str (Classifier): Classifier defined by user</span>
-<span class="sd">       </span>
-<span class="sd">       * Support Vector Machine: &#39;SVC&#39;</span>
-<span class="sd">       * Logistic Regression: &#39;LR&#39;</span>
-<span class="sd">       * Random Forest Classification: &#39;RF&#39;</span>
-<span class="sd">       * Gradient Boosting: &#39;GB&#39;</span>
-<span class="sd">    	</span>
-<span class="sd">    :param  str (Plotting):</span>
-<span class="sd">        Function will return the plot of the results depending on the number of features used in the classification, if the Plotting is &#39;True&#39;.</span>
+<span class="sd">    :param boolean (saving): Set it to true if you want to save reconstructed signals </span>
 <span class="sd">    </span>
 <span class="sd">    :Returns:</span>
 
-<span class="sd">        :results:</span>
-<span class="sd">            (np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</span>
-<span class="sd">        </span>
-<span class="sd">            * first column: mean accuracies for training set</span>
-<span class="sd">            * second column: deviation for training set accuracies</span>
-<span class="sd">            * third column: mean accuracies for test set</span>
-<span class="sd">            * fourth column: deviation for test set accuracies</span>
-<span class="sd">        </span>
-<span class="sd">        :plot: Deviations and mean accuracies for training and test set vs number of features used in feature matrix generation</span>
-<span class="sd">        </span>
+<span class="sd">        :feature_mat:</span>
+<span class="sd">            (np.array([])) Feature matrix </span>
+<span class="sd">           </span>
+<span class="sd">        :labels: </span>
+<span class="sd">            (np.array([])) Labels</span>
+<span class="sd">            </span>
 <span class="sd">        :time:</span>
-<span class="sd">            (str) Elapsed time during feature matrix generation and classification</span>
+<span class="sd">            (str) Elapsed time during feature matrix generation </span>
 <span class="sd">    </span>
 <span class="sd">    :Example:</span>
 <span class="sd">    </span>
 <span class="sd">        .. doctest::</span>
 <span class="sd">                       </span>
-<span class="sd">           &gt;&gt;&gt; from WPT_Feature_Extraction import WPT_Feature_Extraction</span>
-<span class="sd">           &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
-<span class="sd">           &gt;&gt;&gt; from matplotlib import rc</span>
-<span class="sd">           &gt;&gt;&gt; import matplotlib</span>
-<span class="sd">           &gt;&gt;&gt; matplotlib.rcParams.update({&#39;font.size&#39;: 14})</span>
-<span class="sd">           &gt;&gt;&gt; rc(&#39;font&#39;,**{&#39;family&#39;:&#39;serif&#39;,&#39;serif&#39;:[&#39;Palatino&#39;]})</span>
-<span class="sd">           &gt;&gt;&gt; rc(&#39;text&#39;, usetex=True)</span>
-<span class="sd">            </span>
-<span class="sd">           #parameters</span>
-<span class="sd">            </span>
-<span class="sd">           &gt;&gt;&gt; stickout_length=&#39;2&#39;</span>
-<span class="sd">           &gt;&gt;&gt; WPT_Level = 4</span>
-<span class="sd">           &gt;&gt;&gt; Classifier = &#39;SVC&#39;</span>
-<span class="sd">           &gt;&gt;&gt; plotting = True</span>
-<span class="sd">         </span>
-<span class="sd">           &gt;&gt;&gt; results = WPT_Feature_Extraction(stickout_length, WPT_Level, </span>
-<span class="sd">           &gt;&gt;&gt;                                  Classifier, plotting)     </span>
-<span class="sd">           Enter the path of the data files:</span>
-<span class="sd">           &gt;&gt;&gt; D\...\cutting_tests_processed\data_2inch_stickout</span>
+<span class="sd">           from WPT_EEMD_ML.WPT_Feature_Extraction import WPT_Feature_Extraction</span>
 <span class="sd">           </span>
-<span class="sd">       .. image:: example.jpg</span>
-<span class="sd">          :width: 600px</span>
-<span class="sd">          :height: 360px</span>
+<span class="sd">           # parameters</span>
+<span class="sd">            </span>
+<span class="sd">           data_path = &#39;D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout&#39;</span>
+<span class="sd">           list_name = &#39;time_series_name_2inch.txt&#39;</span>
+<span class="sd">           WF = &#39;db10&#39;</span>
+<span class="sd">           L=4</span>
+<span class="sd">           IWP = 3</span>
+<span class="sd">           label_name = &#39;2_inch_Labels_2Class.npy&#39;</span>
+<span class="sd">           saving = False</span>
+<span class="sd">           fs = 10000 </span>
+<span class="sd">         </span>
+<span class="sd">           feature_mat,labels = WPT_Feature_Extraction(data_path, list_name,label_name,WF,L,IWP,fs,saving)</span>
 <span class="sd">   </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the path of the data files: &quot;</span><span class="p">)</span>
 
-    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">user_input</span><span class="p">),</span> <span class="s2">&quot;Specified file does not exist at, &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+    <span class="c1">#%% Loading time series and labels of the classification</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     
-    <span class="n">folderToLoad</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-    
-    <span class="c1">#%% start timer</span>
-    <span class="n">start2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="c1"># file path to folder where the data is kept</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">data_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">list_name</span>
+    <span class="n">label_path</span> <span class="o">=</span>  <span class="n">data_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">label_name</span>
 
-    <span class="c1"># Loading time series and labels of the classification</span>
-    
-    <span class="c1"># import the list including the name of the time series of the chosen case</span>
-    <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_&#39;</span><span class="o">+</span><span class="n">stickout_length</span><span class="o">+</span><span class="s1">&#39;inch.txt&#39;</span>
-    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-    
-    <span class="c1">#save the time series name into a list</span>
-    <span class="n">namets</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">namets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># read the file that includes the name of datafiles</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">data_names</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
         
-    <span class="c1">#import the classification labels</span>
-    <span class="n">label_file_name</span> <span class="o">=</span> <span class="n">stickout_length</span><span class="o">+</span><span class="s1">&#39;_inch_Labels_2Class.npy&#39;</span>
-    <span class="n">file_path1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">label_file_name</span><span class="p">)</span>
-    <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path1</span><span class="p">)</span>
-    
-    <span class="c1">#%% Upload the Decompositions and compute the feature from them----------------</span>
-    <span class="c1">#name of datasets</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_names</span><span class="p">)</span>
+   
+    <span class="c1"># import the classification labels</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">label_path</span><span class="p">)</span>
 
-    <span class="n">numberofcase</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">namets</span><span class="p">)</span> 
-    <span class="n">featuremat</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numberofcase</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="c1"># reconstruct signals from informative wavelet packet</span>
+    <span class="k">if</span> <span class="n">saving</span><span class="p">:</span>
+        <span class="n">recon</span> <span class="o">=</span> <span class="n">WPT_Informative_Packet_Recon</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="n">list_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">saving</span><span class="p">,</span><span class="n">save_name</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">recon</span> <span class="o">=</span> <span class="n">WPT_Informative_Packet_Recon</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="n">list_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">saving</span><span class="p">)</span>   
+        
+    <span class="c1"># compute features</span>
+    <span class="n">featuremat</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span> <span class="p">,</span><span class="mi">14</span><span class="p">))</span>
     
-    <span class="c1">#load datasets and compute features</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numberofcase</span><span class="p">):</span>
-        <span class="n">nameofdata</span> <span class="o">=</span> <span class="s1">&#39;WPT_Level</span><span class="si">%s</span><span class="s1">_Recon_</span><span class="si">%s</span><span class="s1">inch_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">WPT_Level</span><span class="p">),</span><span class="n">stickout_length</span><span class="p">,</span><span class="n">namets</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">pathofdata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">nameofdata</span><span class="p">)</span>
-        <span class="n">ts</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">pathofdata</span><span class="p">)</span>
-        <span class="n">ts</span><span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="s2">&quot;recon&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
 
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        
+        <span class="c1"># compute time domain features</span>
+        
         <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
         <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
         <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ts</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>   
@@ -305,120 +269,32 @@
         <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">)))),</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))))</span>
-        <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))))</span>
+        <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))))</span>        
 
+        <span class="c1"># compute FFT of the reconstructed signals</span>
+        <span class="n">xf</span><span class="p">,</span><span class="n">yf</span> <span class="o">=</span> <span class="n">AbsFFT</span><span class="p">(</span><span class="n">recon</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">fs</span><span class="p">)</span>
+        
+        <span class="c1"># frequency domain features</span>
+        <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">xf</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">yf</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">yf</span><span class="p">)</span> <span class="c1">#mean square frequency</span>
+        <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">xf</span><span class="o">*</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">)</span><span class="o">*</span><span class="n">yf</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">yf</span><span class="p">)</span> <span class="c1"># one step auto correlation function</span>
+        <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">xf</span><span class="o">*</span><span class="n">yf</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">yf</span><span class="p">)</span> <span class="c1"># frequency center</span>
+        <span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">13</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(((</span><span class="n">xf</span><span class="o">-</span><span class="n">featuremat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">12</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">yf</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">yf</span><span class="p">)</span> <span class="c1"># standard frequency</span>
+        
+        
+
+    <span class="c1"># concatanate feature matrix and the label matrix and then shuffle them</span>
+    <span class="n">feat_lab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">featuremat</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">label</span><span class="p">,(</span><span class="nb">len</span><span class="p">(</span><span class="n">label</span><span class="p">),</span><span class="mi">1</span><span class="p">))),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">feat_lab</span><span class="p">)</span>
     
-    <span class="c1">#%% load frequency domain features (At different levels of WPT) and combine them </span>
-    <span class="c1">#   with the time domain features</span>
-    <span class="n">freq_feature_file_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_Level</span><span class="si">%d</span><span class="s1">_Freq_Features_</span><span class="si">%s</span><span class="s1">inch.mat&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">WPT_Level</span><span class="p">,</span><span class="n">stickout_length</span><span class="p">)</span>
-    <span class="n">file_path_Ff</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad</span><span class="p">,</span> <span class="n">freq_feature_file_name</span><span class="p">)</span>        
-    <span class="n">freq_features</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">file_path_Ff</span><span class="p">)</span>
-    <span class="n">freq_features</span> <span class="o">=</span> <span class="n">freq_features</span><span class="p">[</span><span class="s1">&#39;Freq_Features&#39;</span><span class="p">]</span>
+    <span class="n">feature_mat</span> <span class="o">=</span> <span class="n">feat_lab</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">14</span><span class="p">]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">feat_lab</span><span class="p">[:,</span><span class="mi">14</span><span class="p">]</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     
-    <span class="c1">#concatanate the frequency and time domain features </span>
-    <span class="n">featuremat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">featuremat</span><span class="p">,</span> <span class="n">freq_features</span><span class="p">),</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">n_feature</span><span class="o">=</span><span class="mi">14</span>
-    <span class="c1">#%% Classification</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feature computation is completed in </span><span class="si">{}</span><span class="s2"> seconds.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">))</span>
     
-    <span class="c1">#generating accuracy, meanscore and deviation matrices</span>
-    <span class="n">accuracy1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">accuracy2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">deviation1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">deviation2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">meanscore1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">meanscore2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">duration1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">meanduration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">feature_mat</span><span class="p">,</span><span class="n">labels</span></div>
     
-    <span class="c1">#repeat the procedure ten times </span>
-    <span class="n">Rank</span><span class="o">=</span><span class="p">[]</span>
-    <span class="n">RankedList</span><span class="o">=</span><span class="p">[]</span>
-    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-        
-        <span class="c1">#split into test and train set</span>
-        <span class="n">F_train</span><span class="p">,</span><span class="n">F_test</span><span class="p">,</span><span class="n">Label_train</span><span class="p">,</span><span class="n">Label_test</span><span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">featuremat</span><span class="p">,</span><span class="n">label</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">)</span>
-        
-        <span class="n">F_traincomb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F_train</span><span class="p">),</span><span class="n">n_feature</span><span class="p">))</span>
-        <span class="n">F_testcomb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">F_test</span><span class="p">),</span><span class="n">n_feature</span><span class="p">))</span>
-        <span class="c1">#classification</span>
-        <span class="k">if</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;SVC&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;LR&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;RF&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;GB&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
-        
-        <span class="c1">#recursive feature elimination</span>
-        <span class="n">selector</span> <span class="o">=</span> <span class="n">RFE</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">Label_train</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Label_train</span><span class="p">)</span>
-        <span class="n">selector</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">F_train</span><span class="p">,</span> <span class="n">Label_train</span><span class="p">)</span>
-        <span class="n">rank</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">ranking_</span>
-        <span class="n">Rank</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
-        <span class="n">rank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
-        
-        <span class="c1">#create a list that contains index number of ranked features</span>
-        <span class="n">rankedlist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    
-        <span class="c1">#finding index of the ranked features and creating new training and test sets with respect to this ranking</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
-            <span class="n">k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rank</span><span class="o">==</span><span class="n">m</span><span class="p">)</span>
-            <span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">F_traincomb</span><span class="p">[:,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">F_train</span><span class="p">[:,</span><span class="nb">int</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])]</span>
-            <span class="n">F_testcomb</span><span class="p">[:,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">F_test</span><span class="p">[:,</span><span class="nb">int</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])]</span> 
-        <span class="n">RankedList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">)</span>
-        
-        <span class="c1">#trying various combinations of ranked features such as ([1],[1,2],[1,2,3]...)</span>
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">):</span> 
-            <span class="n">start1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-            <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">F_traincomb</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_train</span><span class="p">)</span>
-            <span class="n">score1</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">F_testcomb</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_test</span><span class="p">)</span>
-            <span class="n">score2</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">F_traincomb</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_train</span><span class="p">)</span>
-            <span class="n">accuracy1</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span><span class="o">=</span><span class="n">score1</span>
-            <span class="n">accuracy2</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span><span class="o">=</span><span class="n">score2</span>
-            <span class="n">end1</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-            <span class="n">duration1</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="n">end1</span> <span class="o">-</span> <span class="n">start1</span>
-    
-    <span class="c1">#computing mean score and deviation for each combination tried above        </span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">):</span>
-        <span class="n">deviation1</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accuracy1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">deviation2</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accuracy2</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">meanscore1</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">meanscore2</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy2</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">meanduration</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">duration1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        
-    <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">meanscore1</span><span class="p">,</span><span class="n">deviation1</span><span class="p">,</span><span class="n">meanscore2</span><span class="p">,</span><span class="n">deviation2</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">results</span>    
-    <span class="c1">#total duration for algorithm  </span>
-    <span class="n">end2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">duration2</span> <span class="o">=</span> <span class="n">end2</span><span class="o">-</span><span class="n">start2</span>
-            
-        
-    <span class="c1">#%% plotting mean accuracies and deviations</span>
-    <span class="k">if</span> <span class="n">plotting</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-        <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
-        <span class="n">line1</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">meanscore1</span><span class="p">,</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Test set score&#39;</span><span class="p">)</span>
-        <span class="n">line2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">meanscore2</span><span class="p">,</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Training set score&#39;</span><span class="p">)</span>
-        <span class="n">line3</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">deviation1</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Test set deviation&#39;</span><span class="p">)</span>
-        <span class="n">line4</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">deviation2</span><span class="p">,</span><span class="s1">&#39;c--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Training set deviation&#39;</span><span class="p">)</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="n">line1</span><span class="o">+</span><span class="n">line2</span><span class="o">+</span><span class="n">line3</span><span class="o">+</span><span class="n">line4</span>
-        <span class="n">labs</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
-        <span class="n">Fontsize</span> <span class="o">=</span> <span class="mi">25</span>
-        <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">labs</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="n">Fontsize</span> <span class="p">)</span>
-        <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Number of Features&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">Fontsize</span><span class="p">)</span>
-        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Score of Classification&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span><span class="n">Fontsize</span><span class="p">)</span>
-        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Deviation&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="n">Fontsize</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">ax1</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_major_ticks</span><span class="p">():</span>
-            <span class="n">tick</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">Fontsize</span><span class="p">)</span> 
-        <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">ax1</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_major_ticks</span><span class="p">():</span>
-            <span class="n">tick</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">Fontsize</span><span class="p">)</span> 
-        <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span> <span class="o">=</span> <span class="n">Fontsize</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="c1">#plt.savefig(&#39;Number_of_features_vs_deviation_accuracy.pdf&#39;,bbox_inches = &#39;tight&#39;, dpi=300)</span>
-        
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total elapsed time: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">duration2</span><span class="p">)),</span><span class="n">featuremat</span></div>
+  
 </pre></div>
 
            </div>

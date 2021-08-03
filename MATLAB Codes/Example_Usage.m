@@ -25,10 +25,10 @@ WP_Energy_Ratio(L, stickout_length,list_name,ts_no,WF,N,4,4,Fs)
 %% Reconstruct Wavelet Packets based on selected informative packet number
 clear all; clc;close all;
 
-list_name = 'time_series_name_4p5inch.txt';
+list_name = 'time_series_name_2inch.txt';
 WF = 'db10';
-stickout_length =4.5;
-IWP=28;
+stickout_length =2;
+IWP=3;
 L=4;
 WPT_Informative_Packet_Recon(list_name,L,WF,IWP,stickout_length)
 
