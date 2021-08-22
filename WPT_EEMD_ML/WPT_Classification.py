@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.feature_selection import RFE
 from sklearn.svm import SVC
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, GridSearchCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import classification_report
 
@@ -69,7 +69,7 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
         param_tuning = False
         feature_ranking =True
         cv = 5
-        saving_path = 'D:\\Repositories\\WPT_EEMD_ML_Machining\\test\\WPT_Classification_Test'
+        saving_path = 'D:\\Repositories\\WPT_EEMD_ML_Machining\\test\\WPT_Output'
         save_name = "Reconstructions"
         
         classification_reports = WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tuning,feature_ranking,saving,saving_path,save_name)   
@@ -98,7 +98,10 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
         n_estimators_range = n_estimators_range.astype(int)
         
         params = [] # the list that contains the paramters to tune for each classifier
-        params.append({'C': lambda_range, 'kernel': ('rbf','sigmoid'),'gamma':gamma_range}) # SVM paramters
+        if feature_ranking:
+            params.append({'C': lambda_range, 'kernel':['linear'],'gamma':gamma_range}) # SVM paramters
+        else:
+            params.append({'C': lambda_range, 'kernel': ('rbf','sigmoid'),'gamma':gamma_range}) # SVM paramters
         params.append({'solver': ('newton-cg', 'lbfgs', 'liblinear', 'sag', 'saga')})
         params.append({'criterion':('gini', 'entropy'),'n_estimators':n_estimators_range,'max_depth':max_depth_range})
         params.append({'n_estimators':n_estimators_range,'criterion':('friedman_mse', 'mse')})
@@ -120,6 +123,7 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
     
 
     for i, model in enumerate(clf):
+        print("classifier: {}".format(i))
         # cross validation split
         skf= StratifiedKFold(n_splits=cv, shuffle =True, random_state=35) # set a constant random_state number to be able to get same train-test for all classifiers
         k=0
@@ -133,16 +137,6 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
             X_train = scaler.fit_transform(X_train)
             X_test = scaler.transform(X_test)  
              
-            
-            if param_tuning:
-                # paramter tuning
-                param_tune = GridSearchCV(model, params[i])
-                # use one half of the training set to tune the parameters
-                param_tune.fit(X_train,y_train)
-                best_params = param_tune.best_params_
-                for key in sorted(best_params.keys()):
-                    setattr(model,key,best_params[key])
-
             if feature_ranking:
                 # recursive feature elimination
                 selector = RFE(model, n_features_to_select=1, step=1)
@@ -157,10 +151,20 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
                 # generate feature matrices based on ranking and their combinations
                 
                 for m in range (14):
+                    print("combination:{}".format(m+1))
                     r=np.where(rank==m+1)[0][0]
                     X_train_new[:,m] = X_train[:,r]
                     X_test_new[:,m] = X_test[:,r]                
                 
+                    if param_tuning:
+                        # paramter tuning
+                        param_tune = GridSearchCV(model, params[i])
+                        # use one half of the training set to tune the parameters
+                        param_tune.fit(X_train_new[:,0:m+1],y_train)
+                        best_params = param_tune.best_params_
+                        for key in sorted(best_params.keys()):
+                            setattr(model,key,best_params[key])
+
                     #retrain/train the model
                     model.fit(X_train_new[:,0:m+1],y_train) 
                     
@@ -178,31 +182,40 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
                     
                     if saving:
                         if param_tuning:
-                            save_name = 'WPT_CR_Test_ParamTuned_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
+                            save_name = 'WPT_CR_Test_PT_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                             
                             f = open(saving_path+'\\'+save_name+".pkl","wb")
                             pickle.dump(cr_test,f)
                             f.close()
                         
-                            save_name = 'WPT_CR_Train_ParamTuned_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
+                            save_name = 'WPT_CR_Train_PT_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                     
                             f = open(saving_path+'\\'+save_name+".pkl","wb")
                             pickle.dump(cr_train,f)
                             f.close()
                         else:
-                            save_name = 'WPT_CR_Test_Classifier_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
+                            save_name = 'WPT_CR_Test_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                             
                             f = open(saving_path+'\\'+save_name+".pkl","wb")
                             pickle.dump(cr_test,f)
                             f.close()
                         
-                            save_name = 'WPT_CR_Train_Classifier_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
+                            save_name = 'WPT_CR_Train_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                     
                             f = open(saving_path+'\\'+save_name+".pkl","wb")
                             pickle.dump(cr_train,f)
                             f.close()
                 k=k+1
-            else:  
+            else:
+                if param_tuning:
+                    # paramter tuning
+                    param_tune = GridSearchCV(model, params[i])
+                    # use one half of the training set to tune the parameters
+                    param_tune.fit(X_train_new[:,0:m+1],y_train)
+                    best_params = param_tune.best_params_
+                    for key in sorted(best_params.keys()):
+                        setattr(model,key,best_params[key])
+                        
                 #retrain/train the model
                 model.fit(X_train,y_train)
                 
@@ -221,13 +234,13 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
                 
                 if saving:
                     if param_tuning:
-                        save_name = 'WPT_CR_Test_ParamTuned_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
+                        save_name = 'WPT_CR_Test_PT_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                         
                         f = open(saving_path+'\\'+save_name+".pkl","wb")
                         pickle.dump(cr_test,f)
                         f.close()
                     
-                        save_name = 'WPT_CR_Train_ParamTuned_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
+                        save_name = 'WPT_CR_Train_PT_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                 
                         f = open(saving_path+'\\'+save_name+".pkl","wb")
                         pickle.dump(cr_train,f)
@@ -252,29 +265,5 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
             
     return clas_rep_test,clas_rep_train
 
-    #%% plotting mean accuracies and deviations
-    if plotting == True:
-        fig, ax1 = plt.subplots()
-        ax2 = ax1.twinx()
-        line1 = ax1.plot(meanscore1,'b-',label=r'Test set score')
-        line2 = ax1.plot(meanscore2,'g-',label=r'Training set score')
-        line3 = ax2.plot(deviation1,'r--',label=r'Test set deviation')
-        line4 = ax2.plot(deviation2,'c--',label=r'Training set deviation')
-        lines = line1+line2+line3+line4
-        labs = [l.get_label() for l in lines]
-        Fontsize = 25
-        ax1.legend(lines, labs, loc=1, fontsize = Fontsize )
-        ax1.set_xlabel(r'Number of Features',fontsize = Fontsize)
-        ax1.set_ylabel(r'Score of Classification',fontsize =Fontsize)
-        ax2.set_ylabel(r'Deviation',fontsize = Fontsize)
-        for tick in ax1.xaxis.get_major_ticks():
-            tick.label.set_fontsize(Fontsize) 
-        for tick in ax1.yaxis.get_major_ticks():
-            tick.label.set_fontsize(Fontsize) 
-        ax2.tick_params(labelsize = Fontsize)
-        plt.show()
-        #plt.savefig('Number_of_features_vs_deviation_accuracy.pdf',bbox_inches = 'tight', dpi=300)
-        
-    return results,print('Total elapsed time: {}'.format(duration2)),featuremat
 
 

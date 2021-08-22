@@ -117,7 +117,13 @@ def WPT_Feature_Extraction(data_path, list_name,label_name,WF,L,IWP,fs,saving,*a
     feature_mat = feat_lab[:,0:14]
     labels = feat_lab[:,14]
     end = time.time()
-    
+
+    if saving:
+        output={}
+        output['features'] = feature_mat
+        output['labels'] = labels
+        np.save(data_path+'\\'+args[0],output)    
+
     print("Feature computation is completed in {} seconds.".format(end-start))
     
     return feature_mat,labels

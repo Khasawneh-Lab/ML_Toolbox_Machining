@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar  2 14:44:24 2020
 
-@author: yesillim
+"""
+This code provides an example for each function for feature extraction using WPT approach.
+
 """
 
 # WPT Informative Wavelet Packet Decision Making # ----------------------------
 # parameters 
-from WP_Energy_Ratio import WP_Energy_Ratio
+from WPT_EEMD_ML.WP_Energy_Ratio import WP_Energy_Ratio
 data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
 list_name = 'time_series_name_2inch.txt'
 ts_no = [1,13,21]
@@ -22,31 +21,37 @@ WP_Energy_Ratio(data_path, list_name, ts_no, WF, L, case_no, fs, plot_recon,layo
 
 
 # WPT Reconstruction of Signals from Informative Wavelet Packets # ------------
-from WPT_Informative_Packet_Recon import WPT_Informative_Packet_Recon
+from WPT_EEMD_ML.WPT_Informative_Packet_Recon import WPT_Informative_Packet_Recon
 data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
 list_name = 'time_series_name_2inch.txt'
 label_name = '2_inch_Labels_2Class.npy'
 WF = 'db10'
 L=4
 IWP = 3
-save_name = 'Recon_test'
+# if saving is true, user needs to provide the name of the file which will contain the reconstructed signals
+saving = True
+recon = WPT_Informative_Packet_Recon(data_path,list_name,WF,L,IWP,saving,'WPT_Output')
+# if saving is false, no additional parameter is needed
 saving = False
-
 recon = WPT_Informative_Packet_Recon(data_path,list_name,WF,L,IWP,saving)
+
 
 # WPT Feature Extraction# -----------------------------------------------------
 #inputs 
-from WPT_Feature_Extraction import WPT_Feature_Extraction
+from WPT_EEMD_ML.WPT_Feature_Extraction import WPT_Feature_Extraction
 data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
 list_name = 'time_series_name_2inch.txt'
 WF = 'db10'
 L=4
 IWP = 3
 label_name = '2_inch_Labels_2Class.npy'
-saving = False
 fs = 10000  
-  
+# if saving is false, there is no need for additional parameters
+saving = False
 feature_mat,labels = WPT_Feature_Extraction(data_path, list_name,label_name,WF,L,IWP,fs,saving)
+# if saving is correct, user needs to provide the name of the file which will contain features and the labels
+saving = True
+feature_mat,labels = WPT_Feature_Extraction(data_path, list_name,label_name,WF,L,IWP,fs,saving,'features')
 
 
 # WPT Classification ----------------------------------------------------------
@@ -63,11 +68,11 @@ label_name = '2_inch_Labels_2Class.npy'
 saving = True
 fs = 10000 
 param_tuning = False
-feature_ranking =True
+feature_ranking = False
 cv = 5
-saving_path = 'D:\\Repositories\\WPT_EEMD_ML_Machining\\test\\WPT_Classification_Test'
+saving_path = 'D:\Repositories\WPT_EEMD_ML_Machining\\test\WPT_Output'
 save_name = "Reconstructions"
-reprots = WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tuning,feature_ranking,saving,saving_path,save_name)
+reports = WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tuning,feature_ranking,saving,saving_path,save_name)
 
 # ------------------------------------------------------------------------------
 

@@ -2,19 +2,15 @@
 import time
 import numpy as np
 import scipy.io as sio
-from scipy.stats import skew
 from sklearn.feature_selection import RFE
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
+from WPT_EEMD_ML.WPT_Feature_Extraction import WPT_Feature_Extraction
 import os
-from matplotlib import rc
-import matplotlib
-matplotlib.rcParams.update({'font.size': 14})
-rc('font',**{'family':'serif','serif':['Palatino']})
-rc('text', usetex=True)
+
 
 
 #%% Transfer learning application which trains on one dataset and test on another one
@@ -83,107 +79,21 @@ def WPT_Transfer_Learning(stickout_length_training, stickout_length_test, WPT_Le
            >>> D\...\cutting_tests_processed\data_4p5inch_stickout
 
     """
-    #%% get the path to data files from user
+    # Compute feature matrix for training and test set cases
     
-    user_input_train = input("Enter the path of training set data files: ")
+    # training set feature matrix
+    data_path_train = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
+    list_name_train = 'time_series_name_2inch.txt'
+    WF = 'db10'
+    L_train=4
+    IWP_train = 3
+    label_name_train = '2_inch_Labels_2Class.npy'
+    fs_train = 10000  
+    saving = False
+    feature_mat_train,label_train = WPT_Feature_Extraction(data_path_train, list_name_train,label_name_train,WF,L_train,IWP_train,fs_train,saving)    
     
-    assert os.path.exists(user_input_train), "Specified file does not exist at, "+str(user_input_train)
-    
-    user_input_test = input("Enter the path of test set data files: ")
-    
-    assert os.path.exists(user_input_test), "Specified file does not exist at, "+str(user_input_test)
-    
-    
-    folderToLoad1 = os.path.join(user_input_train)
-    folderToLoad2 = os.path.join(user_input_test)
-    
-    #%% start timer
-    start2 = time.time()
-        
-    #%% Loading time series and labels of the classification
-        
-    #training set data files-------------------------------------------------------
-    # import the list including the name of the time series of the chosen case
-    file_name_training = 'time_series_name_'+stickout_length_training+'inch.txt'
-    file_path_training = os.path.join(folderToLoad1, file_name_training)
-    f = open(file_path_training,'r',newline='\n')
-    
-    #save the time series name into a list
-    namets_training = []
-    for line in f:
-        names = line.split("\r\n")
-        namets_training.append(names[0])
-        
-    #import the classification labels
-    label_file_name = stickout_length_training+'_inch_Labels_2Class.npy'
-    file_path1 = os.path.join(folderToLoad1, label_file_name)
-    label_training = np.load(file_path1)
-    
-    #test set data files-----------------------------------------------------------
-    # import the list including the name of the time series of the chosen case
-    file_name_test = 'time_series_name_'+stickout_length_test+'inch.txt'
-    file_path_test = os.path.join(folderToLoad2, file_name_test)
-    f = open(file_path_test,'r',newline='\n')
-    
-    #save the time series name into a list
-    namets_test = []
-    for line in f:
-        names = line.split("\r\n")
-        namets_test.append(names[0])
-        
-    #import the classification labels
-    label_file_name = stickout_length_test+'_inch_Labels_2Class.npy'
-    file_path1 = os.path.join(folderToLoad2, label_file_name)
-    label_test = np.load(file_path1) 
-    
-    #%% Upload the Decompositions and compute the feature from them----------------
-    
-    
-    # length of datasets
-    numberofcase_train = len(namets_training)
-    numberofcase_test = len(namets_test)
-    
-    featuremat_train= np.zeros((numberofcase_train,10))
-    featuremat_test= np.zeros((numberofcase_test,10))
-    
-    #load datasets and compute features
-    for i in range (0,numberofcase_train):
-        name =  'ts_%d' %(i+1)
-        nameofdata = 'WPT_Level%s_Recon_%sinch_%s' %(str(WPT_Level),stickout_length_training,namets_training[i])
-        pathofdata = os.path.join(folderToLoad1, nameofdata)
-        ts = sio.loadmat(pathofdata)
-        ts= ts["recon"]
-    
-        featuremat_train[i,0] = np.average(ts)
-        featuremat_train[i,1] = np.std(ts)
-        featuremat_train[i,2] = np.sqrt(np.mean(ts**2))   
-        featuremat_train[i,3] = max(abs(ts))
-        featuremat_train[i,4] = skew(ts)
-        L=len(ts)
-        featuremat_train[i,5] = sum(np.power(ts-featuremat_train[i,0],4)) / ((L-1)*np.power(featuremat_train[i,1],4))
-        featuremat_train[i,6] = featuremat_train[i,3]/featuremat_train[i,2]
-        featuremat_train[i,7] = featuremat_train[i,3]/np.power((np.average(np.sqrt(abs(ts)))),2)
-        featuremat_train[i,8] = featuremat_train[i,2]/(np.average((abs(ts))))
-        featuremat_train[i,9] = featuremat_train[i,3]/(np.average((abs(ts)))) 
-    
-    for i in range (0,numberofcase_test):
-        name =  'ts_%d' %(i+1)
-        nameofdata = 'WPT_Level%s_Recon_%sinch_%s' %(str(WPT_Level),stickout_length_test,namets_test[i])
-        pathofdata = os.path.join(folderToLoad2, nameofdata)
-        ts = sio.loadmat(pathofdata)
-        ts= ts["recon"]
-    
-        featuremat_test[i,0] = np.average(ts)
-        featuremat_test[i,1] = np.std(ts)
-        featuremat_test[i,2] = np.sqrt(np.mean(ts**2))   
-        featuremat_test[i,3] = max(abs(ts))
-        featuremat_test[i,4] = skew(ts)
-        L=len(ts)
-        featuremat_test[i,5] = sum(np.power(ts-featuremat_test[i,0],4)) / ((L-1)*np.power(featuremat_test[i,1],4))
-        featuremat_test[i,6] = featuremat_test[i,3]/featuremat_test[i,2]
-        featuremat_test[i,7] = featuremat_test[i,3]/np.power((np.average(np.sqrt(abs(ts)))),2)
-        featuremat_test[i,8] = featuremat_test[i,2]/(np.average((abs(ts))))
-        featuremat_test[i,9] = featuremat_test[i,3]/(np.average((abs(ts)))) 
+    # test set feature matrix
+
     
     #%% load frequency domain features (At different levels of WPT) and combine them 
     #   with the time domain feature
