@@ -39,12 +39,12 @@ recon = WPT_Informative_Packet_Recon(data_path,list_name,WF,L,IWP,saving)
 # WPT Feature Extraction# -----------------------------------------------------
 #inputs 
 from WPT_EEMD_ML.WPT_Feature_Extraction import WPT_Feature_Extraction
-data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout'
-list_name = 'time_series_name_2inch.txt'
+data_path = 'D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\4p5inch_stickout'
+list_name = 'time_series_name_4p5inch.txt'
 WF = 'db10'
 L=4
-IWP = 3
-label_name = '2_inch_Labels_2Class.npy'
+IWP = 10
+label_name = '4p5_inch_Labels_2Class.npy'
 fs = 10000  
 # if saving is false, there is no need for additional parameters
 saving = False
@@ -74,7 +74,6 @@ saving_path = 'D:\Repositories\WPT_EEMD_ML_Machining\\test\WPT_Output'
 save_name = "Reconstructions"
 reports = WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tuning,feature_ranking,saving,saving_path,save_name)
 
-# ------------------------------------------------------------------------------
 
 # WPT 2-class classification
 import numpy as np 
@@ -87,16 +86,49 @@ plotting = False
 results = WPT_Feature_Extraction(stickout_length, WPT_Level, 
                                   Classifier, plotting)
 
+
+# ------------------------------------------------------------------------------
+
 # WPT transfer learning
-import numpy as np 
-from WPT_Transfer_Learning import WPT_Transfer_Learning
-stickout_length_training = '2'
-stickout_length_test = '4p5'
-WPT_Level=4
-Classifier='SVC'
-results = WPT_Transfer_Learning(stickout_length_training, 
-                                     stickout_length_test,
-                                    WPT_Level, Classifier)     
+
+# add data paths into a list 
+# first add the paths for training data sets ,then the ones for test cases
+# algorithm will assume the first half of the list is paths for training cases
+# and treat other half of the list as the paths for test cases.
+# This is also applicable to other variables such as wavelet functions, 
+# time series names etc.
+ 
+data_paths = []
+data_paths.append('D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout')
+data_paths.append('D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\4p5inch_stickout')
+
+list_names = []
+list_names.append('time_series_name_2inch.txt')
+list_names.append('time_series_name_4p5inch.txt')
+
+WFs = []
+WFs.append('db10')
+WFs.append('db10')
+
+Levels = []
+Levels.append(4)
+Levels.append(4)
+
+IWPs = []
+IWPs.append(3)
+IWPs.append(10)
+
+label_names = []
+label_names.append('2_inch_Labels_2Class.npy')
+label_names.append('4p5_inch_Labels_2Class.npy')
+
+samp_fs = []
+samp_fs.append(10000)
+samp_fs.append(10000)
+   
+saving = False
+
+
 
 
 # WPT transfer learning two case

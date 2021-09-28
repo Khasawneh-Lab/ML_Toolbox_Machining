@@ -83,8 +83,11 @@ def WPT_Informative_Packet_Recon(data_path,list_name,WF,L,IWP,saving, *args):
         new_wp[packet_order[IWP-1]] = wp[packet_order[IWP-1]]
         recon[i] = new_wp.reconstruct(update=False)
         # find the diff between reconstructed length and time series length
-        len_dif = len(ts[i])-len(recon[i])
-        recon[i] = recon[i][:len_dif]
+        if len(ts[i])>len(recon[i]):
+            index = len(recon[i])
+        else:
+            index = len(ts[i])
+        recon[i] = recon[i][:index]
         
         if saving:
             np.save(data_path+'\\'+args[0],recon)
