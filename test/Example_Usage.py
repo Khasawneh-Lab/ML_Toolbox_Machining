@@ -97,14 +97,16 @@ results = WPT_Feature_Extraction(stickout_length, WPT_Level,
 # and treat other half of the list as the paths for test cases.
 # This is also applicable to other variables such as wavelet functions, 
 # time series names etc.
- 
+from WPT_EEMD_ML.WPT_Transfer_Learning import WPT_Transfer_Learning
+
+
 data_paths = []
-data_paths.append('D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout')
 data_paths.append('D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\4p5inch_stickout')
+data_paths.append('D:\\Data Archive\\Cutting_Test_Data_Documented\\cutting_tests_processed\\2inch_stickout')
 
 list_names = []
-list_names.append('time_series_name_2inch.txt')
 list_names.append('time_series_name_4p5inch.txt')
+list_names.append('time_series_name_2inch.txt')
 
 WFs = []
 WFs.append('db10')
@@ -115,31 +117,25 @@ Levels.append(4)
 Levels.append(4)
 
 IWPs = []
-IWPs.append(3)
 IWPs.append(10)
+IWPs.append(3)
 
 label_names = []
-label_names.append('2_inch_Labels_2Class.npy')
 label_names.append('4p5_inch_Labels_2Class.npy')
+label_names.append('2_inch_Labels_2Class.npy')
 
 samp_fs = []
 samp_fs.append(10000)
 samp_fs.append(10000)
    
 saving = False
+param_tuning=False
+feature_ranking = False
+cv=5
+
+output = WPT_Transfer_Learning(data_paths,list_names,WFs,Levels,IWPs,label_names,samp_fs,cv,param_tuning,feature_ranking,saving)
 
 
-
-
-# WPT transfer learning two case
-from WPT_Transfer_Learning_2case import WPT_Transfer_Learning_2case
-#parameters
- 
-stickout_lengths = ['2','2p5','3p5','4p5']
-WPT_Level=4
-Classifier='SVC'
-results = WPT_Transfer_Learning_2case(stickout_lengths, 
-                                       WPT_Level, Classifier)     
 
 from EEMD_Feature_Extraction import EEMD_Feature_Extraction
  
