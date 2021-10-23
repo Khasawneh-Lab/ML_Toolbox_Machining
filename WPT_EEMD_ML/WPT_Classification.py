@@ -211,7 +211,7 @@ def WPT_Classification(data_path,list_name,label_name,WF,L,IWP,fs,cv,param_tunin
                     # paramter tuning
                     param_tune = GridSearchCV(model, params[i])
                     # use one half of the training set to tune the parameters
-                    param_tune.fit(X_train_new[:,0:m+1],y_train)
+                    param_tune.fit(X_train,y_train)
                     best_params = param_tune.best_params_
                     for key in sorted(best_params.keys()):
                         setattr(model,key,best_params[key])

@@ -96,11 +96,11 @@ def plot_results(res_path,param_tuning,feature_ranking,n_feature,methods,clsf_na
                 for j in Classifier:
                     for k in range(n_feature):
                         if param_tuning:
-                            name_test = 'WPT_CR_Test_PT_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
-                            name_train = 'WPT_CR_Train_PT_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_test = mtd+'_CR_Test_PT_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_train = mtd+'_CR_Train_PT_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
                         else:
-                            name_test = 'WPT_CR_Test_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
-                            name_train = 'WPT_CR_Train_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_test = mtd+'_CR_Test_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_train = mtd+'_CR_Train_Combn_'+str(k+1)+'_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
        
                         with open(foldersToLoad[m]+name_test, 'rb') as f:
                             cr_test[j-1,i-1,k] = pickle.load(f)
@@ -137,12 +137,12 @@ def plot_results(res_path,param_tuning,feature_ranking,n_feature,methods,clsf_na
             for i in run_number:
                 for j in Classifier:
                     if param_tuning:
-                            name_test = 'WPT_CR_Test_PT_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
-                            name_train = 'WPT_CR_Train_PT_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_test = mtd+'_CR_Test_PT_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_train = mtd+'_CR_Train_PT_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
                     else:
                         for k in range(n_feature):
-                            name_test = 'WPT_CR_Test_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
-                            name_train = 'WPT_CR_Train_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_test = mtd+'_CR_Test_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
+                            name_train = mtd+'_CR_Train_Classifier_'+str(j)+'_RunNumber_'+str(i)+'.pkl'
        
                     with open(foldersToLoad[m]+name_test, 'rb') as f:
                         cr_test[j-1,i-1] = pickle.load(f)
@@ -327,9 +327,8 @@ if __name__ == "__main__":
     layout = [1,1]
     ylabel_index = np.array([1])
     res_path = 'D:\\Repositories\\WPT_EEMD_ML_Machining\\test\\WPT_Output\\'
-    param_tuning = False
-    feature_ranking = True
+    param_tuning = True
+    feature_ranking = False
     n_feature = 14
     
-    fig = plot_results(methods,clsf_names,cv,layout,ylabel_index,res_path,param_tuning,feature_ranking,n_feature)
-    
+    fig = plot_results(res_path,param_tuning,feature_ranking,n_feature,methods,clsf_names,cv,layout,ylabel_index)

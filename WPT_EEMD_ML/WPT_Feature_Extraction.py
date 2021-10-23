@@ -56,7 +56,7 @@ def WPT_Feature_Extraction(data_path, list_name,label_name,WF,L,IWP,fs,saving,*a
    
     """
 
-    #%% Loading time series and labels of the classification
+    #%% Loading time series and labels
     start = time.time()
     
     # file path to folder where the data is kept
