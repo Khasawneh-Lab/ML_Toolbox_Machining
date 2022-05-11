@@ -84,6 +84,7 @@ def plot_results(res_path,param_tuning,feature_ranking,n_feature,methods,clsf_na
     # load the results -------------------------------------------------------
     if feature_ranking:
         
+        # generate the matrices which store the metrics for classification 
         metrics_train=np.zeros((len(run_number),len(Classifier),7,n_feature,len(methods)))
         metrics_test=np.zeros((len(run_number),len(Classifier),7,n_feature,len(methods)))
         

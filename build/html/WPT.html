@@ -1,70 +1,35 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2.1.1. Wavelet Packet Transform &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2.1.2. Ensemble Empirical Mode Decomposition (EEMD)" href="EEMD.html" />
     <link rel="prev" title="2.1. Chatter Detection Module Documentation" href="chatter_detection.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
-          
-
-          
-            
             <img src="_static/logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -72,17 +37,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">1.  Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">1.1. Requirements</a></li>
@@ -111,85 +66,45 @@
 <li class="toctree-l1"><a class="reference internal" href="citing.html">5.  Citing</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Machine learning toolbox for WPT and EEMD</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content style-external-links">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="modules.html"><span class="section-number">2. </span>Table of Contents</a> &raquo;</li>
-        
           <li><a href="chatter_detection.html"><span class="section-number">2.1. </span>Chatter Detection Module Documentation</a> &raquo;</li>
-        
       <li><span class="section-number">2.1.1. </span>Wavelet Packet Transform</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/WPT.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="wavelet-packet-transform">
-<span id="wpt"></span><h1><span class="section-number">2.1.1. </span>Wavelet Packet Transform<a class="headerlink" href="#wavelet-packet-transform" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-WPT_EEMD_ML.WP_Energy_Ratio">
-<span id="decision-making-about-informative-wavelet-packets"></span><h2><span class="section-number">2.1.1.1. </span>Decision Making about Informative Wavelet Packets<a class="headerlink" href="#module-WPT_EEMD_ML.WP_Energy_Ratio" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="wavelet-packet-transform">
+<span id="wpt"></span><h1><span class="section-number">2.1.1. </span>Wavelet Packet Transform<a class="headerlink" href="#wavelet-packet-transform" title="Permalink to this headline"></a></h1>
+<section id="module-WPT_EEMD_ML.WP_Energy_Ratio">
+<span id="decision-making-about-informative-wavelet-packets"></span><h2><span class="section-number">2.1.1.1. </span>Decision Making about Informative Wavelet Packets<a class="headerlink" href="#module-WPT_EEMD_ML.WP_Energy_Ratio" title="Permalink to this headline"></a></h2>
 <dl class="py function">
-<dt id="WPT_EEMD_ML.WP_Energy_Ratio.AbsFFT">
-<code class="sig-prename descclassname">WPT_EEMD_ML.WP_Energy_Ratio.</code><code class="sig-name descname">AbsFFT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ts</span></em>, <em class="sig-param"><span class="n">fs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#AbsFFT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.AbsFFT" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="WPT_EEMD_ML.WP_Energy_Ratio.AbsFFT">
+<span class="sig-prename descclassname"><span class="pre">WPT_EEMD_ML.WP_Energy_Ratio.</span></span><span class="sig-name descname"><span class="pre">AbsFFT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#AbsFFT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.AbsFFT" title="Permalink to this definition"></a></dt>
 <dd><p>This function computes the normaliez spectrum of the given 1D signal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>(</strong><strong>ts</strong><strong>)</strong> (<em>array</em>) – time series</p></li>
-<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – sampling frequency</p></li>
+<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<em>int</em>) – sampling frequency</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -206,22 +121,22 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="WPT_EEMD_ML.WP_Energy_Ratio.WP_Energy_Ratio">
-<code class="sig-prename descclassname">WPT_EEMD_ML.WP_Energy_Ratio.</code><code class="sig-name descname">WP_Energy_Ratio</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">list_name</span></em>, <em class="sig-param"><span class="n">ts_no</span></em>, <em class="sig-param"><span class="n">WF</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">case_no</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">plot_recon</span></em>, <em class="sig-param"><span class="n">layout</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#WP_Energy_Ratio"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.WP_Energy_Ratio" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="WPT_EEMD_ML.WP_Energy_Ratio.WP_Energy_Ratio">
+<span class="sig-prename descclassname"><span class="pre">WPT_EEMD_ML.WP_Energy_Ratio.</span></span><span class="sig-name descname"><span class="pre">WP_Energy_Ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_no</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">case_no</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_recon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#WP_Energy_Ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.WP_Energy_Ratio" title="Permalink to this definition"></a></dt>
 <dd><p>This function returns plots of energy ratios of wavelet packets, reconstructed signals of each wavelet packet and their spectrum.
 Reconstructed signals is plotted when plot_recon is set to ‘True’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong><strong>data_path</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Path to folder where list of time series names and time series data is kept</p></li>
-<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .txt file which includes names of time series data</p></li>
-<li><p><strong>(</strong><strong>ts_no</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Index of time series which user wants to investigate</p></li>
-<li><p><strong>(</strong><strong>WF</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Wavelet function (see <a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/regression/wavelet.html?highlight=wavelet%20list#wavelet-families-and-builtin-wavelets-names">types</a> of wavelet functions available in PyWavelet package)</p></li>
-<li><p><strong>(</strong><strong>L</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Transformation level</p></li>
-<li><p><strong>(</strong><strong>case_no</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Overhang distance</p></li>
-<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sampling frequency</p></li>
-<li><p><strong>(</strong><strong>plot_recon</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – It is set to ‘True’ to obtain the reconstructed signals plots</p></li>
-<li><p><strong>(</strong><strong>layout</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – Row and column numbers for the plot of reconstructed signals</p></li>
+<li><p><strong>(</strong><strong>data_path</strong><strong>)</strong> (<em>str</em>) – Path to folder where list of time series names and time series data is kept</p></li>
+<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<em>str</em>) – Name of the .txt file which includes names of time series data</p></li>
+<li><p><strong>(</strong><strong>ts_no</strong><strong>)</strong> (<em>list</em>) – Index of time series which user wants to investigate</p></li>
+<li><p><strong>(</strong><strong>WF</strong><strong>)</strong> (<em>str</em>) – Wavelet function (see <a class="reference external" href="https://pywavelets.readthedocs.io/en/latest/regression/wavelet.html?highlight=wavelet%20list#wavelet-families-and-builtin-wavelets-names">types</a> of wavelet functions available in PyWavelet package)</p></li>
+<li><p><strong>(</strong><strong>L</strong><strong>)</strong> (<em>int</em>) – Transformation level</p></li>
+<li><p><strong>(</strong><strong>case_no</strong><strong>)</strong> (<em>int</em>) – Overhang distance</p></li>
+<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<em>int</em>) – Sampling frequency</p></li>
+<li><p><strong>(</strong><strong>plot_recon</strong><strong>)</strong> (<em>bool</em>) – It is set to ‘True’ to obtain the reconstructed signals plots</p></li>
+<li><p><strong>(</strong><strong>layout</strong><strong>)</strong> (<em>list</em>) – Row and column numbers for the plot of reconstructed signals</p></li>
 </ul>
 </dd>
 </dl>
@@ -240,12 +155,12 @@ Plots of reconstructed signals and their spectrums are given in the order user s
 </dd></dl>
 
 <dl class="py function">
-<dt id="WPT_EEMD_ML.WP_Energy_Ratio.wEnergy">
-<code class="sig-prename descclassname">WPT_EEMD_ML.WP_Energy_Ratio.</code><code class="sig-name descname">wEnergy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">coeffs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#wEnergy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.wEnergy" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="WPT_EEMD_ML.WP_Energy_Ratio.wEnergy">
+<span class="sig-prename descclassname"><span class="pre">WPT_EEMD_ML.WP_Energy_Ratio.</span></span><span class="sig-name descname"><span class="pre">wEnergy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WP_Energy_Ratio.html#wEnergy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WPT_EEMD_ML.WP_Energy_Ratio.wEnergy" title="Permalink to this definition"></a></dt>
 <dd><p>This function takes wavelet coefficients and return the energy ratio of wavelet packets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>(</strong><strong>coeffs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – The list of wavelet coefficients obtained from Wavelet Packet Transform</p>
+<dd class="field-odd"><p><strong>(</strong><strong>coeffs</strong><strong>)</strong> (<em>list</em>) – The list of wavelet coefficients obtained from Wavelet Packet Transform</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>(np.array([])) The energry ratios of each wavelet packets</p>
@@ -253,9 +168,9 @@ Plots of reconstructed signals and their spectrums are given in the order user s
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="feature-extraction-and-supervised-classification-using-wpt">
-<h2><span class="section-number">2.1.1.2. </span>Feature extraction and supervised classification using WPT<a class="headerlink" href="#feature-extraction-and-supervised-classification-using-wpt" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="feature-extraction-and-supervised-classification-using-wpt">
+<h2><span class="section-number">2.1.1.2. </span>Feature extraction and supervised classification using WPT<a class="headerlink" href="#feature-extraction-and-supervised-classification-using-wpt" title="Permalink to this headline"></a></h2>
 <p>This algorithm takes time series for turning experiments as input and it generates the feature matrix based on specified WPT level.
 The reconstructed Wavelet packets and corresponding frequency domain feature matrices should be computed before running this algorithm. Please see the instructions for Matlab functions on this
 documentation before using this algorithm.
@@ -265,18 +180,18 @@ Algorithm performs the classfication with chosen algorithm and provides results 
 It plots the mean accuracies and deviations for test and training set with respect to number of features used in classification, if user enables plotting option of the algorithm.
 It also prints the total elapsed time.</p>
 <span class="target" id="module-WPT_EEMD_ML.WPT_Feature_Extraction"></span><dl class="py function">
-<dt id="WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction">
-<code class="sig-prename descclassname">WPT_EEMD_ML.WPT_Feature_Extraction.</code><code class="sig-name descname">WPT_Feature_Extraction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_path</span></em>, <em class="sig-param"><span class="n">list_name</span></em>, <em class="sig-param"><span class="n">label_name</span></em>, <em class="sig-param"><span class="n">WF</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">IWP</span></em>, <em class="sig-param"><span class="n">fs</span></em>, <em class="sig-param"><span class="n">saving</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WPT_Feature_Extraction.html#WPT_Feature_Extraction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction">
+<span class="sig-prename descclassname"><span class="pre">WPT_EEMD_ML.WPT_Feature_Extraction.</span></span><span class="sig-name descname"><span class="pre">WPT_Feature_Extraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IWP</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saving</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WPT_Feature_Extraction.html#WPT_Feature_Extraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#WPT_EEMD_ML.WPT_Feature_Extraction.WPT_Feature_Extraction" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong><strong>data_path</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – The path where user keeps the data set</p></li>
-<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .txt file that includes the names of time series data</p></li>
-<li><p><strong>(</strong><strong>label_name</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Name of the .npy file that includes labels of the time series</p></li>
-<li><p><strong>(</strong><strong>WF</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Wavelet function</p></li>
-<li><p><strong>(</strong><strong>L</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Level of the transform which will be applied to data set</p></li>
-<li><p><strong>(</strong><strong>IWP</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Informative Wavelet Packet number</p></li>
-<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Sampling frequency of the data set</p></li>
+<li><p><strong>(</strong><strong>data_path</strong><strong>)</strong> (<em>str</em>) – The path where user keeps the data set</p></li>
+<li><p><strong>(</strong><strong>list_name</strong><strong>)</strong> (<em>str</em>) – Name of the .txt file that includes the names of time series data</p></li>
+<li><p><strong>(</strong><strong>label_name</strong><strong>)</strong> (<em>str</em>) – Name of the .npy file that includes labels of the time series</p></li>
+<li><p><strong>(</strong><strong>WF</strong><strong>)</strong> (<em>str</em>) – Wavelet function</p></li>
+<li><p><strong>(</strong><strong>L</strong><strong>)</strong> (<em>int</em>) – Level of the transform which will be applied to data set</p></li>
+<li><p><strong>(</strong><strong>IWP</strong><strong>)</strong> (<em>int</em>) – Informative Wavelet Packet number</p></li>
+<li><p><strong>(</strong><strong>fs</strong><strong>)</strong> (<em>int</em>) – Sampling frequency of the data set</p></li>
 <li><p><strong>(</strong><strong>saving</strong><strong>)</strong> (<em>boolean</em>) – Set it to true if you want to save reconstructed signals</p></li>
 </ul>
 </dd>
@@ -314,221 +229,65 @@ It also prints the total elapsed time.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="transfer-learning-application-using-wpt">
-<h2><span class="section-number">2.1.1.3. </span>Transfer Learning Application Using WPT<a class="headerlink" href="#transfer-learning-application-using-wpt" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="transfer-learning-application-using-wpt">
+<h2><span class="section-number">2.1.1.3. </span>Transfer Learning Application Using WPT<a class="headerlink" href="#transfer-learning-application-using-wpt" title="Permalink to this headline"></a></h2>
 <p>This function uses transfer learning principles to transfer the knowledge obtained from one cutting configuration to another one.
 It assumes that the reconstructed Wavelet packets and frequency domain features are available an they are in the same folder with the data files.
 It computes feature matrices for training and test set and performs the classification with chosen algorithm.
 It returns the results in an array. It also prints the total elapsed time.</p>
-<span class="target" id="module-WPT_EEMD_ML.WPT_Transfer_Learning"></span><dl class="py function">
-<dt id="WPT_EEMD_ML.WPT_Transfer_Learning.WPT_Transfer_Learning">
-<code class="sig-prename descclassname">WPT_EEMD_ML.WPT_Transfer_Learning.</code><code class="sig-name descname">WPT_Transfer_Learning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stickout_length_training</span></em>, <em class="sig-param"><span class="n">stickout_length_test</span></em>, <em class="sig-param"><span class="n">WPT_Level</span></em>, <em class="sig-param"><span class="n">Classifier</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/WPT_EEMD_ML/WPT_Transfer_Learning.html#WPT_Transfer_Learning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#WPT_EEMD_ML.WPT_Transfer_Learning.WPT_Transfer_Learning" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>(</strong><strong>stickout_length_training</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Stickout length for the training data set</p>
-<ul>
-<li><p>if stickout length is 2 inch, ‘2’</p></li>
-<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
-<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
-<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
-</ul>
-</p></li>
-<li><p><strong>(</strong><strong>stickout_length_test</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <p>Stickout length for the test data set</p>
-<ul>
-<li><p>if stickout length is 2 inch, ‘2’</p></li>
-<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
-<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
-<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
-</ul>
-</p></li>
-<li><p><strong>(</strong><strong>WPT_Level</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Level of Wavelet Packet Decomposition</p></li>
-<li><p><strong>(</strong><strong>Classifier</strong><strong>)</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – <blockquote>
-<div><p>Classifier defined by user</p>
-</div></blockquote>
-<ul>
-<li><p>Support Vector Machine: ‘SVC’</p></li>
-<li><p>Logistic Regression: ‘LR’</p></li>
-<li><p>Random Forest Classification: ‘RF’</p></li>
-<li><p>Gradient Boosting: ‘GB’</p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="field-list simple">
-<dt class="field-odd">results</dt>
-<dd class="field-odd"><p>(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
-<ul class="simple">
-<li><p>first column: mean accuracies for training set</p></li>
-<li><p>second column: deviation for training set accuracies</p></li>
-<li><p>third column: mean accuracies for test set</p></li>
-<li><p>fourth column: deviation for test set accuracies</p></li>
-</ul>
-</dd>
-<dt class="field-even">time</dt>
-<dd class="field-even"><p>(str) Elapsed time during feature matrix generation and classification</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">WPT_Transfer_Learning</span> <span class="kn">import</span> <span class="n">WPT_Transfer_Learning</span>
-
-<span class="go">#parameters</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_length_training</span> <span class="o">=</span> <span class="s1">&#39;2&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_length_test</span> <span class="o">=</span> <span class="s1">&#39;4p5&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">WPT_Level</span><span class="o">=</span><span class="mi">4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Classifier</span><span class="o">=</span><span class="s1">&#39;SVC&#39;</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">WPT_Transfer_Learning</span><span class="p">(</span><span class="n">stickout_length_training</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>                                    <span class="n">stickout_length_test</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>                                   <span class="n">WPT_Level</span><span class="p">,</span> <span class="n">Classifier</span><span class="p">)</span>
-<span class="go">Enter the path of training set data files:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_2inch_stickout</span>
-<span class="go">Enter the path of test set data files:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_4p5inch_stickout</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-<div class="section" id="transfer-learning-on-two-cases-using-wpt">
-<h2><span class="section-number">2.1.1.4. </span>Transfer Learning On Two Cases Using WPT<a class="headerlink" href="#transfer-learning-on-two-cases-using-wpt" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-WPT_EEMD_ML.WPT_Transfer_Learning"></span></section>
+<section id="transfer-learning-on-two-cases-using-wpt">
+<h2><span class="section-number">2.1.1.4. </span>Transfer Learning On Two Cases Using WPT<a class="headerlink" href="#transfer-learning-on-two-cases-using-wpt" title="Permalink to this headline"></a></h2>
 <p>This fuction implement transfer learning by training a classifier on two different
 data sets and testing it on remaining two different data sets. Stickout lengths of
 each data set should be determined by user. It asks for file paths to training and test set files.
 It assumes that reconstructed wavelet packets and frequency domain features are available in the specified data file folder.
 Algorithm performs classfication based on chosen classifier and returns the results in an array.
 It also prints the total elapsed time.</p>
-<span class="target" id="module-WPT_EEMD_ML.WPT_Transfer_Learning_2case.WPT_Transfer_Learning_2case"></span><dl class="field-list">
-<dt class="field-odd">param str (stickout_lengths)</dt>
-<dd class="field-odd"><p>Stickout length for the training and test set in a np.array([]) format.First two stickout length are considered as training set data and the remaining ones are test set data.</p>
-<ul class="simple">
-<li><p>if stickout length is 2 inch, ‘2’</p></li>
-<li><p>if stickout length is 2.5 inch, ‘2p5’</p></li>
-<li><p>if stickout length is 3.5 inch, ‘3p5’</p></li>
-<li><p>if stickout length is 4.5 inch, ‘4p5’</p></li>
-</ul>
-</dd>
-<dt class="field-even">param int (WPT_Level)</dt>
-<dd class="field-even"><p>Level of Wavelet Packet Decomposition</p>
-</dd>
-<dt class="field-odd">param str (Classifier)</dt>
-<dd class="field-odd"><blockquote>
-<div><p>Classifier defined by user</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>Support Vector Machine: ‘SVC’</p></li>
-<li><p>Logistic Regression: ‘LR’</p></li>
-<li><p>Random Forest Classification: ‘RF’</p></li>
-<li><p>Gradient Boosting: ‘GB’</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="field-list simple">
-<dt class="field-odd">results</dt>
-<dd class="field-odd"><p>(np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</p>
-<ul class="simple">
-<li><p>first column: mean accuracies for training set</p></li>
-<li><p>second column: deviation for training set accuracies</p></li>
-<li><p>third column: mean accuracies for test set</p></li>
-<li><p>fourth column: deviation for test set accuracies</p></li>
-</ul>
-</dd>
-<dt class="field-even">time</dt>
-<dd class="field-even"><p>(str) Elapsed time during feature matrix generation and classification</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-odd">Example</dt>
-<dd class="field-odd"><div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">WPT_Transfer_Learning_2case</span> <span class="kn">import</span> <span class="n">WPT_Transfer_Learning_2case</span>
-
-<span class="go">#parameters</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">stickout_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;2p5&#39;</span><span class="p">,</span><span class="s1">&#39;3p5&#39;</span><span class="p">,</span><span class="s1">&#39;4p5&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">WPT_Level</span><span class="o">=</span><span class="mi">4</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Classifier</span><span class="o">=</span><span class="s1">&#39;SVC&#39;</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">WPT_Transfer_Learning_2case</span><span class="p">(</span><span class="n">stickout_lengths</span><span class="p">,</span>
-<span class="gp">&gt;&gt;&gt; </span>                                      <span class="n">WPT_Level</span><span class="p">,</span> <span class="n">Classifier</span><span class="p">)</span>
-<span class="go">Enter the path of first training set data files:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_2inch_stickout</span>
-<span class="go">Enter the path of second training set data files:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_2p5inch_stickout</span>
-<span class="go">Enter the path of first test set data files:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_3p5inch_stickout</span>
-<span class="go">Enter the path of second test set data files:</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">D</span>\<span class="o">...</span>\<span class="n">cutting_tests_processed</span>\<span class="n">data_4p5inch_stickout</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="EEMD.html" class="btn btn-neutral float-right" title="2.1.2. Ensemble Empirical Mode Decomposition (EEMD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="chatter_detection.html" class="btn btn-neutral float-left" title="2.1. Chatter Detection Module Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chatter_detection.html" class="btn btn-neutral float-left" title="2.1. Chatter Detection Module Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EEMD.html" class="btn btn-neutral float-right" title="2.1.2. Ensemble Empirical Mode Decomposition (EEMD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto
-
-    </p>
+    <p>&#169; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-1"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-XXXXXXX-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-XXXXXXX-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

@@ -12,7 +12,9 @@ from sklearn.metrics import classification_report
 
 def EEEMD_Classification(feature_mat,cv, labels,param_tuning, feature_ranking, saving, *args):
     """
-    
+    Thsi function performs time series classification based on provided feature matrix.
+    User is able to choose the option for tuning parameters or feature ranking by setting the 
+    corresponding parameters. Classifications are performed using cross validation.
 
     Parameters
     ----------

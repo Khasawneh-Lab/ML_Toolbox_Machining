@@ -1,12 +1,8 @@
 """
-Feature extraction and supervised classification using EEMD 
------------------------------------------------------------
+Feature extraction using Ensemble Empirical Mode Decomposition 
+--------------------------------------------------------------
 
-This function takes time series for turning cutting tests as inputs.
-It ask user to enter the file paths for the data files. If user specify that the decompositions for EEMD have already been computed, algorithm will ask user to enter the file paths for the decompositions.
-Otherwise, it will compute the IMFs and ask users to enter the file paths where they want to save these decompositions.
-Based on given stickout length cases and corresponding informative IMF numbers, it will generate the feature matrix and perform the classification with specified classification algorithm by user.
-It returns the results in an array and prints the total elapsed time.
+
 
 """
 import time
@@ -20,7 +16,26 @@ from scipy.stats import skew
 
 
 def preprocess_chatter_data(data_path,list_name):
-    
+    """
+    This function is specifally designed for the chatter data set where we have 
+    long time series whose IMF computation takes longer. 
+    This function split the time series into small pieces to reduce the computation time. 
+
+    Parameters
+    ----------
+    data_path : str
+        The path to data files.
+    list_name : str
+        The name of the txt file that contains the list of names of time series. 
+
+    Returns
+    -------
+    split_data : Object Array
+        Object array that includes the split data 
+    split_labels : ndarray
+        2D array which contains the labels of the split data
+
+    """
     # file path to folder where the data is kept
     file_path = data_path+'\\'+list_name
 
@@ -88,8 +103,35 @@ def preprocess_chatter_data(data_path,list_name):
 
 def EEMD_IMF_Compute(data_path,list_name, EEMDecs, saving, *args):
     """
-    
-          
+    This function takes set of time series and compute their IMFs. If time series
+    data contains large samples, it uses the preprocessing function to reduce the 
+    computation time. Resulting split time series is used to compute IMFs
+
+    Parameters
+    ----------
+    data_path : str
+        The path to data files.
+    list_name : str
+        The name of the txt file that contains the list of names of time series. 
+    EEMDecs : str
+        The parameter that defines if the IMFs are precomputed or not. It is set to 
+        "A" if the IMFs for the current data set is available. It is set to "NA", if IMFs 
+        are not computed yet.
+    saving : Boolean
+        If user wants to save the decomposition for the data set, this parameter  is set to 
+        True. 
+    *args : 
+        saving_path: str
+            The path to save the decomposition. This parameter is only needed when saving is 
+            set to True.
+
+    Returns
+    -------
+    infoEMF : object array
+        Object array that includes decomposition for each split time series.
+    split_labels : ndarray
+        2D array that includes the labels of the split time series.
+
     """
 
     # split the data into small chunks to reduce time to compute IMFs
@@ -131,7 +173,22 @@ def EEMD_IMF_Compute(data_path,list_name, EEMDecs, saving, *args):
     return infoEMF,split_labels
     
 def EEMD_Feature_Compute(infoEMF,p):
-    
+    """
+    This function computes the features for selected IMF of each time series.
+
+    Parameters
+    ----------
+    infoEMF : object array
+        Object array that includes the IMFs for each time series.
+    p : int
+        The informative IMF number.
+
+    Returns
+    -------
+    features : ndarray
+        Feature matrix
+
+    """
     features = np.zeros((len(infoEMF),7))
     
     for i in range(0,len(infoEMF)):

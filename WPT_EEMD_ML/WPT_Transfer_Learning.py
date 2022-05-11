@@ -19,8 +19,42 @@ from WPT_EEMD_ML.WPT_Feature_Extraction import WPT_Feature_Extraction
 
 #%% Transfer learning application which trains on one dataset and test on another one
     
-def WPT_Transfer_Learning(data_paths,list_names,WFs,Levels,IWPs,label_names,samp_fs,cv,param_tuning,feature_ranking,saving):
+def WPT_Transfer_Learning(data_paths,list_names,WFs,Levels,IWPs,label_names,samp_fs,cv,param_tuning,feature_ranking,saving,*args):
+    """
+    
 
+    Parameters
+    ----------
+    data_paths : list
+        The list that contains the file directory where the experimental signals are stored. Algorithm will assume the first half of the paths provided in the list as the training set while the rest will be considered as the test set.
+    list_names : list
+        The name of the txt files that contain the name of the data files for each case of cutting configurations.
+    WFs : list
+        The list of type of mother wavelet functions used in the analysis.
+    Levels : list
+        
+    IWPs : TYPE
+        DESCRIPTION.
+    label_names : TYPE
+        DESCRIPTION.
+    samp_fs : TYPE
+        DESCRIPTION.
+    cv : TYPE
+        DESCRIPTION.
+    param_tuning : TYPE
+        DESCRIPTION.
+    feature_ranking : TYPE
+        DESCRIPTION.
+    saving : TYPE
+        DESCRIPTION.
+    *args : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
     # get the path to data files from user
     start = time.time()
     
@@ -183,6 +217,7 @@ def WPT_Transfer_Learning(data_paths,list_names,WFs,Levels,IWPs,label_names,samp
                     clas_rep_train[m,k,i] = cr_train
                     
                     if saving:
+                        saving_path = args[0]
                         if param_tuning:
                             save_name = 'WPT_CR_Test_PT_Combn_'+str(m+1)+'_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                             
@@ -234,6 +269,7 @@ def WPT_Transfer_Learning(data_paths,list_names,WFs,Levels,IWPs,label_names,samp
                 
                 
                 if saving:
+                    saving_path = args[0]
                     if param_tuning:
                         save_name = 'WPT_CR_Test_PT_Classifier_'+str(i+1)+'_RunNumber_'+str(k+1)
                         

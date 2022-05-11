@@ -46,6 +46,7 @@ extensions = ['sphinx.ext.autodoc',
               'sphinxcontrib.bibtex',]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+bibtex_bibfiles = ['references.bib']
 exclude_patterns = []
 
 
