@@ -8,5 +8,3 @@ Ensemble Empirical Mode Decomposition (EEMD)
     :members:
 .. automodule:: WPT_EEMD_ML.EEMD_Transfer_Learning
     :members:
-.. automodule:: WPT_EEMD_ML.EEMD_Transfer_Learning_2case
-    :members:

@@ -16,7 +16,39 @@ from WPT_EEMD_ML.EEMD_Feature_Extraction import EEMD_IMF_Compute,EEMD_Feature_Co
 # Transfer learning application which trains on one dataset and test on another one
     
 def EEMD_Transfer_Learning(data_paths,list_names,Decomps, info_IMFs, cv,param_tuning,feature_ranking,saving,*args):
+    """
+    
 
+    Parameters
+    ----------
+    data_paths : list
+        The list that contains the file directory where the experimental signals are stored. Algorithm will assume the first half of the paths provided in the list as the training set while the rest will be considered as the test set. This is also the same other inputs whose type is list.
+    list_names : list
+        The name of the txt files that contain the name of the data files for each case of cutting configurations.
+    Decomps : list
+        The list that includes the strings which represent whether the IMFs are computed for training and test sets. 'NA' means that IMFs for the corresponding data set is not available, while 'A' means available.
+    info_IMFs : list
+        The list of informative IMF numbers
+    cv : int
+        k-fold cross-validation.
+    param_tuning : Boolean
+        Set it to True if you would like tune hyperparameters of the classifiers
+    feature_ranking : Boolean
+        Set it to True if you would like to rank the features using RFE
+    saving : boolean
+        Set it to True if you would like to save the results
+    *args : str
+        Provide the path where the results will be saved using if the saving is set to True
+
+
+    Returns
+    -------
+    clas_rep_test : dict
+        Report of the classification results for test set.
+    clas_rep_train : dict
+        Report of the classification results for train set.
+
+    """
     # get the path to data files from user
     start = time.time()
     

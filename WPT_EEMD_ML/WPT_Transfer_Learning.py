@@ -26,33 +26,34 @@ def WPT_Transfer_Learning(data_paths,list_names,WFs,Levels,IWPs,label_names,samp
     Parameters
     ----------
     data_paths : list
-        The list that contains the file directory where the experimental signals are stored. Algorithm will assume the first half of the paths provided in the list as the training set while the rest will be considered as the test set.
+        The list that contains the file directory where the experimental signals are stored. Algorithm will assume the first half of the paths provided in the list as the training set while the rest will be considered as the test set. This is also the same other inputs whose type is list.
     list_names : list
         The name of the txt files that contain the name of the data files for each case of cutting configurations.
     WFs : list
         The list of type of mother wavelet functions used in the analysis.
     Levels : list
-        
-    IWPs : TYPE
-        DESCRIPTION.
-    label_names : TYPE
-        DESCRIPTION.
-    samp_fs : TYPE
-        DESCRIPTION.
-    cv : TYPE
-        DESCRIPTION.
-    param_tuning : TYPE
-        DESCRIPTION.
-    feature_ranking : TYPE
-        DESCRIPTION.
-    saving : TYPE
-        DESCRIPTION.
-    *args : TYPE
-        DESCRIPTION.
+        The level of transform selected for the WPT.
+    IWPs : list
+        The lsit of informative wavelet packets
+    label_names : list
+        The list that contains the file names of the labels for training and test set.
+    samp_fs : list
+        Sampling frequency of the signals in training and test set
+    cv : int
+        K-fold cross-validation
+    param_tuning : Boolean
+        Set it to True if you would like tune hyperparameters of the classifiers
+    feature_ranking : Boolean
+        Set it to True if you would like to rank the features using RFE
+    saving : boolean
+        Set it to True if you would like to save the results
+    *args : str
+        Provide the path where the results will be saved using if the saving is set to True
 
     Returns
     -------
-    None.
+        
+        Returns the classification reports for training and test sets.
 
     """
     # get the path to data files from user

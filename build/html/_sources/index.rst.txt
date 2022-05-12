@@ -4,11 +4,9 @@ Machine learning toolbox for Machining
 .. toctree::
   :numbered:	
 
-   Getting Started <installation.rst>
    Modules <modules.rst>
    Contributing <contributing.rst>
    License <license.rst>
-   Citing <citing.rst>
 
 References
 ==========
@@ -22,4 +20,4 @@ References
 
 Contact Information
 ********************
-Melih Can Yesilli: yesillim@egr.msu.edu
+Melih Can Yesilli: yesillim@msu.edu

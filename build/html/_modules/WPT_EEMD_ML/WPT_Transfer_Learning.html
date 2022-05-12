@@ -1,68 +1,32 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WPT_EEMD_ML.WPT_Transfer_Learning &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: white" >
-          
-
-          
             <a href="../../index.html" class="icon icon-home"> Machine learning toolbox for WPT and EEMD
-          
-
-          
-            
             <img src="../../_static/logo.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -70,17 +34,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">1.  Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../installation.html#requirements">1.1. Requirements</a></li>
@@ -109,409 +63,372 @@
 <li class="toctree-l1"><a class="reference internal" href="../../citing.html">5.  Citing</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Machine learning toolbox for WPT and EEMD</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content style-external-links">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Module code</a> &raquo;</li>
-        
       <li>WPT_EEMD_ML.WPT_Transfer_Learning</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <h1>Source code for WPT_EEMD_ML.WPT_Transfer_Learning</h1><div class="highlight"><pre>
 <span></span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.io</span> <span class="k">as</span> <span class="nn">sio</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">skew</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFE</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingClassifier</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;family&#39;</span><span class="p">:</span><span class="s1">&#39;serif&#39;</span><span class="p">,</span><span class="s1">&#39;serif&#39;</span><span class="p">:[</span><span class="s1">&#39;Palatino&#39;</span><span class="p">]})</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WPT_Feature_Extraction</span> <span class="kn">import</span> <span class="n">WPT_Feature_Extraction</span>
 
 
 <span class="c1">#%% Transfer learning application which trains on one dataset and test on another one</span>
     
-<div class="viewcode-block" id="WPT_Transfer_Learning"><a class="viewcode-back" href="../../WPT.html#WPT_EEMD_ML.WPT_Transfer_Learning.WPT_Transfer_Learning">[docs]</a><span class="k">def</span> <span class="nf">WPT_Transfer_Learning</span><span class="p">(</span><span class="n">stickout_length_training</span><span class="p">,</span> <span class="n">stickout_length_test</span><span class="p">,</span> <span class="n">WPT_Level</span><span class="p">,</span> <span class="n">Classifier</span><span class="p">):</span>
+<div class="viewcode-block" id="WPT_Transfer_Learning"><a class="viewcode-back" href="../../WPT.html#WPT_EEMD_ML.WPT_Transfer_Learning.WPT_Transfer_Learning">[docs]</a><span class="k">def</span> <span class="nf">WPT_Transfer_Learning</span><span class="p">(</span><span class="n">data_paths</span><span class="p">,</span><span class="n">list_names</span><span class="p">,</span><span class="n">WFs</span><span class="p">,</span><span class="n">Levels</span><span class="p">,</span><span class="n">IWPs</span><span class="p">,</span><span class="n">label_names</span><span class="p">,</span><span class="n">samp_fs</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">saving</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    :param str (stickout_length_training): </span>
-<span class="sd">       Stickout length for the training data set </span>
-<span class="sd">       </span>
-<span class="sd">       * if stickout length is 2 inch, &#39;2&#39;</span>
-<span class="sd">       * if stickout length is 2.5 inch, &#39;2p5&#39;</span>
-<span class="sd">       * if stickout length is 3.5 inch, &#39;3p5&#39;</span>
-<span class="sd">       * if stickout length is 4.5 inch, &#39;4p5&#39;</span>
-<span class="sd">     </span>
-<span class="sd">    :param str (stickout_length_test): </span>
-<span class="sd">       Stickout length for the test data set</span>
+<span class="sd">    </span>
 
-<span class="sd">       * if stickout length is 2 inch, &#39;2&#39;</span>
-<span class="sd">       * if stickout length is 2.5 inch, &#39;2p5&#39;</span>
-<span class="sd">       * if stickout length is 3.5 inch, &#39;3p5&#39;</span>
-<span class="sd">       * if stickout length is 4.5 inch, &#39;4p5&#39;</span>
-<span class="sd">    </span>
-<span class="sd">    :param int (WPT_Level): </span>
-<span class="sd">        Level of Wavelet Packet Decomposition</span>
-<span class="sd">    </span>
-<span class="sd">    :param str (Classifier): </span>
-<span class="sd">        Classifier defined by user</span>
-<span class="sd">       </span>
-<span class="sd">       * Support Vector Machine: &#39;SVC&#39;</span>
-<span class="sd">       * Logistic Regression: &#39;LR&#39;</span>
-<span class="sd">       * Random Forest Classification: &#39;RF&#39;</span>
-<span class="sd">       * Gradient Boosting: &#39;GB&#39;</span>
-<span class="sd">    </span>
-<span class="sd">    :Returns:</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_paths : list</span>
+<span class="sd">        The list that contains the file directory where the experimental signals are stored. Algorithm will assume the first half of the paths provided in the list as the training set while the rest will be considered as the test set. This is also the same other inputs whose type is list.</span>
+<span class="sd">    list_names : list</span>
+<span class="sd">        The name of the txt files that contain the name of the data files for each case of cutting configurations.</span>
+<span class="sd">    WFs : list</span>
+<span class="sd">        The list of type of mother wavelet functions used in the analysis.</span>
+<span class="sd">    Levels : list</span>
+<span class="sd">        The level of transform selected for the WPT.</span>
+<span class="sd">    IWPs : list</span>
+<span class="sd">        The lsit of informative wavelet packets</span>
+<span class="sd">    label_names : list</span>
+<span class="sd">        The list that contains the file names of the labels for training and test set.</span>
+<span class="sd">    samp_fs : list</span>
+<span class="sd">        Sampling frequency of the signals in training and test set</span>
+<span class="sd">    cv : int</span>
+<span class="sd">        K-fold cross-validation</span>
+<span class="sd">    param_tuning : Boolean</span>
+<span class="sd">        Set it to True if you would like tune hyperparameters of the classifiers</span>
+<span class="sd">    feature_ranking : Boolean</span>
+<span class="sd">        Set it to True if you would like to rank the features using RFE</span>
+<span class="sd">    saving : boolean</span>
+<span class="sd">        Set it to True if you would like to save the results</span>
+<span class="sd">    *args : str</span>
+<span class="sd">        Provide the path where the results will be saved using if the saving is set to True</span>
 
-<span class="sd">        :results:</span>
-<span class="sd">            (np.array([])) Classification results for training and test set for all combination of ranked features and devition for both set.</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">        </span>
-<span class="sd">            * first column: mean accuracies for training set</span>
-<span class="sd">            * second column: deviation for training set accuracies</span>
-<span class="sd">            * third column: mean accuracies for test set</span>
-<span class="sd">            * fourth column: deviation for test set accuracies</span>
-<span class="sd">        </span>
-<span class="sd">        :time:</span>
-<span class="sd">            (str) Elapsed time during feature matrix generation and classification</span>
-<span class="sd">    </span>
-<span class="sd">    :Example:</span>
-<span class="sd">    </span>
-<span class="sd">        .. doctest::</span>
-<span class="sd">                       </span>
-<span class="sd">           &gt;&gt;&gt; from WPT_Transfer_Learning import WPT_Transfer_Learning</span>
-<span class="sd">          </span>
-<span class="sd">           #parameters</span>
-<span class="sd">            </span>
-<span class="sd">           &gt;&gt;&gt; stickout_length_training = &#39;2&#39;</span>
-<span class="sd">           &gt;&gt;&gt; stickout_length_test = &#39;4p5&#39;</span>
-<span class="sd">           &gt;&gt;&gt; WPT_Level=4</span>
-<span class="sd">           &gt;&gt;&gt; Classifier=&#39;SVC&#39;</span>
-<span class="sd">         </span>
-<span class="sd">           &gt;&gt;&gt; results = WPT_Transfer_Learning(stickout_length_training, </span>
-<span class="sd">           &gt;&gt;&gt;                                     stickout_length_test,</span>
-<span class="sd">           &gt;&gt;&gt;                                    WPT_Level, Classifier)     </span>
-<span class="sd">           Enter the path of training set data files:</span>
-<span class="sd">           &gt;&gt;&gt; D\...\cutting_tests_processed\data_2inch_stickout</span>
-<span class="sd">           Enter the path of test set data files:</span>
-<span class="sd">           &gt;&gt;&gt; D\...\cutting_tests_processed\data_4p5inch_stickout</span>
+<span class="sd">        Returns the classification reports for training and test sets.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#%% get the path to data files from user</span>
+    <span class="c1"># get the path to data files from user</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     
-    <span class="n">user_input_train</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the path of training set data files: &quot;</span><span class="p">)</span>
+    <span class="n">feature_training</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+    <span class="n">feature_test</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">14</span><span class="p">))</span>
+    <span class="n">label_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>
+    <span class="n">label_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>
     
-    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">user_input_train</span><span class="p">),</span> <span class="s2">&quot;Specified file does not exist at, &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">user_input_train</span><span class="p">)</span>
-    
-    <span class="n">user_input_test</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter the path of test set data files: &quot;</span><span class="p">)</span>
-    
-    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">user_input_test</span><span class="p">),</span> <span class="s2">&quot;Specified file does not exist at, &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">user_input_test</span><span class="p">)</span>
-    
-    
-    <span class="n">folderToLoad1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">user_input_train</span><span class="p">)</span>
-    <span class="n">folderToLoad2</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">user_input_test</span><span class="p">)</span>
-    
-    <span class="c1">#%% start timer</span>
-    <span class="n">start2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_paths</span><span class="p">):</span>
+        <span class="c1"># compute feature matrices for training and testing cases</span>
+        <span class="n">list_name</span> <span class="o">=</span> <span class="n">list_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">WF</span> <span class="o">=</span> <span class="n">WFs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">Levels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">IWP</span> <span class="o">=</span> <span class="n">IWPs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">label_name</span> <span class="o">=</span> <span class="n">label_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">fs</span> <span class="o">=</span> <span class="n">samp_fs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
         
-    <span class="c1">#%% Loading time series and labels of the classification</span>
+        <span class="n">feature_mat</span><span class="p">,</span><span class="n">labels</span> <span class="o">=</span> <span class="n">WPT_Feature_Extraction</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">list_name</span><span class="p">,</span><span class="n">label_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">saving</span><span class="p">)</span>
+       
+        <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="nb">len</span><span class="p">(</span><span class="n">data_paths</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">feature_training</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature_training</span><span class="p">,</span><span class="n">feature_mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">label_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_train</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">feature_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature_test</span><span class="p">,</span><span class="n">feature_mat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">label_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_test</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>           
+    
+    <span class="n">feature_training</span> <span class="o">=</span> <span class="n">feature_training</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">feature_test</span> <span class="o">=</span> <span class="n">feature_test</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">label_train</span> <span class="o">=</span> <span class="n">label_train</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">label_test</span> <span class="o">=</span> <span class="n">label_test</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    
+    
+    <span class="c1"># Classification ---------------------------------------------------------</span>
+    
+    
+    <span class="n">target_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Chatter&#39;</span><span class="p">,</span> <span class="s1">&#39;Stable&#39;</span><span class="p">]</span>
+    
+    
+    <span class="c1"># make a list of the parameters to tune</span>
+    <span class="k">if</span> <span class="n">param_tuning</span><span class="p">:</span>
+        <span class="c1"># set ranges for the hyperparameters of the classifiers</span>
+        <span class="n">gamma_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">lambda_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">max_depth_range</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">n_estimators_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">n_estimators_range</span> <span class="o">=</span> <span class="n">n_estimators_range</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
         
-    <span class="c1">#training set data files-------------------------------------------------------</span>
-    <span class="c1"># import the list including the name of the time series of the chosen case</span>
-    <span class="n">file_name_training</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_&#39;</span><span class="o">+</span><span class="n">stickout_length_training</span><span class="o">+</span><span class="s1">&#39;inch.txt&#39;</span>
-    <span class="n">file_path_training</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad1</span><span class="p">,</span> <span class="n">file_name_training</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path_training</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># the list that contains the paramters to tune for each classifier</span>
+        <span class="k">if</span> <span class="n">feature_ranking</span><span class="p">:</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:[</span><span class="s1">&#39;linear&#39;</span><span class="p">],</span><span class="s1">&#39;gamma&#39;</span><span class="p">:</span><span class="n">gamma_range</span><span class="p">})</span> <span class="c1"># SVM paramters</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="n">lambda_range</span><span class="p">,</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">),</span><span class="s1">&#39;gamma&#39;</span><span class="p">:</span><span class="n">gamma_range</span><span class="p">})</span> <span class="c1"># SVM paramters</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;solver&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;newton-cg&#39;</span><span class="p">,</span> <span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="s1">&#39;liblinear&#39;</span><span class="p">,</span> <span class="s1">&#39;sag&#39;</span><span class="p">,</span> <span class="s1">&#39;saga&#39;</span><span class="p">)})</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;criterion&#39;</span><span class="p">:(</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="s1">&#39;entropy&#39;</span><span class="p">),</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span><span class="n">n_estimators_range</span><span class="p">,</span><span class="s1">&#39;max_depth&#39;</span><span class="p">:</span><span class="n">max_depth_range</span><span class="p">})</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span><span class="n">n_estimators_range</span><span class="p">,</span><span class="s1">&#39;criterion&#39;</span><span class="p">:(</span><span class="s1">&#39;friedman_mse&#39;</span><span class="p">,</span> <span class="s1">&#39;mse&#39;</span><span class="p">)})</span>
     
-    <span class="c1">#save the time series name into a list</span>
-    <span class="n">namets_training</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">namets_training</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         
-    <span class="c1">#import the classification labels</span>
-    <span class="n">label_file_name</span> <span class="o">=</span> <span class="n">stickout_length_training</span><span class="o">+</span><span class="s1">&#39;_inch_Labels_2Class.npy&#39;</span>
-    <span class="n">file_path1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad1</span><span class="p">,</span> <span class="n">label_file_name</span><span class="p">)</span>
-    <span class="n">label_training</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path1</span><span class="p">)</span>
     
-    <span class="c1">#test set data files-----------------------------------------------------------</span>
-    <span class="c1"># import the list including the name of the time series of the chosen case</span>
-    <span class="n">file_name_test</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_&#39;</span><span class="o">+</span><span class="n">stickout_length_test</span><span class="o">+</span><span class="s1">&#39;inch.txt&#39;</span>
-    <span class="n">file_path_test</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad2</span><span class="p">,</span> <span class="n">file_name_test</span><span class="p">)</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path_test</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">newline</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="c1"># list of classifiers</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">feature_ranking</span><span class="p">:</span>
+        <span class="n">Rank</span> <span class="o">=</span> <span class="p">[]</span>      <span class="c1">#list of rankings</span>
+        <span class="n">clas_rep_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+        <span class="n">clas_rep_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">clas_rep_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">cv</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+        <span class="n">clas_rep_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">cv</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>        
+        <span class="n">clf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SVC</span><span class="p">())</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LogisticRegression</span><span class="p">())</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">RandomForestClassifier</span><span class="p">())</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GradientBoostingClassifier</span><span class="p">())</span>       
     
-    <span class="c1">#save the time series name into a list</span>
-    <span class="n">namets_test</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">namets_test</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clf</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;classifier: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="c1"># cross validation split</span>
+        <span class="n">skf</span><span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">shuffle</span> <span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">35</span><span class="p">)</span> <span class="c1"># set a constant random_state number to be able to get same train-test for all classifiers</span>
+        <span class="n">k</span><span class="o">=</span><span class="mi">0</span>
         
-    <span class="c1">#import the classification labels</span>
-    <span class="n">label_file_name</span> <span class="o">=</span> <span class="n">stickout_length_test</span><span class="o">+</span><span class="s1">&#39;_inch_Labels_2Class.npy&#39;</span>
-    <span class="n">file_path1</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad2</span><span class="p">,</span> <span class="n">label_file_name</span><span class="p">)</span>
-    <span class="n">label_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file_path1</span><span class="p">)</span> 
-    
-    <span class="c1">#%% Upload the Decompositions and compute the feature from them----------------</span>
-    
-    
-    <span class="c1"># length of datasets</span>
-    <span class="n">numberofcase_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">namets_training</span><span class="p">)</span>
-    <span class="n">numberofcase_test</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">namets_test</span><span class="p">)</span>
-    
-    <span class="n">featuremat_train</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numberofcase_train</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">featuremat_test</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numberofcase_test</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    
-    <span class="c1">#load datasets and compute features</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numberofcase_train</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span>  <span class="s1">&#39;ts_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">nameofdata</span> <span class="o">=</span> <span class="s1">&#39;WPT_Level</span><span class="si">%s</span><span class="s1">_Recon_</span><span class="si">%s</span><span class="s1">inch_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">WPT_Level</span><span class="p">),</span><span class="n">stickout_length_training</span><span class="p">,</span><span class="n">namets_training</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">pathofdata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad1</span><span class="p">,</span> <span class="n">nameofdata</span><span class="p">)</span>
-        <span class="n">ts</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">pathofdata</span><span class="p">)</span>
-        <span class="n">ts</span><span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="s2">&quot;recon&quot;</span><span class="p">]</span>
-    
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ts</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>   
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">skew</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">L</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">ts</span><span class="o">-</span><span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">)))),</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))))</span>
-        <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_train</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))))</span> 
-    
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">numberofcase_test</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span>  <span class="s1">&#39;ts_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">nameofdata</span> <span class="o">=</span> <span class="s1">&#39;WPT_Level</span><span class="si">%s</span><span class="s1">_Recon_</span><span class="si">%s</span><span class="s1">inch_</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">WPT_Level</span><span class="p">),</span><span class="n">stickout_length_test</span><span class="p">,</span><span class="n">namets_test</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">pathofdata</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad2</span><span class="p">,</span> <span class="n">nameofdata</span><span class="p">)</span>
-        <span class="n">ts</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">pathofdata</span><span class="p">)</span>
-        <span class="n">ts</span><span class="o">=</span> <span class="n">ts</span><span class="p">[</span><span class="s2">&quot;recon&quot;</span><span class="p">]</span>
-    
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ts</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>   
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">skew</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">L</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">ts</span><span class="o">-</span><span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span> <span class="o">/</span> <span class="p">((</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">)))),</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))))</span>
-        <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="n">featuremat_test</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">((</span><span class="nb">abs</span><span class="p">(</span><span class="n">ts</span><span class="p">))))</span> 
-    
-    <span class="c1">#%% load frequency domain features (At different levels of WPT) and combine them </span>
-    <span class="c1">#   with the time domain feature</span>
-    
-    <span class="n">n_feature</span><span class="o">=</span><span class="mi">14</span> 
+        <span class="c1"># generate lists that stores the indices of training and test sets</span>
+        <span class="n">train_index</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">test_index</span> <span class="o">=</span> <span class="p">[]</span>
         
-    <span class="c1">#training set------------------------------------------------------------------</span>
-    <span class="n">freq_feature_file_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_Level</span><span class="si">%d</span><span class="s1">_Freq_Features_</span><span class="si">%s</span><span class="s1">inch.mat&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">WPT_Level</span><span class="p">,</span><span class="n">stickout_length_training</span><span class="p">)</span>
-    <span class="n">file_path_Ff</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad1</span><span class="p">,</span> <span class="n">freq_feature_file_name</span><span class="p">)</span>        
-    <span class="n">freq_features</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">file_path_Ff</span><span class="p">)</span>
-    <span class="n">freq_features</span> <span class="o">=</span> <span class="n">freq_features</span><span class="p">[</span><span class="s1">&#39;Freq_Features&#39;</span><span class="p">]</span>
-    
-    <span class="c1">#concatanate the frequency and time domain features </span>
-    <span class="n">featuremat_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">featuremat_train</span><span class="p">,</span> <span class="n">freq_features</span><span class="p">),</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-    
-    <span class="c1">#test set----------------------------------------------------------------------</span>
-    <span class="n">freq_feature_file_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_Level</span><span class="si">%d</span><span class="s1">_Freq_Features_</span><span class="si">%s</span><span class="s1">inch.mat&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">WPT_Level</span><span class="p">,</span><span class="n">stickout_length_test</span><span class="p">)</span>
-    <span class="n">file_path_Ff</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folderToLoad2</span><span class="p">,</span> <span class="n">freq_feature_file_name</span><span class="p">)</span>        
-    <span class="n">freq_features</span> <span class="o">=</span> <span class="n">sio</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">file_path_Ff</span><span class="p">)</span>
-    <span class="n">freq_features</span> <span class="o">=</span> <span class="n">freq_features</span><span class="p">[</span><span class="s1">&#39;Freq_Features&#39;</span><span class="p">]</span>
-    
-    <span class="c1">#concatanate the frequency and time domain features </span>
-    <span class="n">featuremat_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">featuremat_test</span><span class="p">,</span> <span class="n">freq_features</span><span class="p">),</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-    
-    <span class="c1">#%%</span>
-    <span class="c1">#creating train, test, accuracy, meanscore and deviation matrices</span>
-    
-    <span class="n">accuracy1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">accuracy2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">deviation1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">deviation2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">meanscore1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">meanscore2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">duration1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-    <span class="n">meanduration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n_feature</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    
-    <span class="c1">#repeat the procedure ten times </span>
-    <span class="n">Rank</span><span class="o">=</span><span class="p">[]</span>
-    <span class="n">RankedList</span><span class="o">=</span><span class="p">[]</span>
-    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-        
-        <span class="c1">#split into test and train set</span>
-        <span class="n">F_Training_Train</span><span class="p">,</span><span class="n">F_Training_Test</span><span class="p">,</span><span class="n">Label_Training_Train</span><span class="p">,</span><span class="n">Label_Training_Test</span><span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">featuremat_train</span><span class="p">,</span> <span class="n">label_training</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">)</span>
-        <span class="n">F_Test_Train</span><span class="p">,</span><span class="n">F_Test_Test</span><span class="p">,</span><span class="n">Label_Test_Train</span><span class="p">,</span><span class="n">Label_Test_Test</span><span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">featuremat_test</span><span class="p">,</span><span class="n">label_test</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.70</span><span class="p">)</span>
-        
-        <span class="c1">#classifier</span>
-        <span class="k">if</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;SVC&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;LR&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;RF&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">Classifier</span><span class="o">==</span><span class="s1">&#39;GB&#39;</span><span class="p">:</span>
-            <span class="n">clf</span> <span class="o">=</span> <span class="n">GradientBoostingClassifier</span><span class="p">()</span>
-    
-        <span class="c1">#recursive feature elimination</span>
-        <span class="n">selector</span> <span class="o">=</span> <span class="n">RFE</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">Label_train</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Label_Training_Train</span><span class="p">)</span>
-        <span class="n">Label_test</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">Label_Test_Test</span><span class="p">)</span>
-        <span class="n">selector</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">F_Training_Train</span><span class="p">,</span> <span class="n">Label_train</span><span class="p">)</span>
-        <span class="n">rank</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">ranking_</span>
-        <span class="n">Rank</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
-        <span class="n">rank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
-        
-        <span class="c1">#create a list that contains index number of ranked features</span>
-        <span class="n">rankedlist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">14</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="c1"># indices of training set</span>
+        <span class="k">for</span> <span class="n">train_ind</span><span class="p">,</span> <span class="n">test_ind</span> <span class="ow">in</span> <span class="n">skf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">feature_training</span><span class="p">,</span> <span class="n">label_train</span><span class="p">):</span>
+            <span class="c1"># obtain train and test set</span>
+            <span class="n">train_index</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">train_ind</span><span class="p">,</span><span class="n">test_ind</span><span class="p">))</span>
             
-        <span class="c1">#finding index of the ranked features and creating new training and test sets with respect to this ranking</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
-            <span class="n">k</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rank</span><span class="o">==</span><span class="n">m</span><span class="p">)</span>
-            <span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">F_Training_Train</span><span class="p">[:,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">F_Training_Train</span><span class="p">[:,</span><span class="nb">int</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])]</span>
-            <span class="n">F_Test_Test</span><span class="p">[:,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">F_Test_Test</span><span class="p">[:,</span><span class="nb">int</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">[</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])]</span> 
-        <span class="n">RankedList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rankedlist</span><span class="p">)</span>
-        
-        <span class="c1">#trying various combinations of ranked features such as ([1],[1,2],[1,2,3]...)</span>
-        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">):</span> 
-            <span class="n">start1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-            <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">F_Training_Train</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_train</span><span class="p">)</span>
-            <span class="n">score1</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">F_Test_Test</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_test</span><span class="p">)</span>
-            <span class="n">score2</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">F_Training_Train</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">Label_train</span><span class="p">)</span>
-            <span class="n">accuracy1</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span><span class="o">=</span><span class="n">score1</span>
-            <span class="n">accuracy2</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span><span class="o">=</span><span class="n">score2</span>
-            <span class="n">end1</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-            <span class="n">duration1</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">o</span><span class="p">]</span> <span class="o">=</span> <span class="n">end1</span> <span class="o">-</span> <span class="n">start1</span>
+        <span class="c1"># indices of test set</span>
+        <span class="k">for</span> <span class="n">train_ind</span><span class="p">,</span> <span class="n">test_ind</span> <span class="ow">in</span> <span class="n">skf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">feature_test</span><span class="p">,</span> <span class="n">label_test</span><span class="p">):</span>
+            <span class="c1"># obtain train and test set</span>
+            <span class="n">test_index</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">train_ind</span><span class="p">,</span><span class="n">test_ind</span><span class="p">))</span>   
+            
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cv</span><span class="p">):</span>
+            
+            <span class="c1"># generate the training set and test for training data set, but </span>
+            <span class="c1"># we only used the training part of the split</span>
+            <span class="n">X_train_train</span><span class="p">,</span> <span class="n">X_train_test</span> <span class="o">=</span> <span class="n">feature_training</span><span class="p">[</span><span class="n">train_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]],</span> <span class="n">feature_training</span><span class="p">[</span><span class="n">train_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">y_train_train</span><span class="p">,</span> <span class="n">y_train_test</span> <span class="o">=</span> <span class="n">label_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]],</span> <span class="n">label_train</span><span class="p">[</span><span class="n">train_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>             
+
+            <span class="c1"># generate the training set and test for test data set, but </span>
+            <span class="c1"># we only used the training part of the split</span>
+            <span class="n">X_test_train</span><span class="p">,</span> <span class="n">X_test_test</span> <span class="o">=</span> <span class="n">feature_test</span><span class="p">[</span><span class="n">test_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]],</span> <span class="n">feature_test</span><span class="p">[</span><span class="n">test_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+            <span class="n">y_test_train</span><span class="p">,</span> <span class="n">y_test_test</span> <span class="o">=</span> <span class="n">label_test</span><span class="p">[</span><span class="n">test_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">0</span><span class="p">]],</span> <span class="n">label_test</span><span class="p">[</span><span class="n">test_index</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>  
     
-    <span class="c1">#computing mean score and deviation for each combination tried above        </span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">):</span>
-        <span class="n">deviation1</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accuracy1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">deviation2</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">accuracy2</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">meanscore1</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">meanscore2</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">accuracy2</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        <span class="n">meanduration</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">duration1</span><span class="p">[</span><span class="n">n</span><span class="p">,:])</span>
-        
-    
-    <span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">meanscore1</span><span class="p">,</span><span class="n">deviation1</span><span class="p">,</span><span class="n">meanscore2</span><span class="p">,</span><span class="n">deviation2</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">results</span>    
-    
-    <span class="c1">#total duration for algorithm  </span>
-    <span class="n">end2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">duration2</span> <span class="o">=</span> <span class="n">end2</span><span class="o">-</span><span class="n">start2</span>
-    
-    
-    <span class="k">return</span> <span class="n">results</span><span class="p">,</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total elapsed time: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">duration2</span><span class="p">))</span> <span class="p">,</span><span class="n">featuremat_train</span><span class="p">,</span> <span class="n">featuremat_test</span>  </div>
-    
+
+            <span class="c1"># standardize the training and test set</span>
+            <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+            <span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_train</span><span class="p">)</span>
+            <span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_train</span><span class="p">)</span>     
+            
+            <span class="c1"># the labels</span>
+            <span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train_train</span>
+            <span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test_train</span>
+            
+            <span class="k">if</span> <span class="n">feature_ranking</span><span class="p">:</span>
+                <span class="c1"># recursive feature elimination</span>
+                <span class="n">selector</span> <span class="o">=</span> <span class="n">RFE</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">n_features_to_select</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">selector</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+                <span class="n">rank</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">ranking_</span>
+                <span class="n">Rank</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+                <span class="n">rank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+                
+                <span class="n">X_train_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span><span class="mi">14</span><span class="p">))</span>
+                <span class="n">X_test_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span><span class="mi">14</span><span class="p">))</span>
+                
+                <span class="c1"># generate feature matrices based on ranking and their combinations</span>
+                
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">14</span><span class="p">):</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;combination:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+                    <span class="n">r</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">rank</span><span class="o">==</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">X_train_new</span><span class="p">[:,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:,</span><span class="n">r</span><span class="p">]</span>
+                    <span class="n">X_test_new</span><span class="p">[:,</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[:,</span><span class="n">r</span><span class="p">]</span>                
+                
+                    <span class="k">if</span> <span class="n">param_tuning</span><span class="p">:</span>
+                        <span class="c1"># paramter tuning</span>
+                        <span class="n">param_tune</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                        <span class="c1"># use one half of the training set to tune the parameters</span>
+                        <span class="n">param_tune</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">y_train</span><span class="p">)</span>
+                        <span class="n">best_params</span> <span class="o">=</span> <span class="n">param_tune</span><span class="o">.</span><span class="n">best_params_</span>
+                        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">best_params</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                            <span class="nb">setattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">best_params</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+                    <span class="c1">#retrain/train the model</span>
+                    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">y_train</span><span class="p">)</span> 
+                    
+                    <span class="c1"># predicted labels</span>
+                    <span class="n">predicted_labels_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_new</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>   
+                    <span class="n">predicted_labels_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>                    
+
+                    <span class="c1">#classification report</span>
+                    <span class="n">cr_test</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted_labels_test</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">,</span><span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="n">cr_train</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">predicted_labels_train</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">,</span><span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    
+                    <span class="c1">#store reports in the object array </span>
+                    <span class="n">clas_rep_test</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cr_test</span>
+                    <span class="n">clas_rep_train</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cr_train</span>
+                    
+                    <span class="k">if</span> <span class="n">saving</span><span class="p">:</span>
+                        <span class="n">saving_path</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">param_tuning</span><span class="p">:</span>
+                            <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Test_PT_Combn_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                            
+                            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_test</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                        
+                            <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Train_PT_Combn_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                    
+                            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_train</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Test_Combn_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                            
+                            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_test</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                        
+                            <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Train_Combn_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                    
+                            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_train</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">param_tuning</span><span class="p">:</span>
+                    <span class="c1"># paramter tuning</span>
+                    <span class="n">param_tune</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="c1"># use one half of the training set to tune the parameters</span>
+                    <span class="n">param_tune</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+                    <span class="n">best_params</span> <span class="o">=</span> <span class="n">param_tune</span><span class="o">.</span><span class="n">best_params_</span>
+                    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">best_params</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                        <span class="nb">setattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="n">best_params</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+                        
+                <span class="c1">#retrain/train the model</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+                
+                <span class="c1"># predicted labels</span>
+                <span class="n">predicted_labels_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>   
+                <span class="n">predicted_labels_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+            
+                <span class="c1">#classification report</span>
+                <span class="n">cr_test</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predicted_labels_test</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">,</span><span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">cr_train</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">predicted_labels_train</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">,</span><span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    
+                <span class="c1">#store reports in the object array </span>
+                <span class="n">clas_rep_test</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cr_test</span>
+                <span class="n">clas_rep_train</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cr_train</span>                  
+                
+                
+                <span class="k">if</span> <span class="n">saving</span><span class="p">:</span>
+                    <span class="n">saving_path</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">param_tuning</span><span class="p">:</span>
+                        <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Test_PT_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                        
+                        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_test</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                    
+                        <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Train_PT_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                
+                        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_train</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Test_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                        
+                        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_test</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                    
+                        <span class="n">save_name</span> <span class="o">=</span> <span class="s1">&#39;WPT_CR_Train_Classifier_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_RunNumber_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                
+                        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">saving_path</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="o">+</span><span class="n">save_name</span><span class="o">+</span><span class="s2">&quot;.pkl&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+                        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cr_train</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>            
+    <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Elapsed time for classification: </span><span class="si">{}</span><span class="s2"> seconds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">))</span> 
+            
+    <span class="k">return</span> <span class="n">clas_rep_test</span><span class="p">,</span><span class="n">clas_rep_train</span>                </div>
+                        
+            
 </pre></div>
 
            </div>
-           
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto
-
-    </p>
+    <p>&#169; Copyright 2020, Melih C. Yesilli, Firas A. Khasawneh, Andreas Otto.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-1"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-XXXXXXX-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-XXXXXXX-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

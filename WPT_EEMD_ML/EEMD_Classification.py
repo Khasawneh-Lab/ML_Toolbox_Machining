@@ -38,7 +38,7 @@ def EEEMD_Classification(feature_mat,cv, labels,param_tuning, feature_ranking, s
     -------
     clas_rep_test : dict
         Report of the classification results for test set.
-    clas_rep_train : TYPE
+    clas_rep_train : dict
         Report of the classification results for train set.
 
     """
