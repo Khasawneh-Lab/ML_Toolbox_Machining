@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.1.1. Wavelet Packet Transform &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -247,6 +248,159 @@ It also prints the total elapsed time.</p>
 </dl>
 </dd></dl>
 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># WPT Informative Wavelet Packet Decision Making # ----------------------------</span>
+<span class="c1"># parameters</span>
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WP_Energy_Ratio</span> <span class="kn">import</span> <span class="n">WP_Energy_Ratio</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">2inch_stickout&#39;</span>
+<span class="n">list_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_2inch.txt&#39;</span>
+<span class="n">ts_no</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">21</span><span class="p">]</span>
+<span class="n">WF</span> <span class="o">=</span> <span class="s1">&#39;db10&#39;</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">case_no</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">layout</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">plot_recon</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">fs</span><span class="o">=</span> <span class="mi">10000</span>
+
+<span class="n">WP_Energy_Ratio</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">list_name</span><span class="p">,</span> <span class="n">ts_no</span><span class="p">,</span> <span class="n">WF</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">case_no</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">plot_recon</span><span class="p">,</span><span class="n">layout</span><span class="p">)</span>
+
+
+<span class="c1"># WPT Reconstruction of Signals from Informative Wavelet Packets # ------------</span>
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WPT_Informative_Packet_Recon</span> <span class="kn">import</span> <span class="n">WPT_Informative_Packet_Recon</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">2inch_stickout&#39;</span>
+<span class="n">list_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_2inch.txt&#39;</span>
+<span class="n">label_name</span> <span class="o">=</span> <span class="s1">&#39;2_inch_Labels_2Class.npy&#39;</span>
+<span class="n">WF</span> <span class="o">=</span> <span class="s1">&#39;db10&#39;</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">IWP</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="c1"># if saving is true, user needs to provide the name of the file which will contain the reconstructed signals</span>
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">recon</span> <span class="o">=</span> <span class="n">WPT_Informative_Packet_Recon</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="n">list_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">saving</span><span class="p">,</span><span class="s1">&#39;WPT_Output&#39;</span><span class="p">)</span>
+<span class="c1"># if saving is false, no additional parameter is needed</span>
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">recon</span> <span class="o">=</span> <span class="n">WPT_Informative_Packet_Recon</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="n">list_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">saving</span><span class="p">)</span>
+
+
+<span class="c1"># WPT Feature Extraction# -----------------------------------------------------</span>
+<span class="c1">#inputs</span>
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WPT_Feature_Extraction</span> <span class="kn">import</span> <span class="n">WPT_Feature_Extraction</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">4p5inch_stickout&#39;</span>
+<span class="n">list_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_4p5inch.txt&#39;</span>
+<span class="n">WF</span> <span class="o">=</span> <span class="s1">&#39;db10&#39;</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">IWP</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">label_name</span> <span class="o">=</span> <span class="s1">&#39;4p5_inch_Labels_2Class.npy&#39;</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="c1"># if saving is false, there is no need for additional parameters</span>
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">feature_mat</span><span class="p">,</span><span class="n">labels</span> <span class="o">=</span> <span class="n">WPT_Feature_Extraction</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">list_name</span><span class="p">,</span><span class="n">label_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">saving</span><span class="p">)</span>
+<span class="c1"># if saving is correct, user needs to provide the name of the file which will contain features and the labels</span>
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">feature_mat</span><span class="p">,</span><span class="n">labels</span> <span class="o">=</span> <span class="n">WPT_Feature_Extraction</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">list_name</span><span class="p">,</span><span class="n">label_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">saving</span><span class="p">,</span><span class="s1">&#39;features&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># WPT Classification ----------------------------------------------------------</span>
+
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WPT_Classification</span> <span class="kn">import</span> <span class="n">WPT_Classification</span>
+
+<span class="c1"># inputs</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">2inch_stickout&#39;</span>
+<span class="n">list_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_2inch.txt&#39;</span>
+<span class="n">WF</span> <span class="o">=</span> <span class="s1">&#39;db10&#39;</span>
+<span class="n">L</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">IWP</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">label_name</span> <span class="o">=</span> <span class="s1">&#39;2_inch_Labels_2Class.npy&#39;</span>
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">fs</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">param_tuning</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">feature_ranking</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">saving_path</span> <span class="o">=</span> <span class="s1">&#39;D:\Repositories\WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test\WPT_Output&#39;</span>
+<span class="n">save_name</span> <span class="o">=</span> <span class="s2">&quot;Reconstructions&quot;</span>
+<span class="n">reports</span> <span class="o">=</span> <span class="n">WPT_Classification</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="n">list_name</span><span class="p">,</span><span class="n">label_name</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">IWP</span><span class="p">,</span><span class="n">fs</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">saving</span><span class="p">,</span><span class="n">saving_path</span><span class="p">,</span><span class="n">save_name</span><span class="p">)</span>
+
+<span class="c1"># plot the results</span>
+
+<span class="kn">from</span> <span class="nn">Plot_Results</span> <span class="kn">import</span> <span class="n">plot_results</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WPT&#39;</span><span class="p">]</span>
+<span class="n">clsf_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SVM&#39;</span><span class="p">,</span><span class="s1">&#39;LR&#39;</span><span class="p">,</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="s1">&#39;GB&#39;</span><span class="p">]</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ylabel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">res_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Repositories</span><span class="se">\\</span><span class="s1">WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test</span><span class="se">\\</span><span class="s1">WPT_Output</span><span class="se">\\</span><span class="s1">&#39;</span>
+<span class="n">param_tuning</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">feature_ranking</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">n_feature</span> <span class="o">=</span> <span class="mi">14</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_results</span><span class="p">(</span><span class="n">res_path</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">n_feature</span><span class="p">,</span><span class="n">methods</span><span class="p">,</span><span class="n">clsf_names</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">layout</span><span class="p">,</span><span class="n">ylabel_index</span><span class="p">)</span>
+
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="c1"># WPT transfer learning</span>
+
+<span class="c1"># add data paths into a list</span>
+<span class="c1"># first add the paths for training data sets ,then the ones for test cases</span>
+<span class="c1"># algorithm will assume the first half of the list contains the paths for training cases</span>
+<span class="c1"># and treat other half of the list as the paths for test cases.</span>
+<span class="c1"># This is also applicable to other variables such as wavelet functions,</span>
+<span class="c1"># time series names etc.</span>
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.WPT_Transfer_Learning</span> <span class="kn">import</span> <span class="n">WPT_Transfer_Learning</span>
+
+
+<span class="n">data_paths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">data_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">4p5inch_stickout&#39;</span><span class="p">)</span>
+<span class="n">data_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">2inch_stickout&#39;</span><span class="p">)</span>
+
+<span class="n">list_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">list_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;time_series_name_4p5inch.txt&#39;</span><span class="p">)</span>
+<span class="n">list_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;time_series_name_2inch.txt&#39;</span><span class="p">)</span>
+
+<span class="n">WFs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">WFs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;db10&#39;</span><span class="p">)</span>
+<span class="n">WFs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;db10&#39;</span><span class="p">)</span>
+
+<span class="n">Levels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Levels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Levels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">IWPs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">IWPs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">IWPs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">label_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">label_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;4p5_inch_Labels_2Class.npy&#39;</span><span class="p">)</span>
+<span class="n">label_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;2_inch_Labels_2Class.npy&#39;</span><span class="p">)</span>
+
+<span class="n">samp_fs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">samp_fs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">samp_fs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">param_tuning</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">feature_ranking</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">cv</span><span class="o">=</span><span class="mi">5</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">WPT_Transfer_Learning</span><span class="p">(</span><span class="n">data_paths</span><span class="p">,</span><span class="n">list_names</span><span class="p">,</span><span class="n">WFs</span><span class="p">,</span><span class="n">Levels</span><span class="p">,</span><span class="n">IWPs</span><span class="p">,</span><span class="n">label_names</span><span class="p">,</span><span class="n">samp_fs</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">saving</span><span class="p">)</span>
+
+
+<span class="kn">from</span> <span class="nn">Plot_Results</span> <span class="kn">import</span> <span class="n">plot_results</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;WPT&#39;</span><span class="p">]</span>
+<span class="n">clsf_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SVM&#39;</span><span class="p">,</span><span class="s1">&#39;LR&#39;</span><span class="p">,</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="s1">&#39;GB&#39;</span><span class="p">]</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ylabel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">res_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Repositories</span><span class="se">\\</span><span class="s1">WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test</span><span class="se">\\</span><span class="s1">WPT_Output</span><span class="se">\\</span><span class="s1">&#39;</span>
+<span class="n">param_tuning</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">feature_ranking</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">n_feature</span> <span class="o">=</span> <span class="mi">14</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_results</span><span class="p">(</span><span class="n">res_path</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">n_feature</span><span class="p">,</span><span class="n">methods</span><span class="p">,</span><span class="n">clsf_names</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">layout</span><span class="p">,</span><span class="n">ylabel_index</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 

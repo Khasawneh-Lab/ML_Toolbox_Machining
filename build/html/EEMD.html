@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>1.1.2. Ensemble Empirical Mode Decomposition (EEMD) &mdash; Machine learning toolbox for WPT and EEMD 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/plot_directive.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -186,6 +187,101 @@ This function split the time series into small pieces to reduce the computation 
 </dl>
 </dd></dl>
 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute IMFs</span>
+
+<span class="kn">from</span> <span class="nn">EEMD_Feature_Extraction</span> <span class="kn">import</span> <span class="n">EEMD_IMF_Compute</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">2inch_stickout&#39;</span>
+<span class="n">list_name</span> <span class="o">=</span> <span class="s1">&#39;time_series_name_2inch.txt&#39;</span>
+<span class="n">label_name</span> <span class="o">=</span> <span class="s1">&#39;2_inch_Labels_2Class.npy&#39;</span>
+<span class="n">EEMDecs</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span>
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">saving_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Repositories</span><span class="se">\\</span><span class="s1">WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test</span><span class="se">\\</span><span class="s1">EEMD_Output&#39;</span>
+
+<span class="n">infoEMF</span><span class="p">,</span><span class="n">split_labels</span> <span class="o">=</span> <span class="n">EEMD_IMF_Compute</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="n">list_name</span><span class="p">,</span> <span class="n">EEMDecs</span><span class="p">,</span> <span class="n">saving</span><span class="p">,</span> <span class="n">saving_path</span><span class="p">)</span>
+
+
+<span class="c1"># feature extraction</span>
+<span class="kn">from</span> <span class="nn">EEMD_Feature_Extraction</span> <span class="kn">import</span> <span class="n">EEMD_Feature_Compute</span>
+<span class="n">p</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">feature_mat</span> <span class="o">=</span> <span class="n">EEMD_Feature_Compute</span><span class="p">(</span><span class="n">infoEMF</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># classification</span>
+<span class="kn">from</span> <span class="nn">EEMD_Classification</span> <span class="kn">import</span> <span class="n">EEEMD_Classification</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">split_labels</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">param_tuning</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">feature_ranking</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">saving_path</span> <span class="o">=</span> <span class="s1">&#39;D:\Repositories\WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test\EEMD_Output&#39;</span>
+
+<span class="n">clas_rep_test</span><span class="p">,</span><span class="n">clas_rep_train</span> <span class="o">=</span> <span class="n">EEEMD_Classification</span><span class="p">(</span><span class="n">feature_mat</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span> <span class="n">feature_ranking</span><span class="p">,</span> <span class="n">saving</span><span class="p">,</span> <span class="n">saving_path</span><span class="p">)</span>
+
+<span class="c1">#plot the results</span>
+<span class="kn">from</span> <span class="nn">Plot_Results</span> <span class="kn">import</span> <span class="n">plot_results</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;EEMD&#39;</span><span class="p">]</span>
+<span class="n">clsf_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SVM&#39;</span><span class="p">,</span><span class="s1">&#39;LR&#39;</span><span class="p">,</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="s1">&#39;GB&#39;</span><span class="p">]</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ylabel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">res_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Repositories</span><span class="se">\\</span><span class="s1">WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test</span><span class="se">\\</span><span class="s1">EEMD_Output</span><span class="se">\\</span><span class="s1">&#39;</span>
+<span class="n">n_feature</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_results</span><span class="p">(</span><span class="n">res_path</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">n_feature</span><span class="p">,</span><span class="n">methods</span><span class="p">,</span><span class="n">clsf_names</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">layout</span><span class="p">,</span><span class="n">ylabel_index</span><span class="p">)</span>
+
+
+
+
+<span class="c1"># ------------------------------------------------------------------------------</span>
+
+<span class="c1"># EEMD Transfer Learning</span>
+
+<span class="kn">from</span> <span class="nn">WPT_EEMD_ML.EEMD_Transfer_Learning</span> <span class="kn">import</span> <span class="n">EEMD_Transfer_Learning</span>
+<span class="kn">from</span> <span class="nn">Plot_Results</span> <span class="kn">import</span> <span class="n">plot_results</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="n">data_paths</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">data_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">2inch_stickout&#39;</span><span class="p">)</span>
+<span class="n">data_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Data Archive</span><span class="se">\\</span><span class="s1">Cutting_Test_Data_Documented</span><span class="se">\\</span><span class="s1">cutting_tests_processed</span><span class="se">\\</span><span class="s1">4p5inch_stickout&#39;</span><span class="p">)</span>
+
+<span class="n">list_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">list_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;time_series_name_2inch.txt&#39;</span><span class="p">)</span>
+<span class="n">list_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;time_series_name_4p5inch.txt&#39;</span><span class="p">)</span>
+
+<span class="n">Decomps</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">Decomps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;NA&#39;</span><span class="p">)</span>
+<span class="n">Decomps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;NA&#39;</span><span class="p">)</span>
+
+<span class="n">info_IMFs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">info_IMFs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">info_IMFs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">saving</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">param_tuning</span><span class="o">=</span><span class="kc">False</span>
+<span class="n">feature_ranking</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">cv</span><span class="o">=</span><span class="mi">5</span>
+
+<span class="n">saving_path</span> <span class="o">=</span> <span class="s1">&#39;D:\Repositories\WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test\EEMD_Output&#39;</span>
+
+<span class="n">EEMD_Transfer_Learning</span><span class="p">(</span><span class="n">data_paths</span><span class="p">,</span><span class="n">list_names</span><span class="p">,</span><span class="n">Decomps</span><span class="p">,</span> <span class="n">info_IMFs</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">saving</span><span class="p">,</span><span class="n">saving_path</span><span class="p">)</span>
+
+
+<span class="c1"># plot the results</span>
+
+<span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;EEMD&#39;</span><span class="p">]</span>
+<span class="n">clsf_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SVM&#39;</span><span class="p">,</span><span class="s1">&#39;LR&#39;</span><span class="p">,</span><span class="s1">&#39;RF&#39;</span><span class="p">,</span><span class="s1">&#39;GB&#39;</span><span class="p">]</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ylabel_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">res_path</span> <span class="o">=</span> <span class="s1">&#39;D:</span><span class="se">\\</span><span class="s1">Repositories</span><span class="se">\\</span><span class="s1">WPT_EEMD_ML_Machining</span><span class="se">\\</span><span class="s1">test</span><span class="se">\\</span><span class="s1">EEMD_Output</span><span class="se">\\</span><span class="s1">&#39;</span>
+<span class="n">n_feature</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_results</span><span class="p">(</span><span class="n">res_path</span><span class="p">,</span><span class="n">param_tuning</span><span class="p">,</span><span class="n">feature_ranking</span><span class="p">,</span><span class="n">n_feature</span><span class="p">,</span><span class="n">methods</span><span class="p">,</span><span class="n">clsf_names</span><span class="p">,</span><span class="n">cv</span><span class="p">,</span><span class="n">layout</span><span class="p">,</span><span class="n">ylabel_index</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 
 
