@@ -13,7 +13,11 @@ from multiprocessing import Pool
 import time
 from scipy.spatial.distance import squareform
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
 
 def DTW_Distance_Comp(ts1,ts2,WS,path_plot,dist_only):
     """
@@ -385,7 +389,237 @@ def TS_Classification(k,TS1,labels1,DM1,TF,*args):
     
     return output
 
+def TriangularInequalityLoosenes(DM):
+    """
+    
 
+    Parameters
+    ----------
+    DM : 2D np.array 
+        The pairwise distance matrix for the time series data set
+
+    Returns
+    -------
+    H : list
+        The list that includes the looseness constants computed for all combinations of three time series in the data set
+
+    """
+    d_N =len(DM)
+    H = []
+    inc=0
+    for i in range(d_N):
+        for j in range(d_N):
+            for k in range(d_N):
+                
+                if i==j:
+                    pass
+                elif j==k:
+                    pass
+                elif i==k:
+                    pass
+                else:
+
+                    D1 = DM[i,j]
+                    D2 = DM[j,k]
+                    D3 = DM[i,k]
+            
+                    H.append(D1+D2-D3)
+                    inc = inc+1
+    return H
+
+def plot_Looseness_Constants(H):
+    """
+    
+
+    Parameters
+    ----------
+    H : list
+        The list that includes the looseness constants computed for all combinations of three time series in the data set
+
+    Returns
+    -------
+    fig : figure
+        Returns the histogram plot of the looseness constant 
+
+    """
+    fs = 20
+    plt.hist(H, 500, density=True, facecolor='g', alpha=0.75)
+    ax = plt.gca()
+    plt.xlabel('Looseness (H)',fontsize=fs-5)    
+    plt.ylabel('Frequency',fontsize=fs-5)
+    # plt.tick_params(axis='x',which='both',bottom=False,top=False,labelbottom=False) 
+    plt.xlim([0,max(H)])
+    for tick in ax.xaxis.get_major_ticks():
+        tick.label.set_fontsize(fs-5)
+    for tick in ax.yaxis.get_major_ticks():
+        tick.label.set_fontsize(fs-5)
+    fig = plt.gcf()
+    # textstr = Title[i]
+    # props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    # # place a text box in upper left in axes coords
+    # ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,
+    #         verticalalignment='top', bbox=props)
+    # plt.subplots_adjust(hspace=0.1)  
+    
+    return fig
+
+def AESA_Classification(TS,labels,H,DM,WS):
+    # divide data set into training set and test set
+    Training_set, Test_set,  Label_train, Label_test = train_test_split(TS, labels, test_size=0.33,random_state=16)
+    
+    # find the indices of training set and test set
+    TS_train_L = len(Training_set)
+    TS_test_L = len(Test_set)
+
+    # find training set indices
+    TS_train_index = np.zeros((TS_train_L))
+    for i in range(0,TS_train_L):
+        train_sample = Training_set[i]
+        for j in range(0,len(TS)):
+            if np.array_equal(TS[j],train_sample):
+                TS_train_index[i] = int(j) 
+                
+    # find test set indices
+    TS_test_index = np.zeros((TS_test_L))
+    for i in range(0,TS_test_L):
+        test_sample = Test_set[i]
+        for j in range(0,len(TS)):
+            if np.array_equal(TS[j],test_sample):
+                TS_test_index[i] = int(j)             
+
+    # generate the distance matrix for training set
+    Training_Set_DM = np.zeros(shape=(TS_train_L,TS_train_L))
+    for i in range (0,TS_train_L):
+        train_index_1 = int(TS_train_index[i])
+        for j in range(0,TS_train_L):
+            train_index_2 = int(TS_train_index[j])
+            Training_Set_DM[i,j]=DM[train_index_1,train_index_2]    
+    
+    
+    assigned_label=np.zeros((len(TS_test_index),1))
+    number_dtw_comp = np.zeros((len(TS_test_index),1))
+    duration = np.zeros((len(TS_test_index),1))
+    
+    inc=0
+    for test_samp in range(len(TS_test_index)):
+        true = 0
+        false = 0
+        
+        start = time.time()
+        
+        P = list(range(len(Training_set)))
+        
+        #initialize the set of used samples
+        U = []
+        #initialize the set of eliminated samples
+        E = []
+        
+        
+        count=0
+        D = []
+        while np.any(np.unique(E)==P)==False:
+            # select s as the pseudocentre of P in the first iteration
+            if count==0:
+                #select s based on the pseudocenter of the training set
+                SUM = sum(Training_Set_DM)
+                minimum= min(SUM)
+                s = np.where(SUM==minimum)[0][0]
+                #add s to used set of samples
+                U.append(s)
+                #current nearest sample (n)
+                n = s
+                #distance between nearest sample and the test sample
+                x = np.ravel(TS[int(TS_test_index[test_samp])])
+                t_c = np.ravel(TS[int(TS_train_index[s])])
+                Dx_c = DTW_Distance_Comp(x,t_c,WS,False,True)
+                D_x_n = Dx_c
+                D.append(Dx_c)
+                #elimination
+                c=[s]
+                set_p_c = list(set(P)-set(c))
+                E.append(s)
+                for i in range(len(set_p_c)):
+                    q = set_p_c[i]
+                    D_qc = Training_Set_DM[q,c]
+                    
+                    if D_qc> 2*Dx_c-H or D_qc<H:
+                        E.append(q)       
+                count = count+1
+                print('count={},n:{}'.format(count,n))
+            else:
+                difference_set = list(set(P)-set(E))
+                Summ=[]
+                for i in range(len(difference_set)):
+                    p = difference_set[i]
+                    Sum=0
+                    for j in range(len(U)):
+                        q = U[j]
+                        
+                        D_p_q = Training_Set_DM[p,q]
+                        D_x_q = D[j]
+                        
+                        Sum = Sum+abs(D_p_q-D_x_q)
+                    Summ.append(Sum)
+                minimum = min(Summ)    
+                ind = np.where(Summ==minimum)[0][0]
+                s = difference_set[ind]
+                # DTW computation
+                x = np.ravel(TS[int(TS_test_index[test_samp])])
+                t_c = np.ravel(TS[int(TS_train_index[s])])
+                D_x_s = DTW_Distance_Comp(x,t_c,WS,False,True)
+                D.append(D_x_s)
+                #update U and E
+                U.append(s)
+                E.append(s)
+                
+                #update nearest member
+                if D_x_s<D_x_n:
+                    Q=U
+                    n=s
+                    D_x_n = D_x_s
+                else:
+                    Q = [s]
+                    
+                #elimination
+                set_p_e = list(set(P)-set(E))
+                for i in range(len(Q)):
+                    q = Q[i]
+                    for j in range(len(set_p_e)):
+                        p = set_p_e[j]
+                        D_p_q= Training_Set_DM[p,q]
+                        D_x_q = D[i]
+                        
+                        if D_p_q> D_x_q+D_x_n-H or D_p_q< D_x_q-D_x_n+H:
+                            E.append(p) 
+                    
+                count = count+1
+                print('count={},n:{}'.format(count,n))
+        
+        end = time.time()
+        duration[inc,0]=end-start
+        #classification
+        assigned_label[inc,0]=Label_train[n]
+        test_class = Label_test[test_samp]
+        # print('predicted={},true label={}'.format(Label_train[n],test_class))
+        if test_class == Label_train[n]:
+            true = true+1
+        else:
+            false = false + 1
+        # print('test sample {} completed'.format(test_samp))
+        number_dtw_comp[inc,0]=count
+        average_dtw_comp = sum(number_dtw_comp[:,0])/len(Label_test)
+        # print('Accuracy (H={}):{} \nAverage number of computations:{}'.format(H,accuracy[0,0],average_dtw_comp))
+        inc=inc+1
+    
+    accuracy= true/(true+false)*100   
+    output = {}
+    output['ave_dist_comp'] = average_dtw_comp
+    output['n_dist_comp'] = number_dtw_comp
+    output['accuracy'] = accuracy
+    output['train_length'] = len(TS_train_index)
+    output['test_length'] = len(TS_test_index)
+    
+    return output
 
 if __name__ == '__main__':
     # generate two time series
@@ -430,4 +664,30 @@ if __name__ == '__main__':
     labels2 = np.random.choice([0, 1], size=(len(TS2),), p=[1./3, 2./3])
     out = TS_Classification(1,TS1,labels1,DM_TF1,True,TS2,labels2,DM_TF2)
     
+    # AESA --- 
     
+    # Check if there is any violiation to triangular inequality
+    H = TriangularInequalityLoosenes(DM1)    
+    
+    # plot the loosenes constants
+    plt.figure()
+    fig = plot_Looseness_Constants(H)
+    plt.show()
+    
+    # apply AESA with 1NN
+
+    # Generate the second set of time series so that we can apply transfer learning
+    TS3 = []
+    for i in range(50): 
+        fs, T = 100, 10 
+        t = np.linspace(-0.2,T,fs*T+1) 
+        A = 20 
+        TS3.append(A*np.sin((2*i+1)*np.pi*t) + A*np.sin(2*t))  
+    labels3 = np.random.choice([0, 1], size=(len(TS3),), p=[1./3, 2./3])
+    # parallel distance computation
+    DM3 = DTW_Dist_Mat(TS3,False,True)
+    
+    # define a range for the H value 
+    
+    
+    out = AESA_Classification(TS3,labels3,5000,DM3,5)
