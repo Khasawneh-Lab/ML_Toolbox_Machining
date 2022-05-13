@@ -85,6 +85,29 @@
 data based on the similarity measure technique called Dynamic Time Warping.
 Chatter detection application was performed using this approache in Reference <span id="id1">[<a class="reference internal" href="index.html#id4" title="Melih C. Yesilli, Firas A. Khasawneh, and Andreas Otto. Chatter detection in turning using machine learning and similarity measures of time series via dynamic time warping. Journal of Manufacturing Processes, 77:190–206, may 2022. doi:10.1016/j.jmapro.2022.03.009.">3</a>]</span>.</p>
 <dl class="py function">
+<dt class="sig sig-object py" id="DTW.DTW_Pipeline.AESA_Classification">
+<span class="sig-prename descclassname"><span class="pre">DTW.DTW_Pipeline.</span></span><span class="sig-name descname"><span class="pre">AESA_Classification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DM</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">WS</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DTW/DTW_Pipeline.html#AESA_Classification"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DTW.DTW_Pipeline.AESA_Classification" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TS</strong> (<em>list</em>) – The list that includes the time series data</p></li>
+<li><p><strong>labels</strong> (<em>np.array</em>) – The list that includes the labels of each time series</p></li>
+<li><p><strong>H</strong> (<em>float</em>) – the looseness constant that will be taken account during elimination</p></li>
+<li><p><strong>DM</strong> (<em>2D np.array</em>) – The pairwise distance matrix between the time series data</p></li>
+<li><p><strong>WS</strong> (<em>int</em>) – Window size for sakoeChibaWindow</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong> – The list that includes the results. Each dictionary includes accuracy, average number of distance computations,
+number of distance computations made for each test sample, the length of training and test sets.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of dicts</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="DTW.DTW_Pipeline.DTW_Dist_Mat">
 <span class="sig-prename descclassname"><span class="pre">DTW.DTW_Pipeline.</span></span><span class="sig-name descname"><span class="pre">DTW_Dist_Mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TS1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DTW/DTW_Pipeline.html#DTW_Dist_Mat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DTW.DTW_Pipeline.DTW_Dist_Mat" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -164,6 +187,22 @@ TF is True.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="DTW.DTW_Pipeline.TriangularInequalityLoosenes">
+<span class="sig-prename descclassname"><span class="pre">DTW.DTW_Pipeline.</span></span><span class="sig-name descname"><span class="pre">TriangularInequalityLoosenes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DM</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DTW/DTW_Pipeline.html#TriangularInequalityLoosenes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DTW.DTW_Pipeline.TriangularInequalityLoosenes" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>DM</strong> (<em>2D np.array</em>) – The pairwise distance matrix for the time series data set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>H</strong> – The list that includes the looseness constants computed for all combinations of three time series in the data set</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="DTW.DTW_Pipeline.kNN">
 <span class="sig-prename descclassname"><span class="pre">DTW.DTW_Pipeline.</span></span><span class="sig-name descname"><span class="pre">kNN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Label_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DTW/DTW_Pipeline.html#kNN"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DTW.DTW_Pipeline.kNN" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -183,6 +222,42 @@ it is training set samples for computing training set accuracy</p></li>
 <li><p><strong>false</strong> (<em>int</em>) – number of false predictions</p></li>
 </ul>
 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DTW.DTW_Pipeline.plot_AESA_results">
+<span class="sig-prename descclassname"><span class="pre">DTW.DTW_Pipeline.</span></span><span class="sig-name descname"><span class="pre">plot_AESA_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">H_range</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DTW/DTW_Pipeline.html#plot_AESA_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DTW.DTW_Pipeline.plot_AESA_results" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output</strong> (<em>list of dicts</em>) – The list that includes the results. Each dictionary includes accuracy, average number of distance computations,
+number of distance computations made for each test sample, the length of training and test sets.</p></li>
+<li><p><strong>H_range</strong> (<em>np.array</em>) – The range of looseness constant which user wants to try to see how it changes the classification accuracy</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong> – The left axis represents the accuracy, while right axis is for the average number of distance computations made for each looseness constant value.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DTW.DTW_Pipeline.plot_Looseness_Constants">
+<span class="sig-prename descclassname"><span class="pre">DTW.DTW_Pipeline.</span></span><span class="sig-name descname"><span class="pre">plot_Looseness_Constants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">H</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DTW/DTW_Pipeline.html#plot_Looseness_Constants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DTW.DTW_Pipeline.plot_Looseness_Constants" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>H</strong> (<em>list</em>) – The list that includes the looseness constants computed for all combinations of three time series in the data set</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong> – Returns the histogram plot of the looseness constant</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>figure</p>
 </dd>
 </dl>
 </dd></dl>
@@ -230,6 +305,43 @@ it is training set samples for computing training set accuracy</p></li>
 <span class="n">out</span> <span class="o">=</span> <span class="n">TS_Classification</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">TS1</span><span class="p">,</span><span class="n">labels1</span><span class="p">,</span><span class="n">DM_TF1</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="n">TS2</span><span class="p">,</span><span class="n">labels2</span><span class="p">,</span><span class="n">DM_TF2</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>AESA Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the second set of time series so that we can apply transfer learning</span>
+<span class="n">TS3</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="n">fs</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">fs</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">TS3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+<span class="n">labels3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TS3</span><span class="p">),),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
+<span class="c1"># parallel distance computation</span>
+<span class="n">DM3</span> <span class="o">=</span> <span class="n">DTW_Dist_Mat</span><span class="p">(</span><span class="n">TS3</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Check if there is any violiation to triangular inequality</span>
+<span class="n">H</span> <span class="o">=</span> <span class="n">TriangularInequalityLoosenes</span><span class="p">(</span><span class="n">DM3</span><span class="p">)</span>
+
+<span class="c1"># plot the loosenes constants</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_Looseness_Constants</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="with-shadow float-center reference internal image-reference" href="_images/Violation_Check.png"><img alt="_images/Violation_Check.png" class="with-shadow float-center" src="_images/Violation_Check.png" style="width: 739.6px; height: 532.8000000000001px;" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a range for the H value</span>
+<span class="n">H_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20000</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># run the AESA for each value in H_range</span>
+<span class="n">output</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">H_range</span><span class="p">:</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AESA_Classification</span><span class="p">(</span><span class="n">TS3</span><span class="p">,</span><span class="n">labels3</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">DM3</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+
+<span class="c1">#plot the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plot_AESA_results</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">H_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<a class="with-shadow float-center reference internal image-reference" href="_images/Results.png"><img alt="_images/Results.png" class="with-shadow float-center" src="_images/Results.png" style="width: 756.8000000000001px; height: 564.0px;" /></a>
 </section>
 
 

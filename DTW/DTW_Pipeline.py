@@ -15,7 +15,19 @@ from scipy.spatial.distance import squareform
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-
+import socket
+computer_name = socket.gethostname()
+# decide the name of the disk where the data was saved
+# depending on the computer you are using, find the path to Research Stuff folder
+if computer_name == 'me653':
+    disk_name = 'D:'
+    path_to_ResearchStuff = 'D:\Research Stuff'
+    path_to_DataArchive = 'D:\Data Archive'
+else:
+    disk_name = 'F:'
+    path_to_ResearchStuff = 'G:\Other computers\My Computer\Research Stuff'
+    path_to_DataArchive = 'G:\Other computers\My Computer\Data Archive'
+    
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
@@ -122,7 +134,7 @@ def DTW_Dist_Mat(TS1,TF,parallel,*args):
             for i in range(N):
                 x=np.ravel(TS1[poss_comb[i,0]])
                 y=np.ravel(TS1[poss_comb[i,1]])
-                DM_cp.append(DTW_Distance_Comp(x,y,1000,False,True))
+                DM_cp.append(DTW_Distance_Comp(x,y,10000,False,True))
             end = time.time()
             print("Elapsed time:{}".format(end-start))
             DM = squareform(DM_cp)
@@ -131,7 +143,7 @@ def DTW_Dist_Mat(TS1,TF,parallel,*args):
             for i in range(N):
                 x=np.ravel(TS1[poss_comb[i,0]])
                 y=np.ravel(TS1[poss_comb[i,1]])
-                inputs.append((x,y,1000,False,True))
+                inputs.append((x,y,10000,False,True))
             
             # time the paralell computation of distances
             start = time.time()
@@ -464,14 +476,36 @@ def plot_Looseness_Constants(H):
     return fig
 
 def AESA_Classification(TS,labels,H,DM,WS):
-    # divide data set into training set and test set
-    Training_set, Test_set,  Label_train, Label_test = train_test_split(TS, labels, test_size=0.33,random_state=16)
+    """
     
-    # find the indices of training set and test set
+
+    Parameters
+    ----------
+    TS : list
+        The list that includes the time series data
+    labels : np.array
+        The list that includes the labels of each time series
+    H : float
+        the looseness constant that will be taken account during elimination 
+    DM : 2D np.array
+        The pairwise distance matrix between the time series data
+    WS : int
+        Window size for sakoeChibaWindow
+
+    Returns
+    -------
+    output : list of dicts
+        The list that includes the results. Each dictionary includes accuracy, average number of distance computations,
+        number of distance computations made for each test sample, the length of training and test sets.
+
+    """
+    # divide data set into training set and test set
+    Training_set, Test_set,  Label_train, Label_test = train_test_split(TS, labels, test_size=0.33,random_state=30)    
+    
     TS_train_L = len(Training_set)
     TS_test_L = len(Test_set)
-
-    # find training set indices
+    
+    #find training set indices
     TS_train_index = np.zeros((TS_train_L))
     for i in range(0,TS_train_L):
         train_sample = Training_set[i]
@@ -479,32 +513,33 @@ def AESA_Classification(TS,labels,H,DM,WS):
             if np.array_equal(TS[j],train_sample):
                 TS_train_index[i] = int(j) 
                 
-    # find test set indices
+    #find test set indices
     TS_test_index = np.zeros((TS_test_L))
     for i in range(0,TS_test_L):
         test_sample = Test_set[i]
         for j in range(0,len(TS)):
             if np.array_equal(TS[j],test_sample):
                 TS_test_index[i] = int(j)             
-
-    # generate the distance matrix for training set
+    
+    #generate the distance matrix for training set
     Training_Set_DM = np.zeros(shape=(TS_train_L,TS_train_L))
     for i in range (0,TS_train_L):
         train_index_1 = int(TS_train_index[i])
         for j in range(0,TS_train_L):
             train_index_2 = int(TS_train_index[j])
             Training_Set_DM[i,j]=DM[train_index_1,train_index_2]    
-    
-    
-    assigned_label=np.zeros((len(TS_test_index),1))
-    number_dtw_comp = np.zeros((len(TS_test_index),1))
-    duration = np.zeros((len(TS_test_index),1))
+        
+    #------------------AESA Algorithm------------------------------------
+    test_no = np.arange(0,len(Test_set),1)    
+    assigned_label=np.zeros((len(test_no),1))
+    number_dtw_comp = np.zeros((len(test_no),1))
+    duration = np.zeros((len(test_no),1))
     
     inc=0
-    for test_samp in range(len(TS_test_index)):
-        true = 0
-        false = 0
-        
+    nearest_sample = []
+    true = 0
+    false = 0
+    for test_samp in test_no:
         start = time.time()
         
         P = list(range(len(Training_set)))
@@ -517,7 +552,7 @@ def AESA_Classification(TS,labels,H,DM,WS):
         
         count=0
         D = []
-        while np.any(np.unique(E)==P)==False:
+        while np.all(np.unique(E)==P)==False:
             # select s as the pseudocentre of P in the first iteration
             if count==0:
                 #select s based on the pseudocenter of the training set
@@ -545,7 +580,6 @@ def AESA_Classification(TS,labels,H,DM,WS):
                     if D_qc> 2*Dx_c-H or D_qc<H:
                         E.append(q)       
                 count = count+1
-                print('count={},n:{}'.format(count,n))
             else:
                 difference_set = list(set(P)-set(E))
                 Summ=[]
@@ -593,8 +627,7 @@ def AESA_Classification(TS,labels,H,DM,WS):
                             E.append(p) 
                     
                 count = count+1
-                print('count={},n:{}'.format(count,n))
-        
+            
         end = time.time()
         duration[inc,0]=end-start
         #classification
@@ -605,10 +638,10 @@ def AESA_Classification(TS,labels,H,DM,WS):
             true = true+1
         else:
             false = false + 1
-        # print('test sample {} completed'.format(test_samp))
+        nearest_sample.append(n)
+        print('Test sample {} completed--->NumofDistComp:{},ClosestSample:{},predictedLabel:{}'.format(test_samp,count,n,assigned_label[inc,0]))
         number_dtw_comp[inc,0]=count
         average_dtw_comp = sum(number_dtw_comp[:,0])/len(Label_test)
-        # print('Accuracy (H={}):{} \nAverage number of computations:{}'.format(H,accuracy[0,0],average_dtw_comp))
         inc=inc+1
     
     accuracy= true/(true+false)*100   
@@ -620,6 +653,72 @@ def AESA_Classification(TS,labels,H,DM,WS):
     output['test_length'] = len(TS_test_index)
     
     return output
+
+def plot_AESA_results(output,H_range):
+    """
+    
+
+    Parameters
+    ----------
+    output : list of dicts
+        The list that includes the results. Each dictionary includes accuracy, average number of distance computations,
+        number of distance computations made for each test sample, the length of training and test sets.
+    H_range : np.array
+        The range of looseness constant which user wants to try to see how it changes the classification accuracy
+    
+    Returns
+    -------
+    fig : figure
+        The left axis represents the accuracy, while right axis is for the average number of distance computations made for each looseness constant value.
+
+    """
+    fs=20
+    accuracy = []
+    average_dtw_computation = []
+    for i in range(len(output)):
+        average_dtw_computation.append(output[i]['ave_dist_comp'])
+        accuracy.append(output[i]['accuracy'])
+    
+    
+    # Create some mock data
+    fig, ax1 = plt.subplots()
+    
+    color = 'tab:red'
+    ax1.set_xlabel('Looseness (H)',fontsize=fs-5)
+    ax1.set_ylabel('Accuracy', color=color,fontsize=fs-5)
+    ax1.plot(H_range, accuracy,color=color,linewidth=2)
+    ax1.tick_params(axis='y', labelcolor=color)
+    plt.ylim([0,100])
+    ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+    
+    color = 'tab:green'
+    ax2.set_ylabel('Average number of DTW Computation', color=color, fontsize=fs-5,rotation=270)  # we already handled the x-label with ax1
+    ax2.plot(H_range, average_dtw_computation, color=color,linewidth=2)
+    ax2.plot([0,max(H_range)],[output[0]['train_length'],output[0]['train_length']],'k',linewidth=1.5,label ='Training \nSet Length')
+    ax2.tick_params(axis='y', labelcolor=color)
+    ax2.legend(loc='lower left', ncol=1, prop={'size': fs-7.5})
+    # ax1.legend(loc='lower left', ncol=1, prop={'size': fs-7.5})
+    
+    # textstr = 'Training set length'
+    # # place a text box in upper left in axes coords
+    # ax1.text(0.05, 1, textstr, transform=ax1.transAxes, fontsize=14,
+    #         verticalalignment='top')
+    
+    # for tick in ax1.xaxis.get_major_ticks():
+    #     tick.label.set_fontsize(fs)
+    # for tick in ax1.yaxis.get_major_ticks():
+    #     tick.label.set_fontsize(fs)
+    
+    for tick in ax2.yaxis.get_major_ticks():
+        tick.label.set_fontsize(fs+5)        
+    
+    ax2.yaxis.set_label_coords(1.1,0.5)
+    
+    
+    fig.tight_layout()  # otherwise the right y-label is slightly clipped
+    plt.show()
+    return fig
+
 
 if __name__ == '__main__':
     # generate two time series
@@ -666,16 +765,6 @@ if __name__ == '__main__':
     
     # AESA --- 
     
-    # Check if there is any violiation to triangular inequality
-    H = TriangularInequalityLoosenes(DM1)    
-    
-    # plot the loosenes constants
-    plt.figure()
-    fig = plot_Looseness_Constants(H)
-    plt.show()
-    
-    # apply AESA with 1NN
-
     # Generate the second set of time series so that we can apply transfer learning
     TS3 = []
     for i in range(50): 
@@ -687,7 +776,27 @@ if __name__ == '__main__':
     # parallel distance computation
     DM3 = DTW_Dist_Mat(TS3,False,True)
     
+    # Check if there is any violiation to triangular inequality
+    H = TriangularInequalityLoosenes(DM3) 
+ 
+    # plot the loosenes constants
+    plt.figure()
+    fig = plot_Looseness_Constants(H)
+    plt.show()
+
     # define a range for the H value 
+    H_range = np.linspace(0,20000,20)
+
+    # run the AESA for each value in H_range
+    output=[]
+    for i in H_range:
+        output.append(AESA_Classification(TS3,labels3,i,DM3,100))
+        
+    #plot the results
+    plt.figure()    
+    plot_AESA_results(output,H_range)
+    plt.show()
+    path = 'G:\\Other computers\\My Computer\\Repositories\\ML_Toolbox_Machining\\source\\figures\\Results.png'
+    plt.savefig(path,bbox_inches = 'tight', dpi=300)   
     
     
-    out = AESA_Classification(TS3,labels3,5000,DM3,5)

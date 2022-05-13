@@ -89,7 +89,23 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">squareform</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="n">computer_name</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">()</span>
+<span class="c1"># decide the name of the disk where the data was saved</span>
+<span class="c1"># depending on the computer you are using, find the path to Research Stuff folder</span>
+<span class="k">if</span> <span class="n">computer_name</span> <span class="o">==</span> <span class="s1">&#39;me653&#39;</span><span class="p">:</span>
+    <span class="n">disk_name</span> <span class="o">=</span> <span class="s1">&#39;D:&#39;</span>
+    <span class="n">path_to_ResearchStuff</span> <span class="o">=</span> <span class="s1">&#39;D:\Research Stuff&#39;</span>
+    <span class="n">path_to_DataArchive</span> <span class="o">=</span> <span class="s1">&#39;D:\Data Archive&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">disk_name</span> <span class="o">=</span> <span class="s1">&#39;F:&#39;</span>
+    <span class="n">path_to_ResearchStuff</span> <span class="o">=</span> <span class="s1">&#39;G:\Other computers\My Computer\Research Stuff&#39;</span>
+    <span class="n">path_to_DataArchive</span> <span class="o">=</span> <span class="s1">&#39;G:\Other computers\My Computer\Data Archive&#39;</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s1">&#39;serif&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DTW_Distance_Comp"><a class="viewcode-back" href="../../DTW.html#DTW.DTW_Pipeline.DTW_Distance_Comp">[docs]</a><span class="k">def</span> <span class="nf">DTW_Distance_Comp</span><span class="p">(</span><span class="n">ts1</span><span class="p">,</span><span class="n">ts2</span><span class="p">,</span><span class="n">WS</span><span class="p">,</span><span class="n">path_plot</span><span class="p">,</span><span class="n">dist_only</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -194,7 +210,7 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
                 <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS1</span><span class="p">[</span><span class="n">poss_comb</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
                 <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS1</span><span class="p">[</span><span class="n">poss_comb</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
-                <span class="n">DM_cp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DTW_Distance_Comp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">))</span>
+                <span class="n">DM_cp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DTW_Distance_Comp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">))</span>
             <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Elapsed time:</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="p">))</span>
             <span class="n">DM</span> <span class="o">=</span> <span class="n">squareform</span><span class="p">(</span><span class="n">DM_cp</span><span class="p">)</span>
@@ -203,7 +219,7 @@
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
                 <span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS1</span><span class="p">[</span><span class="n">poss_comb</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
                 <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS1</span><span class="p">[</span><span class="n">poss_comb</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
-                <span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">))</span>
+                <span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">))</span>
             
             <span class="c1"># time the paralell computation of distances</span>
             <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
@@ -461,50 +477,405 @@
     
     <span class="k">return</span> <span class="n">output</span></div>
 
+<div class="viewcode-block" id="TriangularInequalityLoosenes"><a class="viewcode-back" href="../../DTW.html#DTW.DTW_Pipeline.TriangularInequalityLoosenes">[docs]</a><span class="k">def</span> <span class="nf">TriangularInequalityLoosenes</span><span class="p">(</span><span class="n">DM</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    DM : 2D np.array </span>
+<span class="sd">        The pairwise distance matrix for the time series data set</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    H : list</span>
+<span class="sd">        The list that includes the looseness constants computed for all combinations of three time series in the data set</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">d_N</span> <span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">DM</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">inc</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d_N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d_N</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">d_N</span><span class="p">):</span>
+                
+                <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">elif</span> <span class="n">j</span><span class="o">==</span><span class="n">k</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">elif</span> <span class="n">i</span><span class="o">==</span><span class="n">k</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+
+                    <span class="n">D1</span> <span class="o">=</span> <span class="n">DM</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+                    <span class="n">D2</span> <span class="o">=</span> <span class="n">DM</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+                    <span class="n">D3</span> <span class="o">=</span> <span class="n">DM</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+            
+                    <span class="n">H</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">D1</span><span class="o">+</span><span class="n">D2</span><span class="o">-</span><span class="n">D3</span><span class="p">)</span>
+                    <span class="n">inc</span> <span class="o">=</span> <span class="n">inc</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">H</span></div>
+
+<div class="viewcode-block" id="plot_Looseness_Constants"><a class="viewcode-back" href="../../DTW.html#DTW.DTW_Pipeline.plot_Looseness_Constants">[docs]</a><span class="k">def</span> <span class="nf">plot_Looseness_Constants</span><span class="p">(</span><span class="n">H</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    H : list</span>
+<span class="sd">        The list that includes the looseness constants computed for all combinations of three time series in the data set</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : figure</span>
+<span class="sd">        Returns the histogram plot of the looseness constant </span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Looseness (H)&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>    
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># plt.tick_params(axis=&#39;x&#39;,which=&#39;both&#39;,bottom=False,top=False,labelbottom=False) </span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">H</span><span class="p">)])</span>
+    <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">get_major_ticks</span><span class="p">():</span>
+        <span class="n">tick</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">fs</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_major_ticks</span><span class="p">():</span>
+        <span class="n">tick</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">fs</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span>
+    <span class="c1"># textstr = Title[i]</span>
+    <span class="c1"># props = dict(boxstyle=&#39;round&#39;, facecolor=&#39;wheat&#39;, alpha=0.5)</span>
+    <span class="c1"># # place a text box in upper left in axes coords</span>
+    <span class="c1"># ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,</span>
+    <span class="c1">#         verticalalignment=&#39;top&#39;, bbox=props)</span>
+    <span class="c1"># plt.subplots_adjust(hspace=0.1)  </span>
+    
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+<div class="viewcode-block" id="AESA_Classification"><a class="viewcode-back" href="../../DTW.html#DTW.DTW_Pipeline.AESA_Classification">[docs]</a><span class="k">def</span> <span class="nf">AESA_Classification</span><span class="p">(</span><span class="n">TS</span><span class="p">,</span><span class="n">labels</span><span class="p">,</span><span class="n">H</span><span class="p">,</span><span class="n">DM</span><span class="p">,</span><span class="n">WS</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    TS : list</span>
+<span class="sd">        The list that includes the time series data</span>
+<span class="sd">    labels : np.array</span>
+<span class="sd">        The list that includes the labels of each time series</span>
+<span class="sd">    H : float</span>
+<span class="sd">        the looseness constant that will be taken account during elimination </span>
+<span class="sd">    DM : 2D np.array</span>
+<span class="sd">        The pairwise distance matrix between the time series data</span>
+<span class="sd">    WS : int</span>
+<span class="sd">        Window size for sakoeChibaWindow</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    output : list of dicts</span>
+<span class="sd">        The list that includes the results. Each dictionary includes accuracy, average number of distance computations,</span>
+<span class="sd">        number of distance computations made for each test sample, the length of training and test sets.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># divide data set into training set and test set</span>
+    <span class="n">Training_set</span><span class="p">,</span> <span class="n">Test_set</span><span class="p">,</span>  <span class="n">Label_train</span><span class="p">,</span> <span class="n">Label_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">TS</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>    
+    
+    <span class="n">TS_train_L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Training_set</span><span class="p">)</span>
+    <span class="n">TS_test_L</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Test_set</span><span class="p">)</span>
+    
+    <span class="c1">#find training set indices</span>
+    <span class="n">TS_train_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">TS_train_L</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">TS_train_L</span><span class="p">):</span>
+        <span class="n">train_sample</span> <span class="o">=</span> <span class="n">Training_set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">TS</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">TS</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">train_sample</span><span class="p">):</span>
+                <span class="n">TS_train_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> 
+                
+    <span class="c1">#find test set indices</span>
+    <span class="n">TS_test_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">TS_test_L</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">TS_test_L</span><span class="p">):</span>
+        <span class="n">test_sample</span> <span class="o">=</span> <span class="n">Test_set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">TS</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">TS</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">test_sample</span><span class="p">):</span>
+                <span class="n">TS_test_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>             
+    
+    <span class="c1">#generate the distance matrix for training set</span>
+    <span class="n">Training_Set_DM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">TS_train_L</span><span class="p">,</span><span class="n">TS_train_L</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">TS_train_L</span><span class="p">):</span>
+        <span class="n">train_index_1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">TS_train_index</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">TS_train_L</span><span class="p">):</span>
+            <span class="n">train_index_2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">TS_train_index</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">Training_Set_DM</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">DM</span><span class="p">[</span><span class="n">train_index_1</span><span class="p">,</span><span class="n">train_index_2</span><span class="p">]</span>    
+        
+    <span class="c1">#------------------AESA Algorithm------------------------------------</span>
+    <span class="n">test_no</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">Test_set</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>    
+    <span class="n">assigned_label</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">test_no</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">number_dtw_comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">test_no</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">duration</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">test_no</span><span class="p">),</span><span class="mi">1</span><span class="p">))</span>
+    
+    <span class="n">inc</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">nearest_sample</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">true</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">false</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">test_samp</span> <span class="ow">in</span> <span class="n">test_no</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        
+        <span class="n">P</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Training_set</span><span class="p">)))</span>
+        
+        <span class="c1">#initialize the set of used samples</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1">#initialize the set of eliminated samples</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        
+        <span class="n">count</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">==</span><span class="n">P</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># select s as the pseudocentre of P in the first iteration</span>
+            <span class="k">if</span> <span class="n">count</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                <span class="c1">#select s based on the pseudocenter of the training set</span>
+                <span class="n">SUM</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Training_Set_DM</span><span class="p">)</span>
+                <span class="n">minimum</span><span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">SUM</span><span class="p">)</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">SUM</span><span class="o">==</span><span class="n">minimum</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1">#add s to used set of samples</span>
+                <span class="n">U</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="c1">#current nearest sample (n)</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="n">s</span>
+                <span class="c1">#distance between nearest sample and the test sample</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">TS_test_index</span><span class="p">[</span><span class="n">test_samp</span><span class="p">])])</span>
+                <span class="n">t_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">TS_train_index</span><span class="p">[</span><span class="n">s</span><span class="p">])])</span>
+                <span class="n">Dx_c</span> <span class="o">=</span> <span class="n">DTW_Distance_Comp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t_c</span><span class="p">,</span><span class="n">WS</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">D_x_n</span> <span class="o">=</span> <span class="n">Dx_c</span>
+                <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Dx_c</span><span class="p">)</span>
+                <span class="c1">#elimination</span>
+                <span class="n">c</span><span class="o">=</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                <span class="n">set_p_c</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">-</span><span class="nb">set</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+                <span class="n">E</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">set_p_c</span><span class="p">)):</span>
+                    <span class="n">q</span> <span class="o">=</span> <span class="n">set_p_c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">D_qc</span> <span class="o">=</span> <span class="n">Training_Set_DM</span><span class="p">[</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
+                    
+                    <span class="k">if</span> <span class="n">D_qc</span><span class="o">&gt;</span> <span class="mi">2</span><span class="o">*</span><span class="n">Dx_c</span><span class="o">-</span><span class="n">H</span> <span class="ow">or</span> <span class="n">D_qc</span><span class="o">&lt;</span><span class="n">H</span><span class="p">:</span>
+                        <span class="n">E</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>       
+                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">difference_set</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">-</span><span class="nb">set</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+                <span class="n">Summ</span><span class="o">=</span><span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">difference_set</span><span class="p">)):</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">difference_set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">Sum</span><span class="o">=</span><span class="mi">0</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">U</span><span class="p">)):</span>
+                        <span class="n">q</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                        
+                        <span class="n">D_p_q</span> <span class="o">=</span> <span class="n">Training_Set_DM</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">]</span>
+                        <span class="n">D_x_q</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                        
+                        <span class="n">Sum</span> <span class="o">=</span> <span class="n">Sum</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">D_p_q</span><span class="o">-</span><span class="n">D_x_q</span><span class="p">)</span>
+                    <span class="n">Summ</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Sum</span><span class="p">)</span>
+                <span class="n">minimum</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">Summ</span><span class="p">)</span>    
+                <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Summ</span><span class="o">==</span><span class="n">minimum</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">difference_set</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+                <span class="c1"># DTW computation</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">TS_test_index</span><span class="p">[</span><span class="n">test_samp</span><span class="p">])])</span>
+                <span class="n">t_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">TS</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">TS_train_index</span><span class="p">[</span><span class="n">s</span><span class="p">])])</span>
+                <span class="n">D_x_s</span> <span class="o">=</span> <span class="n">DTW_Distance_Comp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">t_c</span><span class="p">,</span><span class="n">WS</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">D</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">D_x_s</span><span class="p">)</span>
+                <span class="c1">#update U and E</span>
+                <span class="n">U</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">E</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                
+                <span class="c1">#update nearest member</span>
+                <span class="k">if</span> <span class="n">D_x_s</span><span class="o">&lt;</span><span class="n">D_x_n</span><span class="p">:</span>
+                    <span class="n">Q</span><span class="o">=</span><span class="n">U</span>
+                    <span class="n">n</span><span class="o">=</span><span class="n">s</span>
+                    <span class="n">D_x_n</span> <span class="o">=</span> <span class="n">D_x_s</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Q</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                    
+                <span class="c1">#elimination</span>
+                <span class="n">set_p_e</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">-</span><span class="nb">set</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Q</span><span class="p">)):</span>
+                    <span class="n">q</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">set_p_e</span><span class="p">)):</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">set_p_e</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                        <span class="n">D_p_q</span><span class="o">=</span> <span class="n">Training_Set_DM</span><span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">]</span>
+                        <span class="n">D_x_q</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                        
+                        <span class="k">if</span> <span class="n">D_p_q</span><span class="o">&gt;</span> <span class="n">D_x_q</span><span class="o">+</span><span class="n">D_x_n</span><span class="o">-</span><span class="n">H</span> <span class="ow">or</span> <span class="n">D_p_q</span><span class="o">&lt;</span> <span class="n">D_x_q</span><span class="o">-</span><span class="n">D_x_n</span><span class="o">+</span><span class="n">H</span><span class="p">:</span>
+                            <span class="n">E</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> 
+                    
+                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span>
+            
+        <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">duration</span><span class="p">[</span><span class="n">inc</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">end</span><span class="o">-</span><span class="n">start</span>
+        <span class="c1">#classification</span>
+        <span class="n">assigned_label</span><span class="p">[</span><span class="n">inc</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">Label_train</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">test_class</span> <span class="o">=</span> <span class="n">Label_test</span><span class="p">[</span><span class="n">test_samp</span><span class="p">]</span>
+        <span class="c1"># print(&#39;predicted={},true label={}&#39;.format(Label_train[n],test_class))</span>
+        <span class="k">if</span> <span class="n">test_class</span> <span class="o">==</span> <span class="n">Label_train</span><span class="p">[</span><span class="n">n</span><span class="p">]:</span>
+            <span class="n">true</span> <span class="o">=</span> <span class="n">true</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">false</span> <span class="o">=</span> <span class="n">false</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">nearest_sample</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test sample </span><span class="si">{}</span><span class="s1"> completed---&gt;NumofDistComp:</span><span class="si">{}</span><span class="s1">,ClosestSample:</span><span class="si">{}</span><span class="s1">,predictedLabel:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_samp</span><span class="p">,</span><span class="n">count</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">assigned_label</span><span class="p">[</span><span class="n">inc</span><span class="p">,</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">number_dtw_comp</span><span class="p">[</span><span class="n">inc</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">count</span>
+        <span class="n">average_dtw_comp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">number_dtw_comp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">Label_test</span><span class="p">)</span>
+        <span class="n">inc</span><span class="o">=</span><span class="n">inc</span><span class="o">+</span><span class="mi">1</span>
+    
+    <span class="n">accuracy</span><span class="o">=</span> <span class="n">true</span><span class="o">/</span><span class="p">(</span><span class="n">true</span><span class="o">+</span><span class="n">false</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>   
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">output</span><span class="p">[</span><span class="s1">&#39;ave_dist_comp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">average_dtw_comp</span>
+    <span class="n">output</span><span class="p">[</span><span class="s1">&#39;n_dist_comp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">number_dtw_comp</span>
+    <span class="n">output</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">accuracy</span>
+    <span class="n">output</span><span class="p">[</span><span class="s1">&#39;train_length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">TS_train_index</span><span class="p">)</span>
+    <span class="n">output</span><span class="p">[</span><span class="s1">&#39;test_length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">TS_test_index</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">output</span></div>
+
+<div class="viewcode-block" id="plot_AESA_results"><a class="viewcode-back" href="../../DTW.html#DTW.DTW_Pipeline.plot_AESA_results">[docs]</a><span class="k">def</span> <span class="nf">plot_AESA_results</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">H_range</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    output : list of dicts</span>
+<span class="sd">        The list that includes the results. Each dictionary includes accuracy, average number of distance computations,</span>
+<span class="sd">        number of distance computations made for each test sample, the length of training and test sets.</span>
+<span class="sd">    H_range : np.array</span>
+<span class="sd">        The range of looseness constant which user wants to try to see how it changes the classification accuracy</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : figure</span>
+<span class="sd">        The left axis represents the accuracy, while right axis is for the average number of distance computations made for each looseness constant value.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fs</span><span class="o">=</span><span class="mi">20</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">average_dtw_computation</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)):</span>
+        <span class="n">average_dtw_computation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;ave_dist_comp&#39;</span><span class="p">])</span>
+        <span class="n">accuracy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+    
+    
+    <span class="c1"># Create some mock data</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tab:red&#39;</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Looseness (H)&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">H_range</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">])</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>  <span class="c1"># instantiate a second axes that shares the same x-axis</span>
+    
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tab:green&#39;</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Average number of DTW Computation&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="n">rotation</span><span class="o">=</span><span class="mi">270</span><span class="p">)</span>  <span class="c1"># we already handled the x-label with ax1</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">H_range</span><span class="p">,</span> <span class="n">average_dtw_computation</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">H_range</span><span class="p">)],[</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;train_length&#39;</span><span class="p">],</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;train_length&#39;</span><span class="p">]],</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Training </span><span class="se">\n</span><span class="s1">Set Length&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">fs</span><span class="o">-</span><span class="mf">7.5</span><span class="p">})</span>
+    <span class="c1"># ax1.legend(loc=&#39;lower left&#39;, ncol=1, prop={&#39;size&#39;: fs-7.5})</span>
+    
+    <span class="c1"># textstr = &#39;Training set length&#39;</span>
+    <span class="c1"># # place a text box in upper left in axes coords</span>
+    <span class="c1"># ax1.text(0.05, 1, textstr, transform=ax1.transAxes, fontsize=14,</span>
+    <span class="c1">#         verticalalignment=&#39;top&#39;)</span>
+    
+    <span class="c1"># for tick in ax1.xaxis.get_major_ticks():</span>
+    <span class="c1">#     tick.label.set_fontsize(fs)</span>
+    <span class="c1"># for tick in ax1.yaxis.get_major_ticks():</span>
+    <span class="c1">#     tick.label.set_fontsize(fs)</span>
+    
+    <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_major_ticks</span><span class="p">():</span>
+        <span class="n">tick</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">set_fontsize</span><span class="p">(</span><span class="n">fs</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>        
+    
+    <span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_coords</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+    
+    
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># otherwise the right y-label is slightly clipped</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="c1"># generate two time series</span>
-    <span class="n">ts1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">6.28</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="n">ts2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ts1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mf">10.0</span>
+    <span class="c1"># # generate two time series</span>
+    <span class="c1"># ts1 = np.linspace(0,6.28,num=100)</span>
+    <span class="c1"># ts2 = np.sin(ts1) + np.random.uniform(size=100)/10.0</span>
     
-    <span class="c1"># compute the distance between and the plot the warping path</span>
-    <span class="n">distance</span> <span class="o">=</span> <span class="n">DTW_Distance_Comp</span><span class="p">(</span><span class="n">ts1</span><span class="p">,</span><span class="n">ts2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># # compute the distance between and the plot the warping path</span>
+    <span class="c1"># distance = DTW_Distance_Comp(ts1,ts2,5,True,False)</span>
     
-    <span class="c1"># generate synthetic data set</span>
+    <span class="c1"># # generate synthetic data set</span>
     
-    <span class="n">TS1</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span> 
-        <span class="n">fs</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span> 
-        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">fs</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
-        <span class="n">A</span> <span class="o">=</span> <span class="mi">20</span> 
-        <span class="n">TS1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>
+    <span class="c1"># TS1 = []</span>
+    <span class="c1"># for i in range(15): </span>
+    <span class="c1">#     fs, T = 100, 10 </span>
+    <span class="c1">#     t = np.linspace(-0.2,T,fs*T+1) </span>
+    <span class="c1">#     A = 20 </span>
+    <span class="c1">#     TS1.append(A*np.sin((i+1)*np.pi*t) + A*np.sin(1*t))</span>
     
-    <span class="c1"># serial distance computation</span>
-    <span class="n">DM1</span> <span class="o">=</span> <span class="n">DTW_Dist_Mat</span><span class="p">(</span><span class="n">TS1</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
-    <span class="c1"># parallel distance computation</span>
-    <span class="n">DM2</span> <span class="o">=</span> <span class="n">DTW_Dist_Mat</span><span class="p">(</span><span class="n">TS1</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># # serial distance computation</span>
+    <span class="c1"># DM1 = DTW_Dist_Mat(TS1,False,False)</span>
+    <span class="c1"># # parallel distance computation</span>
+    <span class="c1"># DM2 = DTW_Dist_Mat(TS1,False,True)</span>
+    
+    <span class="c1"># # Generate the second set of time series so that we can apply transfer learning</span>
+    <span class="c1"># TS2 = []</span>
+    <span class="c1"># for i in range(20): </span>
+    <span class="c1">#     fs, T = 100, 10 </span>
+    <span class="c1">#     t = np.linspace(-0.2,T,fs*T+1) </span>
+    <span class="c1">#     A = 20 </span>
+    <span class="c1">#     TS2.append(A*np.sin((2*i+1)*np.pi*t) + A*np.sin(2*t))   </span>
+    
+    <span class="c1"># # serial distance computation</span>
+    <span class="c1"># DM_TF1 = DTW_Dist_Mat(TS1,True,False,TS2)</span>
+    <span class="c1"># # parallel distance computation</span>
+    <span class="c1"># DM_TF2 = DTW_Dist_Mat(TS1,True,True,TS2)    </span>
+    
+    <span class="c1"># # perform classification</span>
+    <span class="c1"># labels1 = np.random.choice([0, 1], size=(len(TS1),), p=[1./3, 2./3])</span>
+    <span class="c1"># out = TS_Classification(1,TS1,labels1,DM1,False)</span>
+    
+    <span class="c1"># # perform classification using transfer learning</span>
+    <span class="c1"># labels2 = np.random.choice([0, 1], size=(len(TS2),), p=[1./3, 2./3])</span>
+    <span class="c1"># out = TS_Classification(1,TS1,labels1,DM_TF1,True,TS2,labels2,DM_TF2)</span>
+    
+    <span class="c1"># AESA --- </span>
     
     <span class="c1"># Generate the second set of time series so that we can apply transfer learning</span>
-    <span class="n">TS2</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span> 
+    <span class="n">TS3</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span> 
         <span class="n">fs</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span> 
         <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">fs</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> 
         <span class="n">A</span> <span class="o">=</span> <span class="mi">20</span> 
-        <span class="n">TS2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>   
-    
-    <span class="c1"># serial distance computation</span>
-    <span class="n">DM_TF1</span> <span class="o">=</span> <span class="n">DTW_Dist_Mat</span><span class="p">(</span><span class="n">TS1</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="n">TS2</span><span class="p">)</span>
+        <span class="n">TS3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">A</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">))</span>  
+    <span class="n">labels3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TS3</span><span class="p">),),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
     <span class="c1"># parallel distance computation</span>
-    <span class="n">DM_TF2</span> <span class="o">=</span> <span class="n">DTW_Dist_Mat</span><span class="p">(</span><span class="n">TS1</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="n">TS2</span><span class="p">)</span>    
+    <span class="n">DM3</span> <span class="o">=</span> <span class="n">DTW_Dist_Mat</span><span class="p">(</span><span class="n">TS3</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
     
-    <span class="c1"># perform classification</span>
-    <span class="n">labels1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TS1</span><span class="p">),),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">TS_Classification</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">TS1</span><span class="p">,</span><span class="n">labels1</span><span class="p">,</span><span class="n">DM1</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># Check if there is any violiation to triangular inequality</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">TriangularInequalityLoosenes</span><span class="p">(</span><span class="n">DM3</span><span class="p">)</span> 
+ 
+    <span class="c1"># plot the loosenes constants</span>
+    <span class="c1"># plt.figure()</span>
+    <span class="c1"># fig = plot_Looseness_Constants(H)</span>
+    <span class="c1"># plt.show()</span>
+    <span class="c1"># path = &#39;G:\\Other computers\\My Computer\\Repositories\\ML_Toolbox_Machining\\source\\figures\\Violation_Check.png&#39;</span>
+    <span class="c1"># plt.savefig(path,bbox_inches = &#39;tight&#39;, dpi=300)</span>
     
-    <span class="c1"># perform classification using transfer learning</span>
-    <span class="n">labels2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TS2</span><span class="p">),),</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="n">TS_Classification</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">TS1</span><span class="p">,</span><span class="n">labels1</span><span class="p">,</span><span class="n">DM_TF1</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="n">TS2</span><span class="p">,</span><span class="n">labels2</span><span class="p">,</span><span class="n">DM_TF2</span><span class="p">)</span>
+    <span class="c1"># define a range for the H value </span>
+    <span class="n">H_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20000</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+
+    <span class="c1"># run the AESA for each value in H_range</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">H_range</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AESA_Classification</span><span class="p">(</span><span class="n">TS3</span><span class="p">,</span><span class="n">labels3</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">DM3</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+        
+    <span class="c1">#plot the results</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>    
+    <span class="n">plot_AESA_results</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">H_range</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;G:</span><span class="se">\\</span><span class="s1">Other computers</span><span class="se">\\</span><span class="s1">My Computer</span><span class="se">\\</span><span class="s1">Repositories</span><span class="se">\\</span><span class="s1">ML_Toolbox_Machining</span><span class="se">\\</span><span class="s1">source</span><span class="se">\\</span><span class="s1">figures</span><span class="se">\\</span><span class="s1">Results.png&#39;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">bbox_inches</span> <span class="o">=</span> <span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>   
     
     
 </pre></div>

@@ -53,3 +53,53 @@ Dynamic Time Warping (DTW)
     # perform classification using transfer learning
     labels2 = np.random.choice([0, 1], size=(len(TS2),), p=[1./3, 2./3])
     out = TS_Classification(1,TS1,labels1,DM_TF1,True,TS2,labels2,DM_TF2)
+
+AESA Example
+
+::
+
+    # Generate the second set of time series so that we can apply transfer learning
+    TS3 = []
+    for i in range(50): 
+        fs, T = 100, 10 
+        t = np.linspace(-0.2,T,fs*T+1) 
+        A = 20 
+        TS3.append(A*np.sin((2*i+1)*np.pi*t) + A*np.sin(2*t))  
+    labels3 = np.random.choice([0, 1], size=(len(TS3),), p=[1./3, 2./3])
+    # parallel distance computation
+    DM3 = DTW_Dist_Mat(TS3,False,True)
+    
+    # Check if there is any violiation to triangular inequality
+    H = TriangularInequalityLoosenes(DM3) 
+ 
+    # plot the loosenes constants
+    plt.figure()
+    fig = plot_Looseness_Constants(H)
+    plt.show()
+	
+.. image:: figures/Violation_Check.png
+   :class: with-shadow float-center
+   :scale: 40
+
+::
+  
+    # define a range for the H value 
+    H_range = np.linspace(0,20000,20)
+
+    # run the AESA for each value in H_range
+    output=[]
+    for i in H_range:
+        output.append(AESA_Classification(TS3,labels3,i,DM3,100))
+        
+    #plot the results
+    plt.figure()    
+    plot_AESA_results(output,H_range)
+    plt.show()   
+	
+.. image:: figures/Results.png
+   :class: with-shadow float-center
+   :scale: 40
+
+
+
+
