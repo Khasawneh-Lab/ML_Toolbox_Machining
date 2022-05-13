@@ -796,7 +796,6 @@ if __name__ == '__main__':
     plt.figure()    
     plot_AESA_results(output,H_range)
     plt.show()
-    path = 'G:\\Other computers\\My Computer\\Repositories\\ML_Toolbox_Machining\\source\\figures\\Results.png'
-    plt.savefig(path,bbox_inches = 'tight', dpi=300)   
+ 
     
     
